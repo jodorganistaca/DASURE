@@ -1,0 +1,17 @@
+.books-navbar {
+    background-color: #81c784;
+}
+
+.books-header {
+    background-color: #519657;
+}
+
+books-navbar-title{
+    font-weight: bold;
+    font-size: initial;
+    color: black;
+}
+
+.books-logo{
+    height: 50px;
+}

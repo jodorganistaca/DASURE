@@ -2,14 +2,31 @@ import React, { useState, useEffect, useContext } from 'react'
 import 'antd/dist/antd.css';
 //import Context from '../GlobalState/context'
 import { withRouter } from 'react-router-dom'
-import '../Styles/Movies.css'
+import '../Styles/Book.css'
+import {Layout, Menu} from "antd";
+
+const { Header, Footer, Content } = Layout;
 
 const Books = props => {
 
     return (
-        <div className="books-container">
+        <Layout className="books-container">
+            <Header className="books-header">
+                <div>
+                    <Menu mode="horizontal" className="books-navbar">
+                        <Menu.Item >
+                            <img className="books-logo" src={require("../Assets/Books-black.svg")} alt="Books" onClick={() => props.history.push('home')} />
+                            <span className="books-navbar-title">Libros</span>
+                        </Menu.Item>
+                    </Menu>
+                </div>
+            </Header>
+            <Content className="content">
 
-        </div>
+            </Content>
+            <Footer className="footer">
+            </Footer>
+        </Layout>
     )
 
 };

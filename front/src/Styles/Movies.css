@@ -1,0 +1,17 @@
+.movie-navbar {
+    background-color: #64b5f6;
+}
+
+.movie-header {
+    background-color: #2286c3;
+}
+
+movie-navbar-title{
+    font-weight: bold;
+    font-size: initial;
+    color: black;
+}
+
+.movie-logo{
+    height: 50px;
+}
