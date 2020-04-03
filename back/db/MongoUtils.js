@@ -71,7 +71,7 @@ exports.getCollectionPromise = dbName => {
  * @throws {Error} if the connection could not be established.
  * @returns {Promise} A Promise that will return an array with the documents of the collection.
  */
-exports.getDocumentsPromise = (uri, dbName, collectionName) => {
+exports.getDocumentsPromise = (dbName, collectionName) => {
   if (!dbName || !(dbName instanceof String)) {
     new Error("Database name cannot be: " + dbName);
   }
