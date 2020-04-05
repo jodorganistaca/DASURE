@@ -71,7 +71,7 @@ exports.getCollectionPromise = dbName => {
  * @throws {Error} if the connection could not be established.
  * @returns {Promise} A Promise that will return an array with the documents of the collection.
  */
-exports.getDocumentsPromise = (uri, dbName, collectionName) => {
+exports.getDocumentsPromise = (dbName, collectionName) => {
   if (!dbName || !(dbName instanceof String)) {
     new Error("Database name cannot be: " + dbName);
   }
@@ -216,8 +216,8 @@ exports.createOneDocumentPromise = (dbName, collectionName, object) => {
 };
 
 /**
- * @function findOrCreateDocument
- * @alias module:MongoUtils.createOneDocumentPromise
+ * @function findOrCreateDocumentPromise
+ * @alias module:MongoUtils.findOrCreateDocumentPromise
  * @param {string} dbName Name of the database to query.
  * @param {string} collectionName Name of the collection to query its documents.
  * @param {Object} searchObject The object to create or find in the database.

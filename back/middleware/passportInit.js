@@ -11,7 +11,7 @@ const passportInit = () => {
       },
       function (accessToken, refreshToken, profile, cb) {
         mongoUtils
-          .findOrCreateDocument("application", "users", {
+          .findOrCreateDocumentPromise("application", "users", {
             googleId: profile.id
           })
           .then(user => cb(null, user));
