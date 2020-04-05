@@ -225,7 +225,7 @@ exports.createOneDocumentPromise = (dbName, collectionName, object) => {
  * @throws {Error} if the connection could not be established.
  * @returns {Promise} A Promise that will return the object.
  */
-exports.findOrCreateDocument = (dbName, collectionName, searchObject) => {
+exports.findOrCreateDocumentPromise = (dbName, collectionName, searchObject) => {
   return client.connect().then(client =>
     client.db(dbName).collection(collectionName).findOneAndUpdate(
       searchObject,

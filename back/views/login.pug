@@ -1,0 +1,32 @@
+extends layout
+append head
+    link(rel="stylesheet", href="stylesheets/login.css")
+    script(src="https://kit.fontawesome.com/a93ed6a900.js")
+block content
+    div.container
+        div.row
+            div.col-sm-9.col-md-7.col-lg-5.mx-auto
+                div.card.card-signin.my-5
+                    div.card-body
+                        h5.card-title.text-center Sign In
+                            form.form-signin
+                                div.form-label-group
+                                    input(type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus)
+                                    label(for="inputEmail") Email address
+                                div.form-label-group
+                                    input(type="password" id="inputPassword" class="form-control" placeholder="Password" required)
+                                    label(for="inputPassword") Password
+
+                                div.custom-control.custom-checkbox.mb-3
+                                    <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                    <label class="custom-control-label" for="customCheck1">Remember password</label>
+                                button.btn.btn-lg.btn-primary.btn-block.text-uppercase(type="submit") Sign in
+                                hr.my-4
+                                a.btn.btn-lg.btn-outline-dark.btn-block.text-uppercase(href="/auth" role="button" style="text-transform:none")
+                                    img(width="20px" style="margin-bottom:3px; margin-right:5px" alt="Google sign-in" src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/53/Google_%22G%22_Logo.svg/512px-Google_%22G%22_Logo.svg.png")
+                                    p Sign in with Google
+        
+
+                        
+                        
+

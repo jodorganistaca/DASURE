@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require("passport");
 
 /* GET home page. */
-router.get("/", passport.authenticate("google", { scope: ["profile"] }));
+router.get("/", passport.authenticate("google", { scope: ["email", "profile"] }));
 router.get(
   "/callback",
   passport.authenticate("google", { failureRedirect: "/login" }),

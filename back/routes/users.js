@@ -9,14 +9,14 @@ router.get('/', function(req, res, next) {
 });
 
 router.post('/', function(req, res, next) {
-  const {username, password, email} = req.body;
-  db.createOneDocumentPromise("application", "users", {username: username, password: password, email: email})
+  const {name, username, password, email} = req.body;
+  db.createOneDocumentPromise("application", "users", {name: name, password: password, email: email})
   .then(docs => res.json(docs))
 });
 
 router.put('/', function(req, res, next) {
   const {id, username, password, email} = req.body;
-  db.findAndUpdateOnePromise("application", "users", id, {username: username, password: password, email: email})
+  db.findAndUpdateOnePromise("application", "users", id, {name: name, password: password, email: email})
   .then(docs => res.json(docs))
 });
 
