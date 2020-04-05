@@ -8,21 +8,26 @@ router.get('/', function(req, res, next) {
   .then(docs => res.json(docs))
 });
 
+router.get('/:id', function(req, res, next) {
+  db.findOnePromise("application", "users", req.params.id)
+  .then(docs => res.json(docs))
+});
+
 router.post('/', function(req, res, next) {
   const {name, username, password, email} = req.body;
   db.createOneDocumentPromise("application", "users", {name: name, password: password, email: email})
   .then(docs => res.json(docs))
 });
 
-router.put('/', function(req, res, next) {
-  const {id, username, password, email} = req.body;
-  db.findAndUpdateOnePromise("application", "users", id, {name: name, password: password, email: email})
+router.put('/:id', function(req, res, next) {
+  console.log(req.body);
+  const {name, password, email} = req.body;
+  db.findAndUpdateOnePromise("application", "users", req.params.id, {name: name, password: password, email: email})
   .then(docs => res.json(docs))
 });
 
 router.delete('/:id', function(req, res, next) {
-  const {id} = req.body;
-  db.findAndDeleteOnePromise("application", "users", id)
+  db.findAndDeleteOnePromise("application", "users", req.params.id)
   .then(docs => res.json(docs))
 });
 
