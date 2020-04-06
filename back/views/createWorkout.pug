@@ -1,0 +1,68 @@
+extends layout
+
+block content
+    .main.container
+        .row
+            .col-md-6.col-md-offset-3
+                h1.display-4.m-b-2 Crear #{type}
+
+                // register form
+                form(method='POST' action=`/create/Workout`)
+                    div.form-group
+                        label(for='name') Name:
+                        input#name.form-control(type='text', placeholder=`Nombre de la ${type}` name='name', required)
+                    div.form-group
+                        label(for='description') Description:
+                        input#description.form-control(type='text', placeholder=`Descripcion de la ${type}` name='description')
+                    div.form-group
+                        label(for='difficulty') Difficulty:
+                            select#difficulty.select.form-control.input-lg(form='difficulty', name='difficulty')
+                                option(value='0') -- Select --
+                                option(value='1') beginner
+                                option(value='2') intermediate
+                                option(value='3') advanced
+                    label Activities/Exercises
+                    div#activity0.form-group.activityGroup
+                        label(for='nameExercise') Activities:
+                        input#nameExercise.form-control(type='text' name='nameExercise')
+                        label(for='body-part') Body part:
+                            select#body-part.select.form-control.input-lg(form='body-part', name='body-part')
+                                option(value='0') -- Select --
+                                option(value='1') Shoulders
+                                option(value='2') Back
+                                option(value='3') Trapezius
+                                option(value='5') Chest
+                                option(value='6') ABS an Obliques
+                                option(value='7') Gluters
+                                optgroup(label='Arms')
+                                    option(value='8') Biceps
+                                    option(value='9') Triceps
+                                    option(value='10') Forearms
+                                optgroup(label='Legs')
+                                    option Quadriceps
+                                    option Hamstrings
+                                    option Calves
+                        label(for='repetitions') Repetitions:
+                        input#repetitions.form-control(type='number', placeholder='repetitions of the exercise' name='repetitions' min='0')
+                        sapan(onclick='addFields()') Add Activity
+                        span(onclick='removeFields()')  Remove Activity
+                    div.form-group
+                        label(for='image') Image:
+                        input#image.form-control(type='text' name='image')
+                    button.btn.btn-primary(type='submit') Create
+
+        script(type='text/javascript').
+            let i = 0;
+            function addFields() {
+                // Container <div> where activity Group content will be placed
+                let activityG = document.getElementById("activity" + i);
+                let clone = activityG.cloneNode(true); // "deep" clone
+                clone.id = "activity" + ++i; // there can only be one element with an ID
+                activityG.parentNode.insertBefore(clone,activityG.nextSibling)
+            }
+            function removeFields() {
+                // Container <div> where activity Group content will be placed
+                let activityG = document.getElementById("activity" + i);
+                activityG.parentNode.removeChild(activityG)
+                --i;
+            }

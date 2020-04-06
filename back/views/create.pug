@@ -16,7 +16,7 @@ block content
                         input#description.form-control(type='text', placeholder=`Descripcion del ${type}` name='description')
                     div.form-group
                         label(for='score') Score:
-                        input#score.form-control(type='number', placeholder='score of book' name='score')
+                        input#score.form-control(type='number', placeholder='score of book' name='score' min='0' max='10')
                     div.form-group
                         label(for='image') Image:
                         input#image.form-control(type='text' name='image')

@@ -7,6 +7,7 @@ import NavBar from "./Components/NavBar";
 import Books from "./Components/Books";
 import Movies from "./Components/Movies";
 import Workout from "./Components/Workout";
+import Form from "./Components/FormCreator";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/books" component={Books}/>
         <Route path="/movies" component={Movies}/>
         <Route path="/workout" component={Workout}/>
+        <Route path="/form" component={Form}/>
       </Switch>
     </BrowserRouter>
   );

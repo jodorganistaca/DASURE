@@ -4,10 +4,29 @@ import 'antd/dist/antd.css';
 import { withRouter } from 'react-router-dom'
 import '../Styles/Book.css'
 import {Layout, Menu} from "antd";
+import FormCreator from "./FormCreator";
 
 const { Header, Footer, Content } = Layout;
 
 const Books = props => {
+
+    const [books, setBooks] = useState(null);
+
+    useEffect(() => {
+        console.log("get Books");
+        fetch("http://localhost:3001/getBooks", { mode: 'no-cors'})
+            .then(res => {
+                res.json();
+            })
+            .then(books => {
+                console.log(books);
+                setBooks(books);
+            });
+    });
+
+    const test = () => {
+        console.log(books);
+    };
 
     return (
         <Layout className="books-container">
@@ -22,7 +41,8 @@ const Books = props => {
                 </div>
             </Header>
             <Content className="content">
-
+                <span onClick={() => test()}>click me</span>
+                <FormCreator/>
             </Content>
             <Footer className="footer">
             </Footer>

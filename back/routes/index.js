@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 
 router.get('/create/:type', (req, res) => {
     if(req.params.type == 'Workout'){
-        res.render('create', { type: req.params.type, item: {}});
+        res.render('createWorkout', { type: "rutina", item: {}});
     }else{
         res.render('create', { type: req.params.type});
     }
