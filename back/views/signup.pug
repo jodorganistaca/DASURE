@@ -9,7 +9,8 @@ block content
                 div.card.card-signin.my-5
                     div.card-body
                         h5.card-title.text-center Sign Up
-                            form.form-signin(method="POST", action="/users")
+                            form.form-signin(method="POST" action="/users?_method=POST" value="POST")
+                                input(type="hidden" name="_method" value="POST")
                                 div.form-label-group
                                     input(type="name" id="inputName" name="name" class="form-control" placeholder="Name" required autofocus)
                                     label(for="inputName") Name

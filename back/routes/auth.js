@@ -11,6 +11,8 @@ router.get("/google", passport.authenticate("google", { scope: ["email", "profil
 
 router.post("/", function(req, res) {
   const { email, password } = req.body;
+  res.clearCookie('x-access-token');
+  console.log(email);
             db.findOneObjectPromise("application", "users", {email: email})
             .then(user => {
               if(!user&&user[0])
@@ -21,8 +23,9 @@ router.post("/", function(req, res) {
               }
               else
               {
+                console.log("user", user);
                 const usr = user[0];
-                console.log(usr);
+                console.log("usr", usr);
                 bcrypt.compare(password, usr.password)
                 .then(match => {
                   if(!match)
@@ -37,7 +40,7 @@ router.post("/", function(req, res) {
                       user: {
                           _id: usr._id,
                           email: usr.email,
-                          name: user.name
+                          name: usr.name
                       },
                   };
                   console.log("create", process.env.JWT_SECRET);
@@ -47,7 +50,15 @@ router.post("/", function(req, res) {
                       { expiresIn: 36000 },
                       (error, token) => {
                           if (error) throw error;
-                          res.json({ token });
+                          let options = {
+                            path:"/",
+                            sameSite:true,
+                            maxAge: 1000 * 60 * 60 * 24, // would expire after 24 hours
+                            httpOnly: true, // The cookie only accessible by the web server
+                        }
+                    
+                        res.cookie('x-access-token',token, options);
+                        res.redirect("../")
                       });
                   }
                 })
