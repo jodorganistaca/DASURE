@@ -3,7 +3,7 @@ import 'antd/dist/antd.css';
 //import Context from '../GlobalState/context'
 import { withRouter } from 'react-router-dom'
 import '../Styles/Movies.css'
-import NavBar from "./NavBar";
+import NavBar from "./CustomNavBar";
 import {Badge, Layout, Menu } from "antd";
 
 const { Header, Footer, Content } = Layout;

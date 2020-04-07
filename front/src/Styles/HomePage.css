@@ -1,0 +1,46 @@
+.heading-container{
+    background: transparent;
+    padding: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+
+.heading-text{
+    font-family: proxima-nova,sans-serif;
+    font-size: 60px;
+    font-style: normal;
+    font-weight: 300;
+    text-transform: none;
+    line-height: 1.1500000000000001;
+    letter-spacing: normal;
+    color: rgba(0,0,0,1);
+}
+
+.section-content{
+    transform: translate3d(0px, 0px, 0px);
+}
+
+.section-content-view{
+    transform: translate3d(0px, 0px, 0px);
+}
+
+.section-background-image{
+    background-position: 50% 50%;
+    background-image: url("https://spark.adobe.com/page/zUXTQf29ALcyS/images/1f934ff1-67ef-45da-a907-50421806a21c.jpg?asset_id=fe990aa4-6695-4e2d-a34b-2acc49fc425f&img_etag=735fb415fe1d0772a831353fc82a4545&size=1024");
+    height: 637px;
+    transform: translate3d(0px, -12px, 0px);
+}
+
+.content-container h4 {
+    font-family: proxima-nova,sans-serif;
+    font-size: 29px;
+    font-style: normal;
+    font-weight: 400;
+    text-transform: none;
+    line-height: 1.4;
+    letter-spacing: normal;
+    color: rgba(0,0,0,1);
+    text-align: left;
+}

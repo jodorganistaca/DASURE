@@ -4,7 +4,7 @@ import { Layout } from 'antd';
 //import Context from '../GlobalState/context'
 import { withRouter } from 'react-router-dom'
 import '../Styles/Home.css'
-import NavBar from "./NavBar.js";
+import NavBar from "./CustomNavBar.js";
 import SiderBar from "./SiderBar";
 
 const { Header, Footer, Content } = Layout;

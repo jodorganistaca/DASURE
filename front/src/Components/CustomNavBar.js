@@ -3,7 +3,7 @@ import '../Styles/NavBar.css'
 import {Menu, Badge, Input} from 'antd';
 import { withRouter } from 'react-router-dom'
 
-const NavBar = props => {
+const CustomNavBar = props => {
 
     const logout = () => {
         props.history.push("/")
@@ -34,4 +34,4 @@ const NavBar = props => {
 
 };
 
-export default withRouter(NavBar);
+export default withRouter(CustomNavBar);
