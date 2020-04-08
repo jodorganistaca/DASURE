@@ -18,8 +18,14 @@ function App() {
   return (
       <div className="App">
         <Router history={history}>
-          <TopBar />
           <Route path="/" exact component={HomePage} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/home" exact component={Home} />
+          <Route path="/custom-nav-bar" exact component={NavBar} />
+          <Route path="/books" exact component={Books} />
+          <Route path="/movies" exact component={Movies} />
+          <Route path="/workout" exact component={Workout} />
+          <Route path="/form" exact component={Form} />
         </Router>
       </div>
   );

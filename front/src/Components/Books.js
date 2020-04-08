@@ -42,7 +42,7 @@ const Books = props => {
             </Header>
             <Content className="content">
                 <span onClick={() => test()}>click me</span>
-                <FormCreator/>
+
             </Content>
             <Footer className="footer">
             </Footer>
