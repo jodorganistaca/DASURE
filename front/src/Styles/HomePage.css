@@ -1,4 +1,11 @@
-
+@font-face {
+    font-family: 'Calling Code';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Calling Code'),local('CallingCode'),
+        url("../Fonts/CallingCode-Regular.otf"),
+        url("../Fonts/CallingCode-Regular.ttf") format('truetype');
+}
 
 .home-page-title-background{
     /*background: rgb(90,111,157);*/
@@ -28,8 +35,30 @@
     transform: translate(-50%,-50%);
 }
 
+.home-page-button{
+    font-family: 'Calling Code';
+    color: #002652;
+    border: #002652 1px solid;
+    display: inline-block;
+    /*padding: 20px 30px;*/
+    /*border-radius: 5px;*/
+    box-shadow: 0  17px 10px -10px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: all ease-in-out 300ms;
+}
+.home-page-button:hover{
+    color: #002652;
+    border: #002652 1px solid;
+    box-shadow: 0  37px 20px -20px rgba(0, 0, 0, 0.2);
+    transform: translate(0, -10px);
+}
+
+.home-page-heading-text{
+    font-family: 'Calling Code';
+}
+
 .heading-text{
-    font-family: proxima-nova,sans-serif;
+    font-family: 'Calling Code';
     font-size: 60px;
     font-style: normal;
     font-weight: 300;
@@ -46,19 +75,27 @@
 .section-background-image-mission{
     background-position: 50% 50%;
     background-image: url("https://spark.adobe.com/page/zUXTQf29ALcyS/images/1f934ff1-67ef-45da-a907-50421806a21c.jpg?asset_id=fe990aa4-6695-4e2d-a34b-2acc49fc425f&img_etag=735fb415fe1d0772a831353fc82a4545&size=1024");
-    height: 637px;
+    height: 500px;
     transform: translate3d(0px, -12px, 0px);
 }
 
 .section-background-image-vision{
     background-position: 50% 50%;
     background-image: url("https://spark.adobe.com/page/zUXTQf29ALcyS/images/4d29e68d-cdec-4f99-ad03-5a5413b21aa5.jpg?asset_id=e278dd3a-4a1c-411e-a7c3-76107e7a3a0d&img_etag=041e1e3e0b823eff862532bcf73bb540&size=1024");
-    height: 637px;
+    height: 500px;
     transform: translate3d(0px, 22px, 0px);
 }
 
-.content-container h4 {
-    font-family: proxima-nova,sans-serif;
+.content-container{
+    position: absolute;
+    right: 15%;
+    left: 15%;
+    top: 20%;
+    bottom: 20%;
+}
+
+.content-container p {
+    font-family: 'Calling Code';
     font-size: 29px;
     font-style: normal;
     font-weight: 400;
@@ -75,4 +112,9 @@
 
 div {
     margin-bottom: 50px;
+}
+
+.home-page-final-section{
+    height: 500px;
+    background-color: #002652;
 }

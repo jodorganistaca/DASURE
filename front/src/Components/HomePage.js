@@ -50,28 +50,31 @@ const HomePage = props => {
                     <Col>
                     </Col>
                     <Col xs={2}>
-                        <Button>Entrenimiento</Button>
+                        <Button className="home-page-button" size="large" onClick={() => props.history.push('movies')}>Entrenimiento</Button>
                     </Col>
                     <Col xs={2}>
-                        <Button>Mi Checklist</Button>
+                        <Button className="home-page-button" size="large">Mi Checklist</Button>
                     </Col>
                     <Col xs={2}>
-                        <Button>Rutinas</Button>
+                        <Button className="home-page-button" size="large">Rutinas</Button>
                     </Col>
                     <Col xs={2}>
-                        <Button>Foros</Button>
+                        <Button className="home-page-button" size="large">Foros</Button>
                     </Col>
                     <Col>
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center">
-                    <Col>
-                        <span>
-                            Lore ipsumalñdjfañldkjfañdjfña
-                            adlfjañdljfañdjfñalkdjfñaldjfña
-                            adlñfjañdljfañdjkfñakdjfñalkjfa
-                            añdljfañdjfñaldjkfkñadjfñajdfña
-                        </span>
+                    <Col offset={2} xs={8}>
+                        <div className="home-page-heading-text">
+                            <p>
+                                DASURE plataforma web para recomendar series, peliculas, libros y rutinas de ejercicio.
+                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            </p>
+                        </div>
+
                     </Col>
                 </Row>
             </Container>
@@ -117,13 +120,9 @@ const HomePage = props => {
                 <Row>
                     <Col xs={6}>
                         <div className="content-container">
-                            <h4 className=" ">
-                                <span className="heading-content-wrapper">
-                                    <span className="heading-text">
-                                        Mision: COVID-19Web Page es una plataforma para para recomendar series, peliculas, libros y rutinas de ejercicio.
-                                    </span>
-                                </span>
-                            </h4>
+                            <p className="heading-text">
+                                Mision: DASURE es una plataforma para para recomendar series, peliculas, libros y rutinas de ejercicio.
+                            </p>
                         </div>
                     </Col>
                     <Col xs={6}>
@@ -138,28 +137,47 @@ const HomePage = props => {
                     </Col>
                     <Col xs={6}>
                         <div className="section-content">
-                            <div className="section-content-view">
-                                <div className="content-container">
-                                    <h4 className=" ">
-                                <span className="heading-content-wrapper">
-                                    <a
-                                        className="page-heading-anchor" title="Copy anchor link"
-                                        id="page-content-mision-covid-19web-page-es-una-plataforma-para-para-recomendar-series-peliculas-libros-y-rutinas-de-ejercicio"
-                                        aria-hidden="true"
-                                        href="#mision-covid-19web-page-es-una-plataforma-para-para-recomendar-series-peliculas-libros-y-rutinas-de-ejercicio"
-                                    >
-
-                                    </a>
-                                    <span className="heading-text">
-                                        Mision: COVID-19Web Page es una plataforma para para recomendar series, peliculas, libros y rutinas de ejercicio.
-                                    </span>
-                                </span>
-                                    </h4>
-                                </div>
+                            <div className="content-container">
+                                <p className="heading-text">
+                                    Mision: COVID-19Web Page es una plataforma para para recomendar series, peliculas, libros y rutinas de ejercicio.
+                                </p>
                             </div>
                         </div>
                     </Col>
                 </Row>
+                <Row className="justify-content-md-center">
+                    <Col offset={2} xs={8}>
+                        <div className="home-page-heading-text">
+                            <h2>
+                                SIGUENOS EN
+                            </h2>
+                        </div>
+
+                    </Col>
+                </Row>
+                <Row className="justify-content-md-center">
+                    <Col>
+                    </Col>
+                    <Col xs={2}>
+                        <Button className="home-page-button" size="large">Instagram</Button>
+                    </Col>
+                    <Col xs={2}>
+                        <Button className="home-page-button" size="large">Facebook</Button>
+                    </Col>
+                    <Col xs={2}>
+                        <Button className="home-page-button" size="large">Pinterest</Button>
+                    </Col>
+                    <Col>
+                    </Col>
+                </Row>
+                <div className="home-page-final-section">
+                    <Row className="justify-content-md-center">
+
+                    </Row>
+                    <Row className="justify-content-md-center">
+                        <img className = "heading-container-logo" src={require("../Assets/dasure-01.png")} alt="Series" onClick={() => props.history.push('series')} />
+                    </Row>
+                </div>
             </Container>
         </div>
 

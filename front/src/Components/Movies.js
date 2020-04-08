@@ -11,6 +11,11 @@ const { Header, Footer, Content } = Layout;
 const Movies = props => {
     const [initialized, setInitialized] = useState(false);
     const [movies, setMovies] = useState([]);
+    const [showInfo, setShowInfo] = useState({
+        show: false,
+        name: "",
+        description: "",
+    });
 
 
     const loadMovies = () => {
@@ -21,6 +26,10 @@ const Movies = props => {
                 setMovies(result);
 
             });
+    };
+
+    const changeInfo = (name, img, description) => {
+        setShowInfo({show: true, name: name,description:description});
     };
 
     const consultores = [
@@ -51,7 +60,10 @@ const Movies = props => {
                     </Menu>
                 </div>
             </Header>
-            <div onClick={() => console.log(movies)}>
+            <div onClick={() => {
+                console.log("movies ", movies);
+                console.log("showInfo ", showInfo);
+            }}>
                 click me
             </div>
             <Content className="content">
@@ -66,10 +78,9 @@ const Movies = props => {
                                             <div className="wrapper">
                                                 <div className="cols">
                                                     <div className="col" onTouchStart="this.classList.toggle('hover');">
-                                                        <div className="container" onClick={() => this.ChangeCurrentPerson(m.name, m.img, m.description)}>
+                                                        <div className="container" onClick={() => changeInfo(m.name, m.img, m.description)}>
                                                             <div className="front"
                                                                  style={{ backgroundImage: `url(${bg}` }}>
-
                                                                 <div className="inner">
                                                                 </div>
                                                             </div>
@@ -89,6 +100,24 @@ const Movies = props => {
                         </div>
                     </Carousel>
                 </div>
+                {showInfo.show ?
+                    (<div className={"white-container"}>
+                            <div><button className={"button-close"} onClick={()=>setShowInfo({show: false})}> X</button></div>
+                            <div className="container-master-single-person" id="person">
+                                <div className="container-master-photo-single-person">
+                                    <div className="container-photo-single-person">
+                                        <img src={require(`../Assets/stock.jpg`)} alt={showInfo.name} className="img-single-person" />
+                                    </div>
+                                </div>
+                                <div className="container-master-info-single-person">
+                                    <p className="name-single-person">{showInfo.name}</p>
+                                    <p className="description-single-person">{showInfo.description}</p>
+                                </div>
+                            </div>
+                        </div>
+                    )
+                    :
+                    <div />}
             </Content>
             <Footer className="footer">
             </Footer>
