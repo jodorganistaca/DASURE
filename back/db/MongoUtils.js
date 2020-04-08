@@ -129,12 +129,17 @@ exports.findAndDeleteOnePromise = (dbName, collectionName, _id) => {
  * @param {string} collectionName Name of the collection to query its documents.
  * @param {string} _id The unique _id of the document to be updated.
  * @param {Object} newObject The updated object to set in MongoDB.
+ * @param {Object} [parameters] MongoDB parameters (such as $push, $set, etc).
  * @throws {Error} if the coñlection name parameter is null, undefined or is not a string.
  * @throws {Error} if the unique _id parameter is null, undefined or is not a string.
  * @throws {Error} if the connection could not be established.
  * @returns {Promise} A Promise that will return the non updated object.
  */
-exports.findAndUpdateOnePromise = (dbName, collectionName, _id, newObject) => {
+exports.findAndUpdateOnePromise = (dbName, collectionName, _id, newObject, parameters) => {
+  if (!parameters)
+  parameters = {
+    $set: newObject
+  }
   if (!dbName || !(dbName instanceof String)) {
     new Error("Database name cannot be: " + dbName);
   }
@@ -152,9 +157,7 @@ exports.findAndUpdateOnePromise = (dbName, collectionName, _id, newObject) => {
         {
           _id: new ObjectId(_id)
         },
-        {
-          $set: newObject
-        }
+        parameters
       )
   );
 };

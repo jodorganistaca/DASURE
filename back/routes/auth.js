@@ -5,7 +5,6 @@ const db = require("../db/MongoUtils");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
-//TODO: Add authentication for non Google users
 /* GET home page. */
 router.get("/google", passport.authenticate("google", { scope: ["email", "profile"] }));
 
@@ -56,7 +55,7 @@ router.post("/", function(req, res) {
                             maxAge: 1000 * 60 * 60 * 24, // would expire after 24 hours
                             httpOnly: true, // The cookie only accessible by the web server
                         }
-                    
+                        console.log("Token created", token);
                         res.cookie('x-access-token',token, options);
                         res.redirect("../")
                       });
