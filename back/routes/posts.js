@@ -67,7 +67,8 @@ router.post("/", function (req, res) {
         tags: tagsArray,
         user: _id,
         name: name,
-        email: email
+        email: email,
+        date: Date.now()
     })
         .then(docs => {
             console.log(docs);
@@ -146,7 +147,8 @@ router.put("/:id", function (req, res) {
                                 $push: {
                                     comments: {
                                         text: newComment,
-                                        user: _id
+                                        user: _id,
+                                        date: Date.now()
                                     }
                                 }
                             });
