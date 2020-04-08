@@ -7,12 +7,14 @@ const passportInit = () => {
       {
         clientID: process.env.GOOGLE_CLIENT_ID,
         clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-        callbackURL: "http://localhost:3000/auth/callback"
+        callbackURL: "http://localhost:3001/auth/callback"
       },
       function (accessToken, refreshToken, profile, cb) {
         mongoUtils
-          .findOrCreateDocument("application", "users", {
-            googleId: profile.id
+          .findOrCreateDocumentPromise("application", "users", {
+            googleId: profile.id,
+            name: profile.displayName,
+            email: profile.emails[0].value
           })
           .then(user => cb(null, user));
       }
