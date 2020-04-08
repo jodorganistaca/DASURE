@@ -92,10 +92,10 @@ router.put("/:id", function (req, res) {
     const token = req.cookies["x-access-token"];
     //const token = req.header("x-auth-token");
     const {
-        newText,
-        newComment,
-        newLike,
-        newDislike
+        text,
+        comment,
+        like,
+        dislike
     } = req.body;
     let _id;
     if (token) {
@@ -128,25 +128,25 @@ router.put("/:id", function (req, res) {
                     msg: "Document not found"
                 });
             } else {
-                if (doc.user != _id && newText) {
+                if (doc.user != _id && text) {
                     return res.status(403).json({
                         msg: "Not authorized"
                     });
-                } else if (!newText && (newComment || newLike || newDislike)) {
+                } else if (!text && (comment || like || dislike)) {
                     const updatedObject = {};
-                    if (newComment) {
+                    if (comment) {
                         updatedObject.comments = (doc.comments.length == 0) ? [{
-                            text: newComment,
+                            text: comment,
                             user: _id
                         }] : doc.comments.push({
-                            text: newComment,
+                            text: comment,
                             user: _id
                         });
                         db.findAndUpdateOnePromise("application", "posts", doc._id,
                             updatedObject, {
                                 $push: {
                                     comments: {
-                                        text: newComment,
+                                        text: comment,
                                         user: _id,
                                         date: Date.now()
                                     }
@@ -155,7 +155,7 @@ router.put("/:id", function (req, res) {
                         updatedObject._id = doc._id;
                         return res.status(200).json(updatedObject);
                     }
-                    if (newLike) {
+                    if (like) {
                         updatedObject.likes = (doc.likes.length == 0) ? [_id] : doc.likes.push(_id);
                         db.findAndUpdateOnePromise("application", "posts", doc._id,
                             updatedObject, {
@@ -166,7 +166,7 @@ router.put("/:id", function (req, res) {
                         updatedObject._id = doc._id;
                         return res.status(200).json(updatedObject);
                     }
-                    if (newDislike) {
+                    if (dislike) {
                         updatedObject.dislikes = (doc.dislikes.length == 0) ? [_id] : doc.dislikes.push(_id);
                         db.findAndUpdateOnePromise("application", "posts", doc._id,
                             updatedObject, {
@@ -179,11 +179,11 @@ router.put("/:id", function (req, res) {
                     }
                 } else {
                     db.findAndUpdateOnePromise("application", "posts", doc._id, {
-                        text: newText
+                        text: text
                     });
                     return res.status(200).json({
                         _id: doc._id,
-                        text: newText,
+                        text: text,
                         comments: doc.comments,
                         likes: doc.likes,
                         tags: doc.tags,
