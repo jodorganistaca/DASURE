@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+let db  = require('../db/MongoUtils');
 
 /* GET home page. */
 router.get("/", function(req, res) {
@@ -71,7 +72,7 @@ router.post("/update/:type/:_id", function (req, res) {
         }));
 
 });
-=======
+
 router.get("/login", function(req, res)
 {
     res.render("login");
