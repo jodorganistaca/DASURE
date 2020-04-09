@@ -1,0 +1,17 @@
+.workout-navbar {
+    background-color: #e57373;
+}
+
+.workout-header {
+    background-color: #af4448;
+}
+
+workout-navbar-title{
+    font-weight: bold;
+    font-size: initial;
+    color: black;
+}
+
+.workout-logo{
+    height: 50px;
+}
