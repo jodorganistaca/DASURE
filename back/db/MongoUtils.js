@@ -192,6 +192,33 @@ exports.findOnePromise = (dbName, collectionName, _id) => {
 };
 
 /**
+ * @function findOneObjectPromise
+ * @alias module:MongoUtils.findOneObjectPromise
+ * @param {string} dbName Name of the database to query.
+ * @param {string} collectionName Name of the collection to query its documents.
+ * @param {string} object The document to be found.
+ * @throws {Error} if the collection name parameter is null, undefined or is not a string.
+ * @throws {Error} if the unique _id parameter is null, undefined or is not a string.
+ * @throws {Error} if the connection could not be established.
+ * @returns {Promise} A Promise that will return the object.
+ */
+exports.findOneObjectPromise = (dbName, collectionName, object) => {
+  if (!dbName || !(dbName instanceof String)) {
+    new Error("Database name cannot be: " + dbName);
+  }
+  if (!collectionName || !(collectionName instanceof String)) {
+    new Error("Collection name cannot be: " + collectionName);
+  }
+  return client.connect().then(client =>
+    client
+      .db(dbName)
+      .collection(collectionName)
+      .find(object)
+      .toArray()
+  );
+};
+
+/**
  * @function createOneDocumentPromise
  * @alias module:MongoUtils.createOneDocumentPromise
  * @param {string} dbName Name of the database to query.
@@ -216,8 +243,8 @@ exports.createOneDocumentPromise = (dbName, collectionName, object) => {
 };
 
 /**
- * @function findOrCreateDocument
- * @alias module:MongoUtils.createOneDocumentPromise
+ * @function findOrCreateDocumentPromise
+ * @alias module:MongoUtils.findOrCreateDocumentPromise
  * @param {string} dbName Name of the database to query.
  * @param {string} collectionName Name of the collection to query its documents.
  * @param {Object} searchObject The object to create or find in the database.
@@ -225,7 +252,7 @@ exports.createOneDocumentPromise = (dbName, collectionName, object) => {
  * @throws {Error} if the connection could not be established.
  * @returns {Promise} A Promise that will return the object.
  */
-exports.findOrCreateDocument = (dbName, collectionName, searchObject) => {
+exports.findOrCreateDocumentPromise = (dbName, collectionName, searchObject) => {
   return client.connect().then(client =>
     client.db(dbName).collection(collectionName).findOneAndUpdate(
       searchObject,
