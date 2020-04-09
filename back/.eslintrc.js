@@ -4,7 +4,7 @@ module.exports = {
     es6: true,
     node: true
   },
-  extends: ["plugin:prettier/recommended"],
+  extends: ["eslint:recommended"],
   globals: {
     Atomics: "readonly",
     SharedArrayBuffer: "readonly"
@@ -17,9 +17,5 @@ module.exports = {
     "linebreak-style": ["error", "unix"],
     quotes: ["error", "double"],
     semi: ["error", "always"]
-  },
-  plugins: ["prettier"],
-  rules: {
-    "prettier/prettier": "error"
   }
 };
