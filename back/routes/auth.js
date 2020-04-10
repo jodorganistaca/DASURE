@@ -12,7 +12,6 @@ router.get("/google", passport.authenticate("google", { scope: ["email", "profil
 router.post("/", function(req, res) {
     const { email, password } = req.body;
     res.clearCookie("x-access-token");
-    console.log(email);
     db.findOneObjectPromise("application", "users", {email: email})
         .then(user => {
             if(!user&&user[0])
@@ -58,7 +57,7 @@ router.post("/", function(req, res) {
                                     };
                                     console.log("Token created", token);
                                     res.cookie("x-access-token",token, options);
-                                    res.redirect("../");
+                                    res.json(token);
                                 });
                         }
                     });

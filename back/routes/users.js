@@ -23,7 +23,7 @@ router.post("/", function(req, res) {
     const photo = "https://www.twago.es/img/2018/default/no-user.png";
     bcrypt.genSalt(10)
         .then(salt => bcrypt.hash(password, salt))
-        .then(encryptedPassword => db.createOneDocumentPromise("application", "users", {name: name, password: encryptedPassword, email: email, photo: photo}))
+        .then(encryptedPassword => db.createOneDocumentPromise("application", "users", {name: name, password: encryptedPassword, email: email, photo: photo, followedPosts: [], checklist:[]}))
         .then(docs => {
             if (docs.result.ok == true && docs.ops[0])
             {
@@ -51,8 +51,7 @@ router.post("/", function(req, res) {
                         catch (error){
                             console.log(error);
                         }
-                        console.log("Set cookie");
-                        res.redirect("../");
+                        res.json(token);
                     });
             }
             else
