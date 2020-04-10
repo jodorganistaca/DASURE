@@ -1,16 +1,16 @@
 import React, { useState, useEffect } from 'react'
 import 'antd/dist/antd.css';
 import { withRouter } from 'react-router-dom'
-import '../Styles/Books.css'
+import '../Styles/Series.css'
 import Menu from "./Menu";
 import {Layout, Carousel } from "antd";
 
 
 const { Footer, Content } = Layout;
 
-const Books = props => {
+const Series = props => {
     const [initialized, setInitialized] = useState(false);
-    const [books, setBooks] = useState([]);
+    const [series, setSeries] = useState([]);
     const [showInfo, setShowInfo] = useState({
         show: false,
         name: "",
@@ -18,12 +18,13 @@ const Books = props => {
         img: "",
     });
 
-    const loadBooks = () => {
-        fetch("/get/Books")
+    const loadSeries = () => {
+        fetch("/get/Series")
             .then(res => res.json())
             .then((result) => {
                 console.log("bookeeeeees ", result);
-                setBooks(result);
+                setSeries(result);
+
             });
     };
 
@@ -31,7 +32,7 @@ const Books = props => {
         setShowInfo({show: true, name: name,description:description,img:img});
     };
 
-    let flag = false;
+    var flag = false;
     const ShowSideMenu = () => {
 
         var element = document.getElementById('menu');
@@ -47,43 +48,43 @@ const Books = props => {
 
     useEffect(() => {
         if (!initialized) {
-            loadBooks();
+            loadSeries();
             setInitialized(true);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
-        <Layout className="book-container">
+        <Layout className="series-container">
 
-            <div className="book-header">
-                <div className="book-header-navbar">
-                    <img className = "book-header-navbar-logo" src={require("../Assets/dasure-02.png")} alt="Series" onClick={() => props.history.push('/')} />
-                    <img className = "book-header-hamburger" src={require("../Assets/menu.svg")} alt="Notificaciones" onClick={ShowSideMenu}/>
-                    <div className="books-menu-collapse" id="menu">
+            <div className="series-header">
+                <div className="series-header-navbar">
+                    <img className = "series-header-navbar-logo" src={require("../Assets/dasure-02.png")} alt="Series" onClick={() => props.history.push('/')} />
+                    <img className = "series-header-hamburger" src={require("../Assets/menu.svg")} alt="Notificaciones" onClick={ShowSideMenu}/>
+                    <div className="series-menu-collapse" id="menu">
                         <Menu/>
                     </div>
                 </div>
-                <img className = "book-logo" src={require("../Assets/Books-black.svg")} alt="Books" onClick={() => props.history.push('/home')} />
-                <div className="book-header-title">
-                    <h1 className="book-header-title-text">
-                        Libros
+                <img className = "series-logo" src={require("../Assets/Series-white.svg")} alt="Series" onClick={() => props.history.push('/home')} />
+                <div className="series-header-title">
+                    <h1 className="series-header-title-text">
+                        Series
                     </h1>
                 </div>
             </div>
             <div onClick={() => {
-                console.log("books ", books);
+                console.log("series ", series);
                 console.log("showInfo ", showInfo);
             }}>
                 click me
             </div>
             <Content className="content">
-                <div className="container-books">
+                <div className="container-series">
                     <Carousel className="carousel-general" autoplay autoplaySpeed="100" dotPosition="top">
                         <div>
                             <div className="persona-general">
                                 <div className="persona-especifica">
-                                    {books.map((m, id) => {
+                                    {series.map((m, id) => {
                                         let bg = m.Image;
                                         return (
                                             <div className="wrapper">
@@ -137,4 +138,4 @@ const Books = props => {
 
 };
 
-export default withRouter(Books);
+export default withRouter(Series);

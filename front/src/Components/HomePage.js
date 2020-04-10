@@ -36,7 +36,9 @@ const HomePage = props => {
             loadImages();
             setInitialized(true);
         }
-    });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
+
     return (
 
         <div className="home-page">
@@ -53,10 +55,10 @@ const HomePage = props => {
                         <Button className="home-page-button" size="large" onClick={() => props.history.push('movies')}>Entrenimiento</Button>
                     </Col>
                     <Col xs={2}>
-                        <Button className="home-page-button" size="large">Mi Checklist</Button>
+                        <Button className="home-page-button" size="large" onClick={() => props.history.push('perfil')}>Mi Checklist</Button>
                     </Col>
                     <Col xs={2}>
-                        <Button className="home-page-button" size="large">Rutinas</Button>
+                        <Button className="home-page-button" size="large" onClick={() => props.history.push('workout')}>Rutinas</Button>
                     </Col>
                     <Col xs={2}>
                         <Button className="home-page-button" size="large">Foros</Button>
