@@ -20,9 +20,10 @@ router.get("/:id", function(req, res) {
 router.post("/", function(req, res) {
     const {name, password, email} = req.body;
     res.clearCookie("x-access-token");
+    const photo = "https://www.twago.es/img/2018/default/no-user.png";
     bcrypt.genSalt(10)
         .then(salt => bcrypt.hash(password, salt))
-        .then(encryptedPassword => db.createOneDocumentPromise("application", "users", {name: name, password: encryptedPassword, email: email}))
+        .then(encryptedPassword => db.createOneDocumentPromise("application", "users", {name: name, password: encryptedPassword, email: email, photo: photo}))
         .then(docs => {
             if (docs.result.ok == true && docs.ops[0])
             {

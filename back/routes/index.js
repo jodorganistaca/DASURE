@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
+const db = require("../db/MongoUtils");
 
 /* GET home page. */
 router.get("/", function(req, res) {
@@ -40,7 +41,14 @@ router.get("/edit_profile", function(req, res){
             return res.status(403).json({msg: "No user logged"});
         }
         const {name, email, _id} = req.user.value;
-        return res.render("users", {name, email, _id});
+
+        //Update Google Photo
+        return fetch("https://people.googleapis.com/v1/people/me?personFields=photos")
+            .then(data => {
+                const photo = data.photos[0].url;
+                db.findAndUpdateOnePromise("application", "users", _id, {photo});
+                return res.render("users", {name, email, _id});
+            });
     }
 });
 
