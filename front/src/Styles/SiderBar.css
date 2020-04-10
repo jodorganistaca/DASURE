@@ -1,0 +1,53 @@
+
+.sidebar-container{
+
+}
+.menu-img-logo{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.menu-logo-user{
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    display: flex;
+    justify-content: center;
+}
+
+.sidebar-options{
+    float: right;
+    width: 100%;
+    text-align: right;
+    color: white;
+    margin: 0 auto;
+    font-size: 150%;
+    margin-right: 5vh;
+    border-width: medium;
+    border-color: white;
+}
+
+.sidebar-separator{
+    width: 80%;
+    margin-right: 5vh;
+    margin-left: 5vh;
+
+}
+
+.center-hr {
+
+}
+
+.sidebar-friends{
+    float: right;
+    width: 100%;
+    text-align: right;
+    color: white;
+    margin: 0 auto;
+    font-size: 150%;
+    margin-right: 5vh;
+    border-width: medium;
+    border-color: white;
+}
+
+
