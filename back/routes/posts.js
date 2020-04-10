@@ -88,6 +88,7 @@ router.post("/", function (req, res) {
 // @route  PUT /posts/:id
 // @desc   Update posts
 // @access private
+//TODO: Add posts/:id/:commentid to delete it.
 router.put("/:id", function (req, res) {
     const token = req.cookies["x-access-token"];
     //const token = req.header("x-auth-token");
