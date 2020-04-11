@@ -16,6 +16,11 @@ const Movies = props => {
         description: "",
         img: "",
     });
+    const [data, setData] = useState(null);
+    const [error, setError] = useState(null);
+    const [loading, setLoading] = useState(false);
+    const [q, setQuery] = useState('batman');
+
 
     const loadMovies = () => {
         fetch("/get/Movies")
@@ -49,8 +54,33 @@ const Movies = props => {
             loadMovies();
             setInitialized(true);
         }
+        setLoading(true);
+        setError(null);
+        setData(null);
+
+        fetch(`http://www.omdbapi.com/?s=${q}&apikey=${process.env.REACT_APP_OMDB_APIKEY}`)
+            .then(resp => resp)
+            .then(resp => resp.json())
+            .then(response => {
+                console.log(response);
+                console.log(process.env.REACT_APP_OMDB_APIKEY);
+                console.log(process.env.REACT_APP_APIKEY);
+                console.log(`http://www.omdbapi.com/?s=${q}&apikey=${[process.env.REACT_APP_OMDB_APIKEY]}`);
+                if (response.Response === 'False') {
+                    setError(response.Error);
+                }
+                else {
+                    setData(response.Search);
+                }
+
+                setLoading(false);
+            })
+            .catch(({message}) => {
+                setError(message);
+                setLoading(false);
+            })
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [q]);
 
     return (
         <Layout className="movie-container">
@@ -97,6 +127,31 @@ const Movies = props => {
                                                             <div className="back">
                                                                 <div className="inner">
                                                                     <p className="title-inner">{m.name}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )
+                                    })}
+                                </div>
+                                <div className="persona-especifica">
+                                    {data !== null && data.length > 0 && data.map((result, index) => {
+                                        let bg = result.Poster;
+                                        return (
+                                            <div className="wrapper">
+                                                <div className="cols">
+                                                    <div className="col" onTouchStart="this.classList.toggle('hover');">
+                                                        <div className="container" onClick={() => changeInfo(result.Title, result.Poster, result.Plot)}>
+                                                            <div className="front"
+                                                                 style={{ backgroundImage: `url(${bg}` }}>
+                                                                <div className="inner">
+                                                                </div>
+                                                            </div>
+                                                            <div className="back">
+                                                                <div className="inner">
+                                                                    <p className="title-inner">{result.Title}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
