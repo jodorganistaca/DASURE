@@ -24,7 +24,7 @@ router.post("/", function(req, res) {
     res.clearCookie("x-access-token");
     bcrypt.genSalt(10)
         .then(salt => bcrypt.hash(password, salt))
-        .then(encryptedPassword => db.createOneDocumentPromise("application", "users", {name, password: encryptedPassword, email, photo, followedPosts:[], checklist:[], likedActivities:[], likedBooks:[], likedMovies:[]}))
+        .then(encryptedPassword => db.createOneDocumentPromise("application", "users", {name, password: encryptedPassword, email, photo, followedCategories:[], checklist:[], likedSeries:[], likedActivities:[], likedBooks:[], likedMovies:[]}))
         .then(docs => {
             if (docs.result.ok == true && docs.ops[0])
             {
@@ -125,6 +125,46 @@ router.delete("/:id/likedMovies/:id_movie", function(req, res) {
                     console.log(docs);
                     if (docs.ok == true)
                         res.status(200).json({likedMovies, result: "ok"});
+                    else
+                        res.status(401).json({error: "Error"});
+                });
+        });
+   
+});
+
+// @route  PUT /users/:id/likedMovies
+// @desc   Update tasks
+// @access Public
+router.put("/:id/likedSeries/:id_series", function(req, res) {
+    db.findOnePromise("application", "users", req.params.id)
+        .then(usr => {
+            let likedSeries = usr[0].likedSeries;
+            likedSeries.push(req.params.id_series);
+            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedSeries},{$push:{likedSeries: req.params.id_series}})
+                .then(docs => {
+                    console.log(docs);
+                    if (docs.ok == true)
+                        res.status(200).json({likedSeries, result: "ok"});
+                    else
+                        res.status(401).json({error: "Error"});
+                });
+        });
+   
+});
+
+// @route  PUT /users/:id/likedMovies
+// @desc   Update tasks
+// @access Public
+router.delete("/:id/likedSeries/:id_series", function(req, res) {
+    db.findOnePromise("application", "users", req.params.id)
+        .then(usr => {
+            let likedSeries = usr[0].likedSeries;
+            likedSeries = likedSeries.filter(e=> e !== req.params.id_series);
+            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedSeries},{$pull:{likedSeries: req.params.id_series}})
+                .then(docs => {
+                    console.log(docs);
+                    if (docs.ok == true)
+                        res.status(200).json({likedSeries, result: "ok"});
                     else
                         res.status(401).json({error: "Error"});
                 });
