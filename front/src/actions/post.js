@@ -55,21 +55,24 @@ export const updateLike = (postId, type) => dispatch => {
 }
 
 //Delete post
-export const deletePost = (postId) => dispatch => {
-    axios.delete(`/posts/${postId}`)
-    .then(res => {
-        dispatch({
+export const deletePost = (postId) => async dispatch => {
+    try{
+    const res = await axios.delete(`/posts/${postId}`);
+    console.log(res);
+    dispatch({
             type: DELETE_POST,
             payload: postId
         });
-        dispatch(setAlert("Post deleted", "success"));
-    })
-    .catch(err => {
+    dispatch(setAlert("Se borró la publicación", "success"));
+    return window.location.replace("/forum");
+    }
+    catch(err) {
+        console.log(err);
         dispatch({
             type: POST_ERROR,
             payload: {msg: err.response.statusText, status: err.response.status}
         });
-    })
+    }
     
 }
 
@@ -86,9 +89,10 @@ export const addPost = formData => dispatch => {
             type: ADD_POST,
             payload: res.data
         });
-        dispatch(setAlert("Post created", "success"));
+        dispatch(setAlert("Se creó la publicación", "success"));
     })
     .catch(err => {
+        console.log(err);
         dispatch({
             type: POST_ERROR,
             payload: {msg: err.response.statusText, status: err.response.status}

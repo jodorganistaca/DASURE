@@ -30,13 +30,13 @@ const PostItem = ({updateLike, deletePost, auth, post: {_id, text, title, image,
        <div className="col-lg-4 col-md-6" style={{marginTop: "15px", marginBottom: "15px", marginLeft: "auto", marginRight: "auto"}}>
           <div className="card h-100">
             <div className="single-post post-style-1">
-            <div class="post_grid_more_meta_wrapper ">
-            <span class="meta-category-small">
-            <a class="post-category-color-text" style={{background: stringToColour(category), color: invertHex(stringToColour(category))}}>{category}</a>
+            <div className="post_grid_more_meta_wrapper ">
+            <span className="meta-category-small">
+            <a className="post-category-color-text" style={{background: stringToColour(category), color: invertHex(stringToColour(category))}}>{category}</a>
               </span></div>
 
               <div className="blog-image"><Link to={`/posts/${_id}`}><img src={image} alt="Blog Image"/></Link></div>
-                <a className="avatar" href="#"><Link to={`/posts/${_id}`}><img src={photo} alt="Profile Image"/></Link></a>
+                <Link className="avatar" to={`/posts/${_id}`}><img src={photo} alt="Profile Image"/></Link>
                 <div className="blog-info">
                 <div className="title"><Link to={`/posts/${_id}`}><h4 className="title">{title}</h4></Link></div>
                   <ul className="post-footer">

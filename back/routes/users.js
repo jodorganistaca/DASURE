@@ -3,7 +3,6 @@ const router = express.Router();
 const db = require("../db/MongoUtils");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const ObjectId = require("mongodb").ObjectID;
 /* GET users listing. */
 router.get("/", function(req, res) {
     db.getDocumentsPromise("application", "users")
