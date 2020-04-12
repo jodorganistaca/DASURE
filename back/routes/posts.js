@@ -51,39 +51,53 @@ router.post("/", function (req, res) {
     }
     const {
         text,
-        tags
+        category,
+        image,
+        title
     } = req.body;
-    if (!text || !tags) {
+    if (!text || !category || !image) {
         return res.status(400).json({
-            msg: "Text and tags are required"
+            msg: "Text, category & image are required"
         });
     }
-    const tagsArray = tags.split(",").map(tag => tag.trim());
-
-    db.createOneDocumentPromise("application", "posts", {
-        text: text,
-        comments: [],
-        likes: [],
-        tags: tagsArray,
-        user: _id,
-        name: name,
-        email: email,
-        date: Date.now()
-    })
-        .then(docs => {
-            console.log(docs);
-            return res.status(200).json({
-                _id: docs.insertedId,
+    db.findOnePromise("application", "users", _id)
+        .then(usr => {
+            const photo = usr[0].photo;
+            db.createOneDocumentPromise("application", "posts", {
                 text: text,
                 comments: [],
                 likes: [],
-                tags: tagsArray,
+                dislikes: [],
+                category,
                 user: _id,
-                name: name,
-                email: email
+                name,
+                image,
+                email,
+                photo,
+                title,
+                date: Date.now()
+            }).then(docs => {
+                return res.status(200).json({
+                    _id: docs.insertedId,
+                    text,
+                    comments: [],
+                    likes: [],
+                    dislikes: [],
+                    category,
+                    user: _id,
+                    name,
+                    image,
+                    photo,
+                    email,
+                    title,
+                    date: Date.now()
+                });
+        
             });
+        
         });
 });
+    
 
 // @route  PUT /posts/:id
 // @desc   Update posts
@@ -98,6 +112,8 @@ router.put("/:id", function (req, res) {
         like,
         dislike
     } = req.body;
+    console.log("Comentario", comment);
+    console.log(req.body);
     let _id;
     if (token) {
         try {
@@ -121,6 +137,7 @@ router.put("/:id", function (req, res) {
             msg: "Not authorized"
         });
     }
+    console.log("Is authorized");
     db.findOnePromise("application", "posts", req.params.id)
         .then(docs => {
             const doc = docs[0];
@@ -136,28 +153,51 @@ router.put("/:id", function (req, res) {
                 } else if (!text && (comment || like || dislike)) {
                     const updatedObject = {};
                     if (comment) {
-                        updatedObject.comments = (doc.comments.length == 0) ? [{
-                            text: comment,
-                            user: _id
-                        }] : doc.comments.push({
-                            text: comment,
-                            user: _id
-                        });
-                        db.findAndUpdateOnePromise("application", "posts", doc._id,
-                            updatedObject, {
-                                $push: {
-                                    comments: {
-                                        text: comment,
-                                        user: _id,
-                                        date: Date.now()
-                                    }
-                                }
+                        console.log("Es un comentario");
+                        return db.findOnePromise("application", "users", _id)
+                            .then(usr => {
+                                updatedObject._id = doc._id;
+                                updatedObject.comments = (doc.comments.length == 0) ? [{
+                                    text: comment,
+                                    user: _id,
+                                    name: usr[0].name,
+                                    photo: usr[0].photo,
+                                    date: Date.now()
+                                }] : doc.comments.push({
+                                    text: comment,
+                                    user: _id,
+                                    name: usr[0].name,
+                                    photo: usr[0].photo,
+                                    date: Date.now()
+                                });
+                                return db.findAndUpdateOnePromise("application", "posts", doc._id,
+                                    updatedObject, {
+                                        $push: {
+                                            comments: {
+                                                text: comment,
+                                                user: _id,
+                                                date: Date.now(),
+                                                name: usr[0].name,
+                                                photo: usr[0].photo
+                                            }
+                                        }
+                                    })
+                                    .then(() => {
+                                        console.log("Voy a retornar");
+                                        console.log(updatedObject);
+                                        return res.status(200).json(doc);
+                                    });
+                                
+                                
                             });
-                        updatedObject._id = doc._id;
-                        return res.status(200).json(updatedObject);
                     }
                     if (like) {
+                        if(doc.likes && doc.likes.length > 0 && doc.likes.filter(e => e === _id).length>0)
+                        {
+                            return res.status(400).json({msg: "Post already liked"});
+                        }
                         updatedObject.likes = (doc.likes.length == 0) ? [_id] : doc.likes.push(_id);
+                        updatedObject.dislikes = (doc.dislikes.length == 0) ? [] : doc.dislikes;
                         db.findAndUpdateOnePromise("application", "posts", doc._id,
                             updatedObject, {
                                 $push: {
@@ -168,7 +208,13 @@ router.put("/:id", function (req, res) {
                         return res.status(200).json(updatedObject);
                     }
                     if (dislike) {
+                        console.log(doc.dislikes, doc.dislikes.length, doc.dislikes.filter(e => e === _id));
+                        if(doc.dislikes && doc.dislikes.length > 0 && doc.dislikes.filter(e => e === _id).length>0)
+                        {
+                            return res.status(400).json({msg: "Post already disliked"});
+                        }
                         updatedObject.dislikes = (doc.dislikes.length == 0) ? [_id] : doc.dislikes.push(_id);
+                        updatedObject.likes = (doc.likes.length == 0) ? [] : doc.likes;
                         db.findAndUpdateOnePromise("application", "posts", doc._id,
                             updatedObject, {
                                 $push: {
@@ -178,7 +224,7 @@ router.put("/:id", function (req, res) {
                         updatedObject._id = doc._id;
                         return res.status(200).json(updatedObject);
                     }
-                } else {
+                } else if (text) {
                     db.findAndUpdateOnePromise("application", "posts", doc._id, {
                         text: text
                     });
@@ -187,12 +233,14 @@ router.put("/:id", function (req, res) {
                         text: text,
                         comments: doc.comments,
                         likes: doc.likes,
-                        tags: doc.tags,
+                        dislikes: doc.dislikes,
+                        category: doc.category,
                         user: doc.user,
                         name: doc.name,
                         email: doc.email
                     });
                 }
+                else return res.status(400).json({msg: "Bad Request"});
             }
         });
 });

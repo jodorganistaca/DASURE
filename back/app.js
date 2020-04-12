@@ -15,7 +15,7 @@ const postsRouter = require("./routes/posts");
 
 const { passportInit } = require("./middleware/passportInit");
 const passport = require("passport");
-
+const cors = require("cors");
 const app = express();
 
 passportInit();
@@ -23,11 +23,20 @@ passportInit();
 // Initialize Passport and restore authentication state, if any, from the session.
 app.use(
     express_session({
-        secret: "keyboard cat",
+        secret: process.env.JWT_SECRET,
         resave: true,
         saveUninitialized: true
     })
 );
+
+app.use(
+    cors({
+        origin: "http://localhost:3000", // allow to server to accept request from different origin
+        methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+        credentials: true // allow session cookie from browser to pass through
+    })
+);
+  
 app.use(passport.initialize());
 app.use(passport.session());
 

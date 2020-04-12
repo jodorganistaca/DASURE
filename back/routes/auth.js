@@ -14,7 +14,7 @@ router.post("/", function(req, res) {
     console.log(email);
     db.findOneObjectPromise("application", "users", {email: email})
         .then(user => {
-            if(!user&&user[0])
+            if(!user||!user[0])
             {
                 return res
                     .status(400)
@@ -22,9 +22,7 @@ router.post("/", function(req, res) {
             }
             else
             {
-                console.log("user", user);
                 const usr = user[0];
-                console.log("usr", usr);
                 bcrypt.compare(password, usr.password)
                     .then(match => {
                         if(!match)
@@ -57,7 +55,7 @@ router.post("/", function(req, res) {
                                     };
                                     console.log("Token created", token);
                                     res.cookie("x-access-token",token, options);
-                                    res.redirect("../");
+                                    res.json(token);
                                 });
                         }
                     });
@@ -70,9 +68,20 @@ router.get(
     passport.authenticate("google", { failureRedirect: "/login" }),
     function (req, res) {
         // Successful authentication, redirect home.
-        res.redirect("../");
+        //TODO: Heroku login
+        res.redirect("http://localhost:3000");
     }
 );
 
+router.get("/login/success", (req, res) => {
+    if (req.user) {
+        res.json({
+            success: true,
+            message: "user has successfully authenticated",
+            user: req.user,
+            cookies: req.cookies
+        });
+    }
+});
 
 module.exports = router;

@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-let db  = require('../db/MongoUtils');
+const db  = require("../db/MongoUtils");
+const fetch = require("node-fetch");
 
 /* GET home page. */
 router.get("/", function(req, res) {
@@ -9,29 +10,29 @@ router.get("/", function(req, res) {
 });
 
 
-router.get('/create/:type', (req, res) => {
-    if(req.params.type == 'Workout'){
-        res.render('createWorkout', { type: "rutina"});
+router.get("/create/:type", (req, res) => {
+    if(req.params.type == "Workout"){
+        res.render("createWorkout", { type: "rutina"});
     }else{
-        res.render('create', { type: req.params.type});
+        res.render("create", { type: req.params.type});
     }
 
 });
 
-router.get('/get/:type', (req, res) => {
-  console.log(req.params);
-  db.getDocumentsPromise('COVID-19Web', req.params.type)
-      .then(data => {
-        return res.json(data);
-      })
-      .catch(err => res.render("index",{
-        err
-      }));
+router.get("/get/:type", (req, res) => {
+    console.log(req.params);
+    db.getDocumentsPromise("COVID-19Web", req.params.type)
+        .then(data => {
+            return res.json(data);
+        })
+        .catch(err => res.render("index",{
+            err
+        }));
 });
 
-router.get('/update_delete/:type', (req, res) => {
+router.get("/update_delete/:type", (req, res) => {
     console.log(req.params);
-    db.getDocumentsPromise('COVID-19Web', req.params.type)
+    db.getDocumentsPromise("COVID-19Web", req.params.type)
         .then(data => {
             return res.render("UpdateOrDelete", {data, type: req.params.type});
         })
@@ -40,19 +41,19 @@ router.get('/update_delete/:type', (req, res) => {
         }));
 });
 
-router.post('/create/:type', (req, res) => {
+router.post("/create/:type", (req, res) => {
     console.log(req.params, req.body);
-  db.createOneDocumentPromise('COVID-19Web', req.params.type, req.body)
-      .then(res.redirect("/update_delete/"+req.params.type))
-      .catch(err => res.render("index", {
-        title: "Mongo Explorer",
-        error: err,
-        readme: "https://github.com/jsbravo-sw/mongo-explorer/blob/master/README.md"
-      }));
+    db.createOneDocumentPromise("COVID-19Web", req.params.type, req.body)
+        .then(res.redirect("/update_delete/"+req.params.type))
+        .catch(err => res.render("index", {
+            title: "Mongo Explorer",
+            error: err,
+            readme: "https://github.com/jsbravo-sw/mongo-explorer/blob/master/README.md"
+        }));
 });
 
 router.post("/delete/:type/:_id", function (req, res) {
-    db.findAndDeleteOnePromise('COVID-19Web', req.params.type, req.params._id)
+    db.findAndDeleteOnePromise("COVID-19Web", req.params.type, req.params._id)
         .then(res.redirect("/update_delete/"+req.params.type))
         .catch(err => res.render("index", {
             title: "Mongo Explorer",
@@ -63,7 +64,7 @@ router.post("/delete/:type/:_id", function (req, res) {
 });
 
 router.post("/update/:type/:_id", function (req, res) {
-    db.findAndUpdateOnePromise('COVID-19Web', req.params.type, req.params._id, req.body)
+    db.findAndUpdateOnePromise("COVID-19Web", req.params.type, req.params._id, req.body)
         .then(res.redirect("/update_delete/"+req.params.type))
         .catch(err => res.render("index", {
             title: "Mongo Explorer",
@@ -83,7 +84,7 @@ router.get("/signup", function(req, res)
     res.render("signup");
 });
 
-router.get("/edit_profile", function(req, res){
+router.get("/getProfile", function(req, res){
   
     console.log(req.cookies);
     const token = req.cookies["x-access-token"];
@@ -92,7 +93,8 @@ router.get("/edit_profile", function(req, res){
         try {
             const decoded = jwt.verify(token, process.env.JWT_SECRET);
             const {name, email, _id} = decoded.user;
-            return res.render("users", {name, email, _id});
+            return db.findOnePromise("application", "users", _id)
+                .then(data => res.json(data[0]));
         }
         catch  (error)
         {
@@ -106,7 +108,10 @@ router.get("/edit_profile", function(req, res){
             return res.status(403).json({msg: "No user logged"});
         }
         const {name, email, _id} = req.user.value;
-        return res.render("users", {name, email, _id});
+        db.findOnePromise("application", "users", _id)
+            .then(data => res.json(data[0]));
+            
+        
     }
 });
 

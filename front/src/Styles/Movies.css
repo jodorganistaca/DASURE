@@ -812,6 +812,7 @@ a {
     font-size: 1.5em;
 }
 
-h1, h2{
+/* FIXME:
+ h1, h2{
     color: dodgerblue !important;
-}
+} */

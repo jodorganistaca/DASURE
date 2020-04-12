@@ -110,9 +110,10 @@
     height: 500px;
 }
 
-div {
+/* FIXME:
+ div {
     margin-bottom: 50px;
-}
+} */
 
 .home-page-final-section{
     height: 500px;
