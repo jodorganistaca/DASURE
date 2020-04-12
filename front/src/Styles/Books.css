@@ -1,3 +1,21 @@
+.books-navbar {
+    background-color: #81c784;
+}
+
+.books-header {
+    background-color: #519657;
+}
+
+books-navbar-title{
+    font-weight: bold;
+    font-size: initial;
+    color: black;
+}
+
+.books-logo{
+    height: 50px;
+}
+
 @font-face {
     font-family: 'Calling Code';
     font-style: normal;
@@ -6,21 +24,21 @@
     url("../Fonts/CallingCode-Regular.otf"),
     url("../Fonts/CallingCode-Regular.ttf") format('truetype');
 }
-.home-menu-collapse{
+.books-menu-collapse{
     width: 15vw;
     height: 80vh;
     padding-top: 4%;
     overflow: hidden;
-    background-color: #002652;
+    background-color: white;
     position: fixed;
     z-index: 50;
     left: 100%;
-    color: white;
+    color: black;
 }
-.workout-header{
+.book-header{
     height: 180px;
     width: 100%;
-    background-image: url("https://cdn.pixabay.com/photo/2014/09/25/23/36/man-461195_960_720.jpg");
+    background-image: url("https://cdn.pixabay.com/photo/2018/03/19/18/20/tea-time-3240766_960_720.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position-x: center;
@@ -30,32 +48,32 @@
 
     /*opacity: 80%;*/
 }
-.workout-header-navbar-logo{
+.book-header-navbar-logo{
     width: 195px;
     position: absolute;
     right: 45px;
     top: -10px;
     z-index: 100;
 }
-.workout-header-hamburger{
+.book-header-hamburger{
     width: 45px;
     position: absolute;
     right: 10px;
     top: 15px;
     z-index: 100;
 }
-.workout-logo{
+.book-logo{
     height: 85px;
     /*margin-top: 3%;*/
 }
 
-.workout-header-title{
+.book-header-title{
     display: table;
     margin-left: auto;
     margin-right: auto;
     margin-top: 1%;
 }
-.workout-header-title-text{
+.book-header-title-text{
     background: white;
     font-family: 'Calling Code';
     color: #002652;
@@ -68,7 +86,7 @@
     width: 430px;
 }
 
-.container-workout {
+.container-books {
     margin-top: 10%;
 }
 .container-equipo{
@@ -208,7 +226,7 @@ h1{
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     text-align: center;
-    min-height: 400px;
+    min-height: 280px;
     height: auto;
     border-radius: 10px;
     color: #fff;
@@ -341,30 +359,15 @@ h1{
     top: 15rem;
 }
 .white-container{
-    background: #fff;
-    width: 40vw;
-    height: 55vh;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-    padding: 20px;
-    border-radius: 40px;
-    box-shadow: 5px 2px 2px rgba(0,0,0,0.2);
-    text-align: right;
-    /*!*position: absolute;*!*/
-    /*margin-left: 30vw;*/
-    /*align-self: center;*/
-
+    /*background: #fff;*/
+    /*width: 70vw;*/
     /*position: absolute;*/
-    /*top: 50%;*/
-    /*left: 50%;*/
-    margin-top: 150px;
-    /*margin-left: -50px;*/
-    /*width: 100px;*/
-    /*height: 100px;*/
-
+    /*margin-left: 15vw;*/
+    /*align-self: center;*/
+    /*padding: 20px;*/
+    /*border-radius: 40px;*/
+    /*box-shadow: 5px 2px 2px rgba(0,0,0,0.2);*/
+    /*text-align: right;*/
 }
 .container-photo-single-person{
     width: 20vw;

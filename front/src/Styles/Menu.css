@@ -1,0 +1,58 @@
+@font-face {
+    font-family: 'Calling Code';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Calling Code'),local('CallingCode'),
+    url("../Fonts/CallingCode-Regular.otf"),
+    url("../Fonts/CallingCode-Regular.ttf") format('truetype');
+}
+
+.menu-img-logo{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+}
+
+.menu-logo-user{
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    display: flex;
+    justify-content: center;
+}
+
+.menu-main-menu{
+    font-family: 'Calling Code';
+    float: right;
+    width: 100%;
+    text-align: right;
+    margin: 0 auto;
+    font-size: 150%;
+    margin-right: 5vh;
+    border-width: medium;
+    border-color: white;
+}
+
+.menu-separator{
+    width: 80%;
+    margin-right: 5vh;
+    margin-left: 5vh;
+
+}
+
+.center-hr {
+
+}
+
+.menu-friends{
+    float: right;
+    width: 100%;
+    text-align: right;
+    color: white;
+    margin: 0 auto;
+    font-size: 150%;
+    margin-right: 5vh;
+    border-width: medium;
+    border-color: white;
+}
+
+

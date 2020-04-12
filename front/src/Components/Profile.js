@@ -1,15 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import 'antd/dist/antd.css';
 import { withRouter } from 'react-router-dom'
-import '../Styles/Movies.css'
+import '../Styles/Profile.css'
 import Menu from "./Menu";
 import { Layout, Carousel, } from "antd";
 
 const { Footer, Content } = Layout;
 
-const Movies = props => {
+const Profile = props => {
     const [initialized, setInitialized] = useState(false);
-    const [movies, setMovies] = useState([]);
+    const [profile, setProfile] = useState([]);
     const [showInfo, setShowInfo] = useState({
         show: false,
         name: "",
@@ -22,12 +22,12 @@ const Movies = props => {
     const [q, setQuery] = useState('batman');
 
 
-    const loadMovies = () => {
-        fetch("/get/Movies")
+    const loadProfile = () => {
+        fetch("/get/Profile")
             .then(res => res.json())
             .then((result) => {
-                console.log("Movieeeeeees ", result);
-                setMovies(result);
+                console.log("Profileeeeeees ", result);
+                setProfile(result);
             });
     };
 
@@ -51,7 +51,7 @@ const Movies = props => {
 
     useEffect(() => {
         if (!initialized) {
-            loadMovies();
+            loadProfile();
             setInitialized(true);
         }
         setLoading(true);
@@ -83,36 +83,36 @@ const Movies = props => {
     }, [q]);
 
     return (
-        <Layout className="movie-container">
+        <Layout className="profile-container">
 
-            <div className="movie-header">
-                <div className="movie-header-navbar">
-                    <img className = "movie-header-navbar-logo" src={require("../Assets/dasure-01.png")} alt="Series" onClick={() => props.history.push('/')} />
-                    <img className = "movie-header-hamburger" src={require("../Assets/menu-button.svg")} alt="Notificaciones" onClick={ShowSideMenu}/>
+            <div className="profile-header">
+                <div className="profile-header-navbar">
+                    <img className = "profile-header-navbar-logo" src={require("../Assets/dasure-01.png")} alt="Series" onClick={() => props.history.push('/')} />
+                    <img className = "profile-header-hamburger" src={require("../Assets/menu-button.svg")} alt="Notificaciones" onClick={ShowSideMenu}/>
                     <div className="home-menu-collapse" id="menu">
                         <Menu/>
                     </div>
                 </div>
-                <img className = "movie-logo" src={require("../Assets/Movies-white.svg")} alt="Movies" onClick={() => props.history.push('/home')} />
-                <div className="movie-header-title">
-                    <h1 className="movie-header-title-text">
-                        Películas
+                <img className = "profile-logo" src={require("../Assets/icon.png")} alt="profile" onClick={() => props.history.push('/home')} />
+                <div className="profile-header-title">
+                    <h1 className="profile-header-title-text">
+                        User x
                     </h1>
                 </div>
             </div>
             <div onClick={() => {
-                console.log("movies ", movies);
+                console.log("profile ", profile);
                 console.log("showInfo ", showInfo);
             }}>
                 click me
             </div>
-            <Content className="content-movie">
-                <div className="container-movies">
+            <Content className="content-profile">
+                <div className="container-profile">
                     <Carousel className="carousel-general" autoplay autoplaySpeed="100" dotPosition="top">
                         <div>
                             <div className="persona-general">
                                 <div className="persona-especifica">
-                                    {movies.map((m, id) => {
+                                    {profile.map((m, id) => {
                                         let bg = m.image;
                                         return (
                                             <div className="wrapper">
@@ -191,4 +191,4 @@ const Movies = props => {
 
 };
 
-export default withRouter(Movies);
+export default withRouter(Profile);

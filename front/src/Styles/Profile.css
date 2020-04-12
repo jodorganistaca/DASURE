@@ -11,16 +11,16 @@
     height: 80vh;
     padding-top: 4%;
     overflow: hidden;
-    background-color: #002652;
+    background-color: #dc3545;
     position: fixed;
     z-index: 50;
     left: 100%;
     color: white;
 }
-.workout-header{
+.profile-header{
     height: 180px;
     width: 100%;
-    background-image: url("https://cdn.pixabay.com/photo/2014/09/25/23/36/man-461195_960_720.jpg");
+    background-image: url("https://cdn.pixabay.com/photo/2016/11/21/12/10/tv-1844964_960_720.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position-x: center;
@@ -30,32 +30,32 @@
 
     /*opacity: 80%;*/
 }
-.workout-header-navbar-logo{
+.profile-header-navbar-logo{
     width: 195px;
     position: absolute;
     right: 45px;
     top: -10px;
     z-index: 100;
 }
-.workout-header-hamburger{
+.profile-header-hamburger{
     width: 45px;
     position: absolute;
     right: 10px;
     top: 15px;
     z-index: 100;
 }
-.workout-logo{
+.profile-logo{
     height: 85px;
     /*margin-top: 3%;*/
 }
 
-.workout-header-title{
+.profile-header-title{
     display: table;
     margin-left: auto;
     margin-right: auto;
     margin-top: 1%;
 }
-.workout-header-title-text{
+.profile-header-title-text{
     background: white;
     font-family: 'Calling Code';
     color: #002652;
@@ -68,8 +68,8 @@
     width: 430px;
 }
 
-.container-workout {
-    margin-top: 10%;
+.container-profile {
+    /*margin-top: 10%;*/
 }
 .container-equipo{
     width: 75%;
@@ -252,6 +252,8 @@ h1{
 .title-inner{
     margin: 0;
     font-weight: 200;
+    font-family: "Calling Code";
+    font-size: 50px;
 }
 .role-inner{
     margin: 0;
