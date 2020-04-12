@@ -22,9 +22,8 @@ const Series = props => {
         fetch("/get/Series")
             .then(res => res.json())
             .then((result) => {
-                console.log("bookeeeeees ", result);
+                console.log("Serieeeeees ", result);
                 setSeries(result);
-
             });
     };
 
@@ -85,12 +84,12 @@ const Series = props => {
                             <div className="persona-general">
                                 <div className="persona-especifica">
                                     {series.map((m, id) => {
-                                        let bg = m.Image;
+                                        let bg = m.image;
                                         return (
                                             <div className="wrapper">
                                                 <div className="cols">
                                                     <div className="col" onTouchStart="this.classList.toggle('hover');">
-                                                        <div className="container" onClick={() => changeInfo(m.Name, m.Image, m.Description)}>
+                                                        <div className="container" onClick={() => changeInfo(m.name, m.image, m.description)}>
                                                             <div className="front"
                                                                  style={{ backgroundImage: `url(${bg}` }}>
                                                                 <div className="inner">
@@ -98,7 +97,7 @@ const Series = props => {
                                                             </div>
                                                             <div className="back">
                                                                 <div className="inner">
-                                                                    <p className="title-inner">{m.Name}</p>
+                                                                    <p className="title-inner">{m.name}</p>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -17,10 +17,10 @@
     left: 100%;
     color: white;
 }
-.movie-header{
+.profile-header{
     height: 180px;
     width: 100%;
-    background-image: url("https://cdn.pixabay.com/photo/2017/01/12/17/30/warm-and-cozy-1975215_960_720.jpg");
+    background-image: url("https://cdn.pixabay.com/photo/2016/11/21/12/10/tv-1844964_960_720.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     background-position-x: center;
@@ -30,32 +30,32 @@
 
     /*opacity: 80%;*/
 }
-.movie-header-navbar-logo{
+.profile-header-navbar-logo{
     width: 195px;
     position: absolute;
     right: 45px;
     top: -10px;
     z-index: 100;
 }
-.movie-header-hamburger{
+.profile-header-hamburger{
     width: 45px;
     position: absolute;
     right: 10px;
     top: 15px;
     z-index: 100;
 }
-.movie-logo{
+.profile-logo{
     height: 85px;
     /*margin-top: 3%;*/
 }
 
-.movie-header-title{
+.profile-header-title{
     display: table;
     margin-left: auto;
     margin-right: auto;
     margin-top: 1%;
 }
-.movie-header-title-text{
+.profile-header-title-text{
     background: white;
     font-family: 'Calling Code';
     color: #002652;
@@ -68,7 +68,7 @@
     width: 430px;
 }
 
-.container-movies {
+.container-profile {
     /*margin-top: 10%;*/
 }
 .container-equipo{

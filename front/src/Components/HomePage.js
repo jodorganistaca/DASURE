@@ -52,7 +52,7 @@ const HomePage = props => {
                     <Col>
                     </Col>
                     <Col xs={2}>
-                        <Button className="home-page-button" size="large" onClick={() => props.history.push('movies')}>Entrenimiento</Button>
+                        <Button className="home-page-button" size="large" onClick={() => props.history.push('movies')}>Entretenimiento</Button>
                     </Col>
                     <Col xs={2}>
                         <Button className="home-page-button" size="large" onClick={() => props.history.push('perfil')}>Mi Checklist</Button>
@@ -70,7 +70,7 @@ const HomePage = props => {
                     <Col offset={2} xs={8}>
                         <div className="home-page-heading-text">
                             <p>
-                                DASURE plataforma web para recomendar series, peliculas, libros y rutinas de ejercicio.
+                                DASURE plataforma web para recomendar series, películas, libros y rutinas de ejercicio.
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                                 Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
                                 when an unknown printer took a galley of type and scrambled it to make a type specimen book.
@@ -123,7 +123,7 @@ const HomePage = props => {
                     <Col xs={6}>
                         <div className="content-container">
                             <p className="heading-text">
-                                Mision: DASURE es una plataforma para para recomendar series, peliculas, libros y rutinas de ejercicio.
+                                Mision: DASURE es una plataforma para para recomendar series, películas, libros y rutinas de ejercicio.
                             </p>
                         </div>
                     </Col>
@@ -141,7 +141,7 @@ const HomePage = props => {
                         <div className="section-content">
                             <div className="content-container">
                                 <p className="heading-text">
-                                    Mision: COVID-19Web Page es una plataforma para para recomendar series, peliculas, libros y rutinas de ejercicio.
+                                    Mision: COVID-19Web Page es una plataforma para para recomendar series, películas, libros y rutinas de ejercicio.
                                 </p>
                             </div>
                         </div>
@@ -151,7 +151,7 @@ const HomePage = props => {
                     <Col offset={2} xs={8}>
                         <div className="home-page-heading-text">
                             <h2>
-                                SIGUENOS EN
+                                SÍGUENOS EN
                             </h2>
                         </div>
 

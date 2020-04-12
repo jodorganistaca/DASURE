@@ -10,7 +10,7 @@ const Menu = props => {
     return (
         <div className='menu-main-container'>
             <div className="menu-logo-user">
-                <img className="menu-img-logo" src={require('../Assets/icon.png')} alt="" />
+                <img onClick={() => props.history.push('/profile')} className="menu-img-logo" src={require('../Assets/icon.png')} alt="" />
             </div>
             <div className="menu-main-menu">
                 <p onClick={() => props.history.push('/')}> Inicia sesión </p>

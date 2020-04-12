@@ -84,12 +84,12 @@ const Books = props => {
                             <div className="persona-general">
                                 <div className="persona-especifica">
                                     {books.map((m, id) => {
-                                        let bg = m.Image;
+                                        let bg = m.image;
                                         return (
                                             <div className="wrapper">
                                                 <div className="cols">
                                                     <div className="col" onTouchStart="this.classList.toggle('hover');">
-                                                        <div className="container" onClick={() => changeInfo(m.Name, m.Image, m.Description)}>
+                                                        <div className="container" onClick={() => changeInfo(m.name, m.image, m.description)}>
                                                             <div className="front"
                                                                  style={{ backgroundImage: `url(${bg}` }}>
                                                                 <div className="inner">
@@ -97,7 +97,7 @@ const Books = props => {
                                                             </div>
                                                             <div className="back">
                                                                 <div className="inner">
-                                                                    <p className="title-inner">{m.Name}</p>
+                                                                    <p className="title-inner">{m.name}</p>
                                                                 </div>
                                                             </div>
                                                         </div>
