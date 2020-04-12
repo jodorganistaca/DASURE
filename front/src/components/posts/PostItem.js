@@ -40,9 +40,9 @@ const PostItem = ({updateLike, deletePost, auth, post: {_id, text, title, image,
                 <div className="blog-info">
                 <div className="title"><Link to={`/posts/${_id}`}><h4 className="title">{title}</h4></Link></div>
                   <ul className="post-footer">
-                    <li onClick={e => updateLike(_id, "like")}><a><FontAwesomeIcon icon={faChevronUp}></FontAwesomeIcon>{'  '}{likes.length > 0 && likes.length}</a></li>
-                    <li onClick={e => updateLike(_id, "dislike")}><a ><FontAwesomeIcon icon={faChevronDown}></FontAwesomeIcon>{'  '}{dislikes.length > 0 && dislikes.length}</a></li>
-                    <li><Link to={`/posts/${_id}`}><FontAwesomeIcon icon={faComment}></FontAwesomeIcon>{'  '}{comments.length > 0 && comments.length}</Link></li>
+                    <li className="post-button" onClick={e => updateLike(_id, "like")}><a style={{fontFamily:"roboto,sans-serif"}}><FontAwesomeIcon icon={faChevronUp}></FontAwesomeIcon>{'  '}{likes.length > 0 && likes.length}</a></li>
+                    <li className="post-button" onClick={e => updateLike(_id, "dislike")}><a style={{fontFamily:"roboto,sans-serif"}} ><FontAwesomeIcon icon={faChevronDown}></FontAwesomeIcon>{'  '}{dislikes.length > 0 && dislikes.length}</a></li>
+                    <li className="post-button" ><Link style={{fontFamily:"roboto,sans-serif"}} to={`/posts/${_id}`}><FontAwesomeIcon icon={faComment}></FontAwesomeIcon>{'  '}{comments.length > 0 && comments.length}</Link></li>
                   </ul>
                 </div>
               </div>

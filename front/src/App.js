@@ -1,4 +1,4 @@
-import {React, useEffect} from 'react';
+import React ,{useEffect} from 'react';
 import { createBrowserHistory as createHistory } from "history";
 import './App.css';
 //import Login from './Components/Login.js';
