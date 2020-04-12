@@ -86,46 +86,40 @@ const Movies = props => {
         <Layout className="movie-container">
 
             <div className="movie-header">
-                <div className="movie-header-navbar">
+                <div className="movie-header-navbar space">
                     <img className = "movie-header-navbar-logo" src={require("../Assets/dasure-01.png")} alt="Series" onClick={() => props.history.push('/')} />
                     <img className = "movie-header-hamburger" src={require("../Assets/menu-button.svg")} alt="Notificaciones" onClick={ShowSideMenu}/>
                     <div className="home-menu-collapse" id="menu">
                         <Menu/>
                     </div>
                 </div>
-                <img className = "movie-logo" src={require("../Assets/Movies-white.svg")} alt="Movies" onClick={() => props.history.push('/home')} />
+                <img className = "movie-logo" src={require("../Assets/Movies-white.svg")} alt="Movies" onClick={() => props.history.push('/')} />
                 <div className="movie-header-title">
                     <h1 className="movie-header-title-text">
                         Películas
                     </h1>
                 </div>
             </div>
-            <div onClick={() => {
-                console.log("movies ", movies);
-                console.log("showInfo ", showInfo);
-            }}>
-                click me
-            </div>
             <Content className="content-movie">
-                <div className="container-movies">
+                <div className=" container-movies">
                     <Carousel className="carousel-general" autoplay autoplaySpeed="100" dotPosition="top">
                         <div>
-                            <div className="persona-general">
-                                <div className="persona-especifica">
+                            <div className="movie-general">
+                                <div className="movie-specific">
                                     {movies.map((m, id) => {
                                         let bg = m.image;
                                         return (
-                                            <div className="wrapper">
-                                                <div className="cols">
-                                                    <div className="col" onTouchStart="this.classList.toggle('hover');">
-                                                        <div className="container" onClick={() => changeInfo(m.name, m.image, m.description)}>
-                                                            <div className="front"
+                                            <div className="movie-wrapper">
+                                                <div className="movie-cols">
+                                                    <div className="movie-col" onTouchStart="this.classList.toggle('hover');">
+                                                        <div className="movie-poster-container" onClick={() => changeInfo(m.name, m.image, m.description)}>
+                                                            <div className="movie-front"
                                                                  style={{ backgroundImage: `url(${bg}` }}>
-                                                                <div className="inner">
+                                                                <div className="movie-inner">
                                                                 </div>
                                                             </div>
-                                                            <div className="back">
-                                                                <div className="inner">
+                                                            <div className="movie-back">
+                                                                <div className="ovie-inner">
                                                                     <p className="title-inner">{m.name}</p>
                                                                 </div>
                                                             </div>
@@ -136,21 +130,21 @@ const Movies = props => {
                                         )
                                     })}
                                 </div>
-                                <div className="persona-especifica">
+                                <div className="movie-specific">
                                     {data !== null && data.length > 0 && data.map((result, index) => {
                                         let bg = result.Poster;
                                         return (
-                                            <div className="wrapper">
-                                                <div className="cols">
-                                                    <div className="col" onTouchStart="this.classList.toggle('hover');">
-                                                        <div className="container" onClick={() => changeInfo(result.Title, result.Poster, result.Plot)}>
-                                                            <div className="front"
+                                            <div className="movie-wrapper">
+                                                <div className="movie-cols">
+                                                    <div className="movie-col" onTouchStart="this.classList.toggle('hover');">
+                                                        <div className="movie-poster-container" onClick={() => changeInfo(result.Title, result.Poster, result.Plot)}>
+                                                            <div className="movie-front"
                                                                  style={{ backgroundImage: `url(${bg}` }}>
-                                                                <div className="inner">
+                                                                <div className="movie-inner">
                                                                 </div>
                                                             </div>
-                                                            <div className="back">
-                                                                <div className="inner">
+                                                            <div className="movie-back">
+                                                                <div className="movie-inner">
                                                                     <p className="title-inner">{result.Title}</p>
                                                                 </div>
                                                             </div>
@@ -166,15 +160,15 @@ const Movies = props => {
                     </Carousel>
                 </div>
                 {showInfo.show ?
-                    (<div className="white-container">
+                    (<div className=" white-container">
                             <div><button className={"button-close"} onClick={()=>setShowInfo({show: false})}>X</button></div>
-                            <div className="container-master-single-person" id="person">
-                                <div className="container-master-photo-single-person">
-                                    <div className="container-photo-single-person">
+                            <div className=" container-master-single-person" id="person">
+                                <div className=" container-master-photo-single-person">
+                                    <div className=" container-photo-single-person">
                                         <img src={showInfo.img} alt={showInfo.name} className="img-single-person" />
                                     </div>
                                 </div>
-                                <div className="container-master-info-single-person">
+                                <div className=" container-master-info-single-person">
                                     <p className="name-single-person">{showInfo.name}</p>
                                     <p className="description-single-person">{showInfo.description}</p>
                                 </div>
@@ -184,7 +178,7 @@ const Movies = props => {
                     :
                     <div />}
             </Content>
-            <Footer className="footer">
+            <Footer className="movies-footer">
             </Footer>
         </Layout>
     )

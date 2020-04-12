@@ -57,14 +57,14 @@ const Series = props => {
         <Layout className="series-container">
 
             <div className="series-header">
-                <div className="series-header-navbar">
+                <div className="space series-header-navbar">
                     <img className = "series-header-navbar-logo" src={require("../Assets/dasure-02.png")} alt="Series" onClick={() => props.history.push('/')} />
                     <img className = "series-header-hamburger" src={require("../Assets/menu.svg")} alt="Notificaciones" onClick={ShowSideMenu}/>
                     <div className="series-menu-collapse" id="menu">
                         <Menu/>
                     </div>
                 </div>
-                <img className = "series-logo" src={require("../Assets/Series-white.svg")} alt="Series" onClick={() => props.history.push('/home')} />
+                <img className = "series-logo" src={require("../Assets/Series-white.svg")} alt="Series" onClick={() => props.history.push('/')} />
                 <div className="series-header-title">
                     <h1 className="series-header-title-text">
                         Series
@@ -81,22 +81,22 @@ const Series = props => {
                 <div className="container-series">
                     <Carousel className="carousel-general" autoplay autoplaySpeed="100" dotPosition="top">
                         <div>
-                            <div className="persona-general">
-                                <div className="persona-especifica">
+                            <div className="series-general">
+                                <div className="serie-specific">
                                     {series.map((m, id) => {
                                         let bg = m.image;
                                         return (
-                                            <div className="wrapper">
-                                                <div className="cols">
-                                                    <div className="col" onTouchStart="this.classList.toggle('hover');">
-                                                        <div className="container" onClick={() => changeInfo(m.name, m.image, m.description)}>
-                                                            <div className="front"
+                                            <div className="series-wrapper">
+                                                <div className="series-cols">
+                                                    <div className="series-col" onTouchStart="this.classList.toggle('hover');">
+                                                        <div className="series-layout-container" onClick={() => changeInfo(m.name, m.image, m.description)}>
+                                                            <div className="series-front"
                                                                  style={{ backgroundImage: `url(${bg}` }}>
-                                                                <div className="inner">
+                                                                <div className="series-inner">
                                                                 </div>
                                                             </div>
-                                                            <div className="back">
-                                                                <div className="inner">
+                                                            <div className="series-back">
+                                                                <div className="series-inner">
                                                                     <p className="title-inner">{m.name}</p>
                                                                 </div>
                                                             </div>

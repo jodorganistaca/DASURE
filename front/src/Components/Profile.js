@@ -93,7 +93,7 @@ const Profile = props => {
                         <Menu/>
                     </div>
                 </div>
-                <img className = "profile-logo" src={require("../Assets/icon.png")} alt="profile" onClick={() => props.history.push('/home')} />
+                <img className = "profile-logo" src={require("../Assets/icon.png")} alt="profile" onClick={() => props.history.push('/profile')} />
                 <div className="profile-header-title">
                     <h1 className="profile-header-title-text">
                         User x

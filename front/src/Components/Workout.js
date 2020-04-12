@@ -56,14 +56,14 @@ const Workout = props => {
         <Layout className="workout-container">
 
             <div className="workout-header">
-                <div className="workout-header-navbar">
+                <div className="space workout-header-navbar">
                     <img className = "workout-header-navbar-logo" src={require("../Assets/dasure-01.png")} alt="Series" onClick={() => props.history.push('/')} />
                     <img className = "workout-header-hamburger" src={require("../Assets/menu-button.svg")} alt="Notificaciones" onClick={ShowSideMenu}/>
                     <div className="home-menu-collapse" id="menu">
                         <Menu/>
                     </div>
                 </div>
-                <img className = "workout-logo" src={require("../Assets/Workout-white.svg")} alt="Workout" onClick={() => props.history.push('/home')} />
+                <img className = "workout-logo" src={require("../Assets/Workout-white.svg")} alt="Workout" onClick={() => props.history.push('/')} />
                 <div className="workout-header-title">
                     <h1 className="workout-header-title-text">
                         Ejercicio
@@ -80,22 +80,22 @@ const Workout = props => {
                 <div className="container-workout">
                     <Carousel className="carousel-general" autoplay autoplaySpeed="100" dotPosition="top">
                         <div>
-                            <div className="persona-general">
-                                <div className="persona-especifica">
+                            <div className="workout-general">
+                                <div className="workout-specific">
                                     {workout.map((m, id) => {
                                         let bg = m.image;
                                         return (
-                                            <div className="wrapper">
-                                                <div className="cols">
-                                                    <div className="col" onTouchStart="this.classList.toggle('hover');">
-                                                        <div className="container" onClick={() => changeInfo(m.name, m.image, m.description)}>
-                                                            <div className="front"
+                                            <div className="workout-wrapper">
+                                                <div className="workout-cols">
+                                                    <div className="workout-col" onTouchStart="this.classList.toggle('hover');">
+                                                        <div className="workout-layout-container" onClick={() => changeInfo(m.name, m.image, m.description)}>
+                                                            <div className="workout-front"
                                                                  style={{ backgroundImage: `url(${bg}` }}>
-                                                                <div className="inner">
+                                                                <div className="workout-inner">
                                                                 </div>
                                                             </div>
-                                                            <div className="back">
-                                                                <div className="inner">
+                                                            <div className="workout-back">
+                                                                <div className="workout-inner">
                                                                     <p className="title-inner">{m.name}</p>
                                                                 </div>
                                                             </div>

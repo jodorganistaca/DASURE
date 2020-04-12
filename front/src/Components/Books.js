@@ -57,14 +57,14 @@ const Books = props => {
         <Layout className="book-container">
 
             <div className="book-header">
-                <div className="book-header-navbar">
+                <div className="space book-header-navbar">
                     <img className = "book-header-navbar-logo" src={require("../Assets/dasure-02.png")} alt="Series" onClick={() => props.history.push('/')} />
                     <img className = "book-header-hamburger" src={require("../Assets/menu.svg")} alt="Notificaciones" onClick={ShowSideMenu}/>
                     <div className="books-menu-collapse" id="menu">
                         <Menu/>
                     </div>
                 </div>
-                <img className = "book-logo" src={require("../Assets/Books-black.svg")} alt="Books" onClick={() => props.history.push('/home')} />
+                <img className = "book-logo" src={require("../Assets/Books-black.svg")} alt="Books" onClick={() => props.history.push('/')} />
                 <div className="book-header-title">
                     <h1 className="book-header-title-text">
                         Libros
@@ -79,24 +79,24 @@ const Books = props => {
             </div>
             <Content className="content">
                 <div className="container-books">
-                    <Carousel className="carousel-general" autoplay autoplaySpeed="100" dotPosition="top">
+                    <Carousel className="book-carousel-general" autoplay autoplaySpeed="100" dotPosition="top">
                         <div>
-                            <div className="persona-general">
-                                <div className="persona-especifica">
+                            <div className="book-general">
+                                <div className="book-specific">
                                     {books.map((m, id) => {
                                         let bg = m.image;
                                         return (
-                                            <div className="wrapper">
-                                                <div className="cols">
-                                                    <div className="col" onTouchStart="this.classList.toggle('hover');">
-                                                        <div className="container" onClick={() => changeInfo(m.name, m.image, m.description)}>
-                                                            <div className="front"
+                                            <div className="book-wrapper">
+                                                <div className="book-cols">
+                                                    <div className="book-col" onTouchStart="this.classList.toggle('hover');">
+                                                        <div className="book-layout-container" onClick={() => changeInfo(m.name, m.image, m.description)}>
+                                                            <div className="book-front"
                                                                  style={{ backgroundImage: `url(${bg}` }}>
-                                                                <div className="inner">
+                                                                <div className="book-inner">
                                                                 </div>
                                                             </div>
-                                                            <div className="back">
-                                                                <div className="inner">
+                                                            <div className="book-back">
+                                                                <div className="book-inner">
                                                                     <p className="title-inner">{m.name}</p>
                                                                 </div>
                                                             </div>
