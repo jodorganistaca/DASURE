@@ -24,7 +24,7 @@ const Post = ({getPost, post: {post}, match}) => {
           por {post.name}
         </p>
         <hr/>
-        <p>Publicado en <Moment format="DD/MM/YYYY">{post.date}</Moment></p>
+        <p className="p-auth">Publicado en <Moment format="DD/MM/YYYY">{post.date}</Moment></p>
         <hr/>
         <img className="img-fluid rounded" src={post.image} alt=""/>
         <hr/>

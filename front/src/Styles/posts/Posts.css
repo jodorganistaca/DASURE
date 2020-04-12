@@ -36,11 +36,6 @@
     text-align: center;
     margin: 0;
 }
-h1, h2, h3, h4, h5, h6, p, a, ul, span, li, img {
-    margin: 0;
-    padding: 0;
-    font-weight: 300;
-}
 
 
 /* ---------------------------------
@@ -52,12 +47,7 @@ h1, h2, h3, h4, h5, h6, p, a, ul, span, li, img {
 .blog-area .single-post .title {
     padding: 10px 30px 20px;
 }
-h4 {
-    font-size: 1.2em;
-}
-h1, h2, h3, h4, h5, h6 {
-    line-height: 1.5;
-}
+
 
 .blog-area {
     text-align: center;
@@ -66,11 +56,8 @@ h1, h2, h3, h4, h5, h6 {
 .section {
     padding: 70px 0 40px;
 }
-article, aside, footer, header, nav, section {
-    display: block;
-}
 
-body {
+.body-posts {
     font-size: 15px;
     font-family: 'Roboto', sans-serif;
     font-weight: 300;

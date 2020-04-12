@@ -13,7 +13,7 @@ const CommentItem = ({postId, comment: {text, name, photo, user, date}}) => {
         <h5 className="mt-0">{name}</h5>
         {text}
       </div>
-      <p>
+      <p className="p-auth">
       Publicado en  <Moment format=" DD/MM/YYYY">{date}</Moment>
       </p>
     </div>

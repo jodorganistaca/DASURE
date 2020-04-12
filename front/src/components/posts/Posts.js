@@ -15,7 +15,7 @@ import Container from 'react-bootstrap/Container';
 const Posts = ({getPosts, post: {posts, loading}}) => {
     useEffect(() => {getPosts();}, [getPosts]);
     return loading ? (<SyncLoader/>) : 
-            (<section className="blog-area section">
+            (<section className="blog-area section .body-posts">
                 <PostForm></PostForm>
             <Container>
                 <Row style={{cursor:"auto"}}>

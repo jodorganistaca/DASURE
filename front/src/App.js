@@ -20,7 +20,6 @@ import Register from "./Components/auth/Register"
 import store from "./store"
 import './App.css';
 import { Provider } from 'react-redux';
-
 const history = createHistory();
 const App = () => {
   useEffect(() => {
@@ -32,6 +31,7 @@ const App = () => {
         <Switch>
         <Route path="/" exact component={HomePage} />
         <Route path="/login" exact component={Login} />
+        <Route path="/profile" exact component={Profile} />
         <Route path="/books" exact component={Books} />
         <Route path="/movies" exact component={Movies} />
         <Route path="/series" exact component={Series} />
