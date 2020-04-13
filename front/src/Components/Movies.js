@@ -98,14 +98,14 @@ const Movies = props => {
         setError(null);
         setData(null);
 
-        fetch(`http://www.omdbapi.com/?s=${q}&apikey=${process.env.REACT_APP_OMDB_APIKEY}`)
+        fetch(`//www.omdbapi.com/?s=${q}&apikey=${process.env.REACT_APP_OMDB_APIKEY}`)
             .then(resp => resp)
             .then(resp => resp.json())
             .then(response => {
                 console.log(response);
                 console.log(process.env.REACT_APP_OMDB_APIKEY);
                 console.log(process.env.REACT_APP_APIKEY);
-                console.log(`http://www.omdbapi.com/?s=${q}&apikey=${[process.env.REACT_APP_OMDB_APIKEY]}`);
+                console.log(`//www.omdbapi.com/?s=${q}&apikey=${[process.env.REACT_APP_OMDB_APIKEY]}`);
                 if (response.Response === 'False') {
                     setError(response.Error);
                 }
