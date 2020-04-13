@@ -25,8 +25,8 @@ series-navbar-title{
     url("../Fonts/CallingCode-Regular.ttf") format('truetype');
 }
 .series-menu-collapse{
-    width: 15vw;
-    height: 80vh;
+    width: 18vw;
+    height: 85vh;
     padding-top: 4%;
     overflow: hidden;
     background-color: white;

@@ -30,6 +30,10 @@
     margin-right: 5vh;
     border-width: medium;
     border-color: white;
+
+}
+.menu-main-menu p{
+    cursor: pointer;
 }
 
 .menu-separator{

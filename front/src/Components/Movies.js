@@ -49,10 +49,21 @@ const Movies = props => {
         console.log(showInfo);
     };
 
-    const likeMovie = async (id, _id) => {
+    const likeMovie = async (id, _id, name) => {
         console.log("puuuuuuuuuut movieeeee ", id, " movie id ", _id);
-        const response = await fetch(`/users/${id}/likedMovies/${_id}`,{
+        const data = {
+            "movie":{
+                "id": _id,
+                "name": name
+            }
+        };
+        console.log(data);
+        const response = await fetch(`/users/${id}/likedMovies`,{
             method: "PUT",
+            body: JSON.stringify(data),
+            headers:{
+                'Content-Type': 'application/json'
+            }
         });
         //convert response to Json format
         const myJson = await response.json();
@@ -67,9 +78,9 @@ const Movies = props => {
 
         var element = document.getElementById('menu');
         if(flag){
-            element.style.transform = 'translate(15vw)';
+            element.style.transform = 'translate(18vw)';
         }else{
-            element.style.transform = 'translate(-15vw)';
+            element.style.transform = 'translate(-18vw)';
         }
         element.style.zIndex = '25';
         element.style.transition = 'transform 500ms';
@@ -121,7 +132,7 @@ const Movies = props => {
                 <div className="movie-header-navbar space">
                     <img className = "movie-header-navbar-logo" src={require("../Assets/dasure-01.png")} alt="Series" onClick={() => props.history.push('/')} />
                     <img className = "movie-header-hamburger" src={require("../Assets/menu-button.svg")} alt="Notificaciones" onClick={ShowSideMenu}/>
-                    <div className="home-menu-collapse" id="menu">
+                    <div className="movie-home-menu-collapse" id="menu">
                         <Menu/>
                     </div>
                 </div>
@@ -211,15 +222,14 @@ const Movies = props => {
                                     :
                                     <div className="movie-like-container">
                                         {
-                                            profile.likedMovies.includes(showInfo._id) ?
+                                            profile.likedMovies.filter(data => (data.id == showInfo._id)).length > 0 ?
                                                 <div>
                                                     <img className="movie-like-logo" src={require("../Assets/like.svg")} alt="Series" />
                                                     <p className="movie-like-count">1</p>
                                                 </div>
-
                                                 :
                                                 <div>
-                                                    <img className = "movie-like-logo" src={require("../Assets/like.svg")} alt="Series" onClick={() => likeMovie(profile._id,showInfo._id)} />
+                                                    <img className = "movie-like-logo" src={require("../Assets/like.svg")} alt="Series" onClick={() => likeMovie(profile._id,showInfo._id,showInfo.name)} />
                                                 </div>
                                         }
                                     </div>

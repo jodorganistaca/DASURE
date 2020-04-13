@@ -43,10 +43,21 @@ const Books = props => {
         setShowInfo({_id: id, show: true, name: name,description:description,img:img});
     };
 
-    const likeBooks = async (id, _id) => {
+    const likeBooks = async (id, _id, name) => {
         console.log("puuuuuuuuuut Boooooooks ", id, " book id ", _id);
-        const response = await fetch(`/users/${id}/likedBooks/${_id}`,{
+        const data = {
+            "book":{
+                "id": _id,
+                "name": name
+            }
+        };
+        console.log(data);
+        const response = await fetch(`/users/${id}/likedBooks`,{
             method: "PUT",
+            body: JSON.stringify(data),
+            headers:{
+                'Content-Type': 'application/json'
+            }
         });
         //convert response to Json format
         const myJson = await response.json();
@@ -59,9 +70,9 @@ const Books = props => {
 
         var element = document.getElementById('menu');
         if(flag){
-            element.style.transform = 'translate(15vw)';
+            element.style.transform = 'translate(18vw)';
         }else{
-            element.style.transform = 'translate(-15vw)';
+            element.style.transform = 'translate(-18vw)';
         }
         element.style.zIndex = '25';
         element.style.transition = 'transform 500ms';
@@ -150,7 +161,7 @@ const Books = props => {
                                     :
                                     <div className="series-like-container">
                                         {
-                                            profile.likedBooks !== undefined && profile.likedBooks.includes(showInfo._id) ?
+                                            profile.likedBooks.filter(data => (data.id == showInfo._id)).length > 0 ?
                                                 <div>
                                                     <img className="series-like-logo" src={require("../Assets/like.svg")} alt="Series" />
                                                     <p className="series-like-count">1</p>
@@ -158,7 +169,7 @@ const Books = props => {
 
                                                 :
                                                 <div>
-                                                    <img className = "series-like-logo" src={require("../Assets/like.svg")} alt="Series" onClick={() => likeBooks(profile._id,showInfo._id)} />
+                                                    <img className = "series-like-logo" src={require("../Assets/like.svg")} alt="Series" onClick={() => likeBooks(profile._id,showInfo._id,showInfo.name)} />
                                                 </div>
                                         }
                                     </div>
