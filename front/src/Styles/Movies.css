@@ -6,12 +6,12 @@
     url("../Fonts/CallingCode-Regular.otf"),
     url("../Fonts/CallingCode-Regular.ttf") format('truetype');
 }
-.home-menu-collapse{
-    width: 15vw;
-    height: 80vh;
+.movie-home-menu-collapse{
+    width: 18vw;
+    height: 85vh;
     padding-top: 4%;
     overflow: hidden;
-    background-color: #dc3545;
+    background-color: #002652;
     position: fixed;
     z-index: 50;
     left: 100%;

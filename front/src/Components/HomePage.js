@@ -4,9 +4,10 @@ import "../Styles/HomePage.css";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { Button } from 'antd';
-
-const HomePage = props => {
+import { Button } from 'react-bootstrap';
+import {connect} from "react-redux";
+import PropTypes from 'prop-types'
+const HomePage = ({auth}) => {
     const [initialized, setInitialized] = useState(false);
     const [images, setImages] = useState([]);
     const [layers, setLayers] = useState([]);
@@ -44,41 +45,39 @@ const HomePage = props => {
         <div className="home-page">
             <div className="home-page-title-background space">
                     <div className="heading-container space">
-                        <img className = "heading-container-logo" src={require("../Assets/dasure-01.png")} alt="Series" onClick={() => props.history.push('series')} />
+                        <img className = "heading-container-logo" src={require("../Assets/dasure-01.png")}/>
                     </div>
             </div>
-            <Container fluid>
+            <Container fluid id="section05">
                 <Row className="justify-content-md-center space">
-                    <Col>
+                    {(!auth || auth.loading || !auth.user || !auth.user._id) &&
+                    <Col xs={2}>
+                    <Button variant="" className="home-page-button" size="large" onClick={() => window.location.replace('/login')}>Inicia sesión</Button>
+                    </Col>}
+                    <Col xs={2}>
+                        <Button variant="" className="home-page-button" size="large" onClick={() => window.location.replace('/movies')}>Películas</Button>
                     </Col>
                     <Col xs={2}>
-                        <Button className="home-page-button" size="large" onClick={() => props.history.push('movies')}>Entretenimiento</Button>
+                        <Button variant="" className="home-page-button" size="large" onClick={() => window.location.replace('/series')}>Series</Button>
                     </Col>
                     <Col xs={2}>
-                        <Button className="home-page-button" size="large" onClick={() => props.history.push('perfil')}>Mi lista</Button>
+                        <Button variant="" className="home-page-button" size="large" onClick={() => window.location.replace('/workout')}>Ejercicio</Button>
                     </Col>
                     <Col xs={2}>
-                        <Button className="home-page-button" size="large" onClick={() => props.history.push('workout')}>Ejercicio</Button>
-                    </Col>
-                    <Col xs={2}>
-                        <Button className="home-page-button" size="large">Foro</Button>
-                    </Col>
-                    <Col>
+                        <Button variant="" className="home-page-button" size="large" onClick={() => window.location.replace('/forum')} >Foro</Button>
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center space">
                     <Col offset={2} xs={8}>
                         <div className="home-page-heading-text space">
-                            <p>
-                                DASURE plataforma web para recomendar series, películas, libros y rutinas de ejercicio.
-                                Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                            <p style={{fontSize:"20px"}}>
+                                DASURE plataforma web para recomendar series, películas, libros y rutinas de ejercicio. Aquí puedes ver qué actividades te gustan y participar en un foro para recomendarlas.
                             </p>
                         </div>
 
                     </Col>
                 </Row>
+                <span id="scrolldown-span"><p id="scrolldown-p"></p></span>
             </Container>
 
             {images.map((img, i) => {
@@ -118,20 +117,7 @@ const HomePage = props => {
                     </>
                 );
             })}
-            <Container fluid>
-                <Row>
-                    <Col xs={6}>
-                        <div className="content-container space">
-                            <p className="heading-text space">
-                                Mision: DASURE es una plataforma para para recomendar series, películas, libros y rutinas de ejercicio.
-                            </p>
-                        </div>
-                    </Col>
-                    <Col xs={6}>
-                        <div className="section-background-image-mission space">
-                        </div>
-                    </Col>
-                </Row>
+            <Container fluid style={{margin: "0 !important", padding: "0"}}>
                 <Row>
                     <Col xs={6}>
                         <div className="section-background-image-vision space">
@@ -140,36 +126,11 @@ const HomePage = props => {
                     <Col xs={6}>
                         <div className="section-content space">
                             <div className="content-container space">
-                                <p className="heading-text space">
-                                    Mision: COVID-19Web Page es una plataforma para para recomendar series, películas, libros y rutinas de ejercicio.
+                                <p className="heading-text space" style={{textAlign: "justify"}}>
+                                    Misión: La plataforma DASURE fue creada con el propósito de brindar una aplicación web que permita sugerir actividades para hacer en casa dada la coyuntura del virus COVID-19.
                                 </p>
                             </div>
                         </div>
-                    </Col>
-                </Row>
-                <Row className="justify-content-md-center space">
-                    <Col offset={2} xs={8}>
-                        <div className="home-page-heading-text space">
-                            <h2>
-                                SÍGUENOS EN
-                            </h2>
-                        </div>
-
-                    </Col>
-                </Row>
-                <Row className="justify-content-md-center space">
-                    <Col>
-                    </Col>
-                    <Col xs={2}>
-                        <Button className="home-page-button" size="large space">Instagram</Button>
-                    </Col>
-                    <Col xs={2}>
-                        <Button className="home-page-button" size="large space">Facebook</Button>
-                    </Col>
-                    <Col xs={2}>
-                        <Button className="home-page-button" size="large space">Pinterest</Button>
-                    </Col>
-                    <Col>
                     </Col>
                 </Row>
                 <div className="home-page-final-section">
@@ -177,7 +138,7 @@ const HomePage = props => {
 
                     </Row>
                     <Row className="justify-content-md-center">
-                        <img className = "heading-container-logo" src={require("../Assets/dasure-01.png")} alt="Series" onClick={() => props.history.push('series')} />
+                        <img className = "heading-container-logo" src={require("../Assets/dasure-01.png")} alt="Series" onClick={() => window.location.replace('/series')} />
                     </Row>
                 </div>
             </Container>
@@ -185,4 +146,12 @@ const HomePage = props => {
 
     );
 };
-export default HomePage;
+
+HomePage.propTypes = {
+    auth: PropTypes.object
+}
+
+const mapStateToProps = state => ({
+    auth: state.auth
+})
+export default connect(mapStateToProps, null)(HomePage);

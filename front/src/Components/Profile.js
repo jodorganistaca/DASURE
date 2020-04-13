@@ -3,7 +3,9 @@ import 'antd/dist/antd.css';
 import { withRouter } from 'react-router-dom'
 import '../Styles/Profile.css'
 import Menu from "./Menu";
+import Checklist from "./user/Checklist";
 import { Layout, Carousel, } from "antd";
+import { Row, Col } from 'react-bootstrap';
 
 const { Footer, Content } = Layout;
 
@@ -77,53 +79,50 @@ const Profile = props => {
                     </h1>
                 </div>
             </div>
-            <div onClick={() => {
-                console.log("profile ", profile);
-                console.log("showInfo ", showInfo);
-            }}>
-                click me
-            </div>
             <Content className="content-profile">
                 <div className="container-profile">
                     <Carousel className="profile-carousel-general" autoplay autoplaySpeed="100" dotPosition="top">
                         <div>
-                            <div className="profile-general">
-                                <div className="profile-specific">
+                            <Row className="profile-general">
+                                <Col md={6} className="profile-specific profile-likes">
                                     <ul>
-                                    <li>Peliculas</li>
+                                    <li style={{fontWeight:"bold" }} >Películas</li>
                                     {profile.likedMovies !== undefined && profile.likedMovies.length > 0 && profile.likedMovies.map((result, index) => {
 
                                         return (
-                                            <li>{result}</li>
+                                            <li>{result.name}</li>
                                         )
                                     })}
                                     </ul>
                                     <ul>
-                                        <li>Series</li>
+                                        <li style={{fontWeight:"bold" }}>Series</li>
                                         {profile.likedSeries !== undefined && profile.likedSeries.length > 0 && profile.likedSeries.map((result, index) => {
                                             return (
-                                                <li>{result}</li>
+                                                <li>{result.name}</li>
                                             )
                                         })}
                                     </ul>
                                     <ul>
-                                        <li>Libros</li>
+                                        <li style={{fontWeight:"bold" }}>Libros</li>
                                         {profile.likedBooks !== undefined && profile.likedBooks.length > 0 && profile.likedBooks.map((result, index) => {
                                             return (
-                                                <li>{result}</li>
+                                                <li>{result.name}</li>
                                             )
                                         })}
                                     </ul>
                                     <ul>
-                                        <li>Rutinas</li>
+                                        <li style={{fontWeight:"bold" }}>Rutinas</li>
                                         {profile.likedActivities !== undefined && profile.likedActivities.length > 0 && profile.likedActivities.map((result, index) => {
                                             return (
-                                                <li>{result}</li>
+                                                <li>{result.name}</li>
                                             )
                                         })}
                                     </ul>
-                                </div>
-                            </div>
+                                </Col>
+                                <Col className="profile-specific" md={6}>
+                                <Checklist />
+                                </Col>
+                            </Row>
                         </div>
                     </Carousel>
                 </div>

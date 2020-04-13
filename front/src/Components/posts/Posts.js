@@ -11,9 +11,9 @@ import { Navbar, Nav } from 'react-bootstrap';
 import Loading from '../layout/Loading';
 import { Link } from 'react-router-dom';
 import Alert from "../layout/Alert";
+import Menu from "../Menu";
 
 const Posts = ({getPosts, post: {posts, loading}}) => {
-    useEffect(() => {getPosts();}, [getPosts]);
     const [category, setCategory] = useState("");
     const getCategories = posts => {
         let array = [];
@@ -21,13 +21,41 @@ const Posts = ({getPosts, post: {posts, loading}}) => {
             array.push(posts[i].category);
         }
         return array.filter((value, index, self) => self.indexOf(value) === index);
-    }
+    };
     const categories = getCategories(posts);
     console.log(categories);
+    const [profile, setProfile] = useState({
+        name: "UserX",
+        photo: require('../../Assets/icon.png'),
+        likedMovies: [],
+        likedSeries: [],
+        likedBooks: [],
+        likedActivities: [],
+    });
+    let flag = false;
+    const ShowSideMenu = () => {
+
+        var element = document.getElementById('menu');
+        if(flag){
+            element.style.transform = 'translate(15vw)';
+        }else{
+            element.style.transform = 'translate(-15vw)';
+        }
+        element.style.zIndex = '25';
+        element.style.transition = 'transform 500ms';
+        flag = !flag;
+    };
+    useEffect(() => {getPosts();}, [getPosts]);
+
     return loading ? (<Loading/>) : 
             ( <Fragment>
-                <Navbar bg="light" expand="lg">
-                    <Navbar.Brand><Link to="/">DASURE</Link></Navbar.Brand>
+
+            <Navbar bg="light" expand="lg">
+                    <Navbar.Brand>
+                        <Link to="/">
+                            <img className = "forum-navbar-logo" src={require("../../Assets/dasure-02.png")} alt="Series" to="/" />
+                        </Link>
+                    </Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
@@ -35,8 +63,16 @@ const Posts = ({getPosts, post: {posts, loading}}) => {
                             <Nav.Link onClick={e => {e.preventDefault(); setCategory("Todas las publicaciones")}}>Todas las publicaciones</Nav.Link>
                         </Nav>   
                     </Navbar.Collapse>
-                    </Navbar>                     
-            <section className="blog-area section .body-posts">
+                    </Navbar>
+            <div className="posts-header">
+                        <img className = "posts-logo" src={profile.photo} alt="profile" />
+                        <div className="posts-header-title">
+                            <h1 className="posts-header-title-text">
+                                Foro
+                            </h1>
+                        </div>
+            </div>
+            <section className="blog-area section .body-posts" style={{marginTop: 215}}>
                 <Alert></Alert>
                 <PostForm></PostForm>
             <Container>
@@ -47,7 +83,8 @@ const Posts = ({getPosts, post: {posts, loading}}) => {
             </Row>
             </Container>
             </section>
-            </Fragment>)
+            </Fragment>
+            )
     
 }
 
