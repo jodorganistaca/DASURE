@@ -61,7 +61,7 @@ const HomePage = props => {
                         <Button className="home-page-button" size="large" onClick={() => props.history.push('workout')}>Ejercicio</Button>
                     </Col>
                     <Col xs={2}>
-                        <Button className="home-page-button" size="large space">Foro</Button>
+                        <Button className="home-page-button" size="large">Foro</Button>
                     </Col>
                     <Col>
                     </Col>

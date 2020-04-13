@@ -16,6 +16,9 @@ const Workout = props => {
         description: "",
         img: "",
     });
+    const [profile, setProfile] = useState({
+        likedActivities: []
+    });
 
     const loadWorkout = () => {
         fetch("/get/Workout")
@@ -27,8 +30,28 @@ const Workout = props => {
             });
     };
 
-    const changeInfo = (name, img, description) => {
-        setShowInfo({show: true, name: name,description:description,img:img});
+    const loadProfile = () => {
+        fetch("/getProfile")
+            .then(res => res.json())
+            .then((result) => {
+                console.log("Profileeeeeees ", result);
+                setProfile(result);
+            });
+    };
+
+    const changeInfo = (id, name, img, description) => {
+        setShowInfo({_id: id, show: true, name: name,description:description,img:img});
+    };
+
+    const likeWorkout = async (id, _id) => {
+        console.log("puuuuuuuuuut workouuuuut ", id, " movie id ", _id);
+        const response = await fetch(`/users/${id}/likedActivities/${_id}`,{
+            method: "PUT",
+        });
+        //convert response to Json format
+        const myJson = await response.json();
+        console.log(myJson);
+        setShowInfo({show: false});
     };
 
     var flag = false;
@@ -48,6 +71,7 @@ const Workout = props => {
     useEffect(() => {
         if (!initialized) {
             loadWorkout();
+            loadProfile();
             setInitialized(true);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,7 +81,7 @@ const Workout = props => {
 
             <div className="workout-header">
                 <div className="space workout-header-navbar">
-                    <img className = "workout-header-navbar-logo" src={require("../Assets/dasure-01.png")} alt="Series" onClick={() => props.history.push('/')} />
+                    <img className = "workout-header-navbar-logo" src={require("../Assets/dasure-01.png")} alt="Workout" onClick={() => props.history.push('/')} />
                     <img className = "workout-header-hamburger" src={require("../Assets/menu-button.svg")} alt="Notificaciones" onClick={ShowSideMenu}/>
                     <div className="home-menu-collapse" id="menu">
                         <Menu/>
@@ -69,12 +93,6 @@ const Workout = props => {
                         Ejercicio
                     </h1>
                 </div>
-            </div>
-            <div onClick={() => {
-                console.log("workout ", workout);
-                console.log("showInfo ", showInfo);
-            }}>
-                click me
             </div>
             <Content className="content">
                 <div className="container-workout">
@@ -88,7 +106,7 @@ const Workout = props => {
                                             <div className="workout-wrapper">
                                                 <div className="workout-cols">
                                                     <div className="workout-col" onTouchStart="this.classList.toggle('hover');">
-                                                        <div className="workout-layout-container" onClick={() => changeInfo(m.name, m.image, m.description)}>
+                                                        <div className="workout-layout-container" onClick={() => changeInfo(m._id, m.name, m.image, m.description)}>
                                                             <div className="workout-front"
                                                                  style={{ backgroundImage: `url(${bg}` }}>
                                                                 <div className="workout-inner">
@@ -111,19 +129,38 @@ const Workout = props => {
                     </Carousel>
                 </div>
                 {showInfo.show ?
-                    (<div className="white-container">
-                            <div><button className={"button-close"} onClick={()=>setShowInfo({show: false})}>X</button></div>
-                            <div className="container-master-single-person" id="person">
-                                <div className="container-master-photo-single-person">
-                                    <div className="container-photo-single-person">
-                                        <img src={showInfo.img} alt={showInfo.name} className="img-single-person" />
+                    (<div className="workout-white-container">
+                            <div><button className={"workout-button-close"} onClick={()=>setShowInfo({show: false})}>X</button></div>
+                            <div className="container-single-workout" id="person">
+                                <div className="container-single-poster-workout">
+                                    <div className="container-photo-single-workout">
+                                        <img src={showInfo.img} alt={showInfo.name} className="img-single-workout" />
                                     </div>
                                 </div>
-                                <div className="container-master-info-single-person">
-                                    <p className="name-single-person">{showInfo.name}</p>
-                                    <p className="description-single-person">{showInfo.description}</p>
+                                <div className="container-info-single-workout">
+                                    <p className="name-single-workout">{showInfo.name}</p>
+                                    <p className="description-single-workout">{showInfo.description}</p>
                                 </div>
                             </div>
+                            {
+                                profile._id === undefined ?
+                                    <div />
+                                    :
+                                    <div className="workout-like-container">
+                                        {
+                                            profile.likedActivities !== undefined && profile.likedActivities.includes(showInfo._id) ?
+                                                <div>
+                                                    <img className="workout-like-logo" src={require("../Assets/like.svg")} alt="Workout" />
+                                                    <p className="workout-like-count">1</p>
+                                                </div>
+
+                                                :
+                                                <div>
+                                                    <img className = "workout-like-logo" src={require("../Assets/like.svg")} alt="Workout" onClick={() => likeWorkout(profile._id,showInfo._id)} />
+                                                </div>
+                                        }
+                                    </div>
+                            }
                         </div>
                     )
                     :

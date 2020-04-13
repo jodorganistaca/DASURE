@@ -89,11 +89,19 @@ series-navbar-title{
 .container-series {
     margin-top: 10%;
 }
-.container-equipo{
-    width: 75%;
-    left: 25%;
+.series-like-container {
+    position: absolute;
+    top: 8%;
+    right: 35%;
+}
+.series-like-logo{
+    width: 50px;
+    height: 50px;
+}
+p.series-like-count {
     position: absolute;
 }
+
 .left-arrow-carousel {
     position: absolute;
     margin-left: 4rem;
@@ -344,74 +352,79 @@ h1{
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
 }
-.series-layout-container-master-single-person{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 15rem;
+.container-single-series{
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    /*top: 15rem;*/
 }
-.white-container{
-    /*background: #fff;*/
-    /*width: 70vw;*/
-    /*position: absolute;*/
-    /*margin-left: 15vw;*/
-    /*align-self: center;*/
-    /*padding: 20px;*/
-    /*border-radius: 40px;*/
-    /*box-shadow: 5px 2px 2px rgba(0,0,0,0.2);*/
-    /*text-align: right;*/
+.series-white-container{
+    background: #fff;
+    width: 40vw;
+    height: 55vh;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 40px;
+    box-shadow: 5px 2px 2px rgba(0,0,0,0.2);
+    text-align: right;
+    margin-top: 150px;
 }
-.container-photo-single-person{
+.container-photo-single-series{
     width: 20vw;
-    height: 40vh;
+    height: 49vh;
+    margin-top: -24px;
 }
-.img-single-person{
+.img-single-series{
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 1rem;
     pointer-events: none;
 }
-.container-master-photo-single-person{
-    display: flex;
-    justify-content: flex-start;
+.container-single-poster-series{
+    /*display: flex;*/
+    /*justify-content: flex-start;*/
 }
-.container-master-info-single-person{
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-left: 30px;
+.container-info-single-series{
+    /*display: flex;*/
+    /*align-items: flex-start;*/
+    /*flex-direction: column;*/
+    /*justify-content: space-between;*/
+    /*margin-left: 30px;*/
+    margin-left: 21vw;
+    margin-top: -30vh;
+    text-align: left;
 }
-.button-close{
+.series-button-close{
     background: white;
     box-shadow: none;
     border: none;
     cursor: pointer;
 }
-.name-single-person{
-    margin: 0;
+.name-single-series{
+    /*margin: 0;*/
     font-size: 5vh;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Calling Code', sans-serif;
     color: #161B35;
     font-weight: 700;
     line-height: 1;
 }
-.role-single-person{
-    margin: 0;
-    font-size: 2.5vh;
-    font-family: 'Montserrat', sans-serif;
-    color: #161B35;
-    font-weight: 500;
-    font-style: italic;
-}
-.description-single-person{
-    margin: 0;
+
+.description-single-series{
+    /*margin: 0;*/
     font-size: 1.8vh;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Calling Code', sans-serif;
     color: #161B35;
     font-weight: 500;
     letter-spacing: 0.1rem;
     text-align: justify;
     margin-top: 1.2rem;
+}
+
+.series-footer{
+    /*background-color: #519657;*/
 }

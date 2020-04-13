@@ -72,9 +72,16 @@
 .container-movies {
     /*margin-top: 10%;*/
 }
-.container-equipo{
-    width: 75%;
-    left: 25%;
+.movie-like-container {
+    position: absolute;
+    top: 8%;
+    right: 35%;
+}
+.movie-like-logo{
+    width: 50px;
+    height: 50px;
+}
+p.movie-like-count {
     position: absolute;
 }
 .left-arrow-carousel {
@@ -339,18 +346,18 @@ h1{
     font-family: 'Calling Code';
     font-weight: 300;
 }
-.container-master-single-person{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    top: 15rem;
+.container-single-movie{
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    /*top: 15rem;*/
 }
-.white-container{
+.movie-white-container{
     background: #fff;
     width: 40vw;
     height: 55vh;
     position: fixed;
-    top: 50%;
+    top: 40%;
     left: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
@@ -359,101 +366,59 @@ h1{
     box-shadow: 5px 2px 2px rgba(0,0,0,0.2);
     text-align: right;
     margin-top: 150px;
-
 }
-.container-photo-single-person{
+.container-photo-single-movie{
     width: 20vw;
-    height: 40vh;
+    height: 49vh;
+    margin-top: -24px;
 }
-.img-single-person{
+.img-single-movie{
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 1rem;
     pointer-events: none;
 }
-.container-master-photo-single-person{
-    display: flex;
-    justify-content: flex-start;
+.container-single-poster-movie{
+    /*display: flex;*/
+    /*justify-content: flex-start;*/
 }
-.container-master-info-single-person{
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-left: 30px;
+.container-info-single-movie{
+    /*display: flex;*/
+    /*align-items: flex-start;*/
+    /*flex-direction: column;*/
+    /*justify-content: space-between;*/
+    /*margin-left: 30px;*/
+    margin-left: 21vw;
+    margin-top: -30vh;
+    text-align: left;
 }
-.button-close{
+.movie-button-close{
     background: white;
     box-shadow: none;
     border: none;
     cursor: pointer;
 }
-.name-single-person{
-    margin: 0;
+.name-single-movie{
+    /*margin: 0;*/
     font-size: 5vh;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Calling Code', sans-serif;
     color: #161B35;
     font-weight: 700;
     line-height: 1;
 }
-.role-single-person{
-    margin: 0;
-    font-size: 2.5vh;
-    font-family: 'Montserrat', sans-serif;
-    color: #161B35;
-    font-weight: 500;
-    font-style: italic;
-}
-.description-single-person{
-    margin: 0;
+
+.description-single-movie{
+    /*margin: 0;*/
     font-size: 1.8vh;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Calling Code', sans-serif;
     color: #161B35;
     font-weight: 500;
     letter-spacing: 0.1rem;
     text-align: justify;
     margin-top: 1.2rem;
 }
-.title-certifications-single-person{
-    margin: 0;
-    font-size: 2.3vh;
-    font-family: 'Montserrat', sans-serif;
-    color: #161B35;
-    font-weight: 700;
-    margin-top: 1.2rem;
-}
-.text-certifications-single-person{
-    margin: 0;
-    font-size: 2vh;
-    font-family: 'Montserrat', sans-serif;
-    color: #161B35;
-    font-weight: 400;
-    margin-top: 1rem;
-}
-.icon-social-single-person{
-    color: #161b35 !important;
-    font-size: 2rem;
-    margin-top: 1rem;
-}
 
-.equipo-title {
-    position: absolute;
-    margin: 2em 0 0 5em;
-}
-
-b {
-    color: #0063AE;
-}
-a {
-    font-size: 1.5em;
-}
-
-/* FIXME:
- h1, h2{
-    color: dodgerblue !important;
-} */
-
-.movie-footer{
+.movies-footer{
     background-color: #9a2624
 }

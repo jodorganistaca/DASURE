@@ -89,9 +89,7 @@ books-navbar-title{
 .container-books {
     margin-top: 10%;
 }
-.container-equipo{
-    width: 75%;
-    left: 25%;
+p.book-like-count {
     position: absolute;
 }
 .left-arrow-carousel {
@@ -350,68 +348,73 @@ h1{
     justify-content: center;
     top: 15rem;
 }
-.white-container{
-    /*background: #fff;*/
-    /*width: 70vw;*/
-    /*position: absolute;*/
-    /*margin-left: 15vw;*/
-    /*align-self: center;*/
-    /*padding: 20px;*/
-    /*border-radius: 40px;*/
-    /*box-shadow: 5px 2px 2px rgba(0,0,0,0.2);*/
-    /*text-align: right;*/
+.book-white-container{
+    background: #fff;
+    width: 40vw;
+    height: 55vh;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 40px;
+    box-shadow: 5px 2px 2px rgba(0,0,0,0.2);
+    text-align: right;
+    margin-top: 150px;
 }
-.container-photo-single-person{
+.container-photo-single-book{
     width: 20vw;
-    height: 40vh;
+    height: 49vh;
+    margin-top: -24px;
 }
-.img-single-person{
+.img-single-book{
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 1rem;
     pointer-events: none;
 }
-.container-master-photo-single-person{
-    display: flex;
-    justify-content: flex-start;
+.container-single-poster-book{
+    /*display: flex;*/
+    /*justify-content: flex-start;*/
 }
-.container-master-info-single-person{
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-left: 30px;
+.container-info-single-book{
+    /*display: flex;*/
+    /*align-items: flex-start;*/
+    /*flex-direction: column;*/
+    /*justify-content: space-between;*/
+    /*margin-left: 30px;*/
+    margin-left: 21vw;
+    margin-top: -30vh;
+    text-align: left;
 }
-.button-close{
+.book-button-close{
     background: white;
     box-shadow: none;
     border: none;
     cursor: pointer;
 }
-.name-single-person{
-    margin: 0;
+.name-single-book{
+    /*margin: 0;*/
     font-size: 5vh;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Calling Code', sans-serif;
     color: #161B35;
     font-weight: 700;
     line-height: 1;
 }
-.role-single-person{
-    margin: 0;
-    font-size: 2.5vh;
-    font-family: 'Montserrat', sans-serif;
-    color: #161B35;
-    font-weight: 500;
-    font-style: italic;
-}
-.description-single-person{
-    margin: 0;
+
+.description-single-book{
+    /*margin: 0;*/
     font-size: 1.8vh;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Calling Code', sans-serif;
     color: #161B35;
     font-weight: 500;
     letter-spacing: 0.1rem;
     text-align: justify;
     margin-top: 1.2rem;
+}
+
+.books-footer{
+    /*background-color: #9a2624*/
 }

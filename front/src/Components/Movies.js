@@ -16,7 +16,11 @@ const Movies = props => {
         description: "",
         img: "",
     });
+    const [profile, setProfile] = useState({
+        likedMovies: []
+    });
     const [data, setData] = useState(null);
+    const [likes, setLikes] = useState(null);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
     const [q, setQuery] = useState('batman');
@@ -31,8 +35,31 @@ const Movies = props => {
             });
     };
 
-    const changeInfo = (name, img, description) => {
-        setShowInfo({show: true, name: name,description:description,img:img});
+    const loadProfile = () => {
+        fetch("/getProfile")
+            .then(res => res.json())
+            .then((result) => {
+                console.log("Profileeeeeees ", result);
+                setProfile(result);
+            });
+    };
+
+    const changeInfo = (id,name, img, description) => {
+        setShowInfo({_id: id, show: true, name: name,description:description,img:img});
+        console.log(showInfo);
+    };
+
+    const likeMovie = async (id, _id) => {
+        console.log("puuuuuuuuuut movieeeee ", id, " movie id ", _id);
+        const response = await fetch(`/users/${id}/likedMovies/${_id}`,{
+            method: "PUT",
+        });
+        //convert response to Json format
+        const myJson = await response.json();
+        console.log(myJson);
+        setShowInfo({show: false});
+        setLikes({_id: 1});
+        console.log(likes);
     };
 
     let flag = false;
@@ -52,6 +79,7 @@ const Movies = props => {
     useEffect(() => {
         if (!initialized) {
             loadMovies();
+            loadProfile();
             setInitialized(true);
         }
         setLoading(true);
@@ -81,6 +109,10 @@ const Movies = props => {
             })
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [q]);
+
+    const info = () => {
+       console.log(likes);
+    };
 
     return (
         <Layout className="movie-container">
@@ -112,14 +144,14 @@ const Movies = props => {
                                             <div className="movie-wrapper">
                                                 <div className="movie-cols">
                                                     <div className="movie-col" onTouchStart="this.classList.toggle('hover');">
-                                                        <div className="movie-poster-container" onClick={() => changeInfo(m.name, m.image, m.description)}>
+                                                        <div className="movie-poster-container" onClick={() => changeInfo(m._id, m.name, m.image, m.description)}>
                                                             <div className="movie-front"
                                                                  style={{ backgroundImage: `url(${bg}` }}>
                                                                 <div className="movie-inner">
                                                                 </div>
                                                             </div>
                                                             <div className="movie-back">
-                                                                <div className="ovie-inner">
+                                                                <div className="movie-inner">
                                                                     <p className="title-inner">{m.name}</p>
                                                                 </div>
                                                             </div>
@@ -137,7 +169,7 @@ const Movies = props => {
                                             <div className="movie-wrapper">
                                                 <div className="movie-cols">
                                                     <div className="movie-col" onTouchStart="this.classList.toggle('hover');">
-                                                        <div className="movie-poster-container" onClick={() => changeInfo(result.Title, result.Poster, result.Plot)}>
+                                                        <div className="movie-poster-container" onClick={() => changeInfo(result.imdbID, result.Title, result.Poster, result.Plot)}>
                                                             <div className="movie-front"
                                                                  style={{ backgroundImage: `url(${bg}` }}>
                                                                 <div className="movie-inner">
@@ -160,19 +192,39 @@ const Movies = props => {
                     </Carousel>
                 </div>
                 {showInfo.show ?
-                    (<div className=" white-container">
-                            <div><button className={"button-close"} onClick={()=>setShowInfo({show: false})}>X</button></div>
-                            <div className=" container-master-single-person" id="person">
-                                <div className=" container-master-photo-single-person">
-                                    <div className=" container-photo-single-person">
-                                        <img src={showInfo.img} alt={showInfo.name} className="img-single-person" />
+                    (<div className="movie-white-container">
+                            <div><button className={"movie-button-close"} onClick={()=>setShowInfo({show: false})}>X</button></div>
+                            <div className="container-single-movie" id="person">
+                                <div className="container-single-poster-movie">
+                                    <div className="container-photo-single-movie">
+                                        <img src={showInfo.img} alt={showInfo.name} className="img-single-movie" />
                                     </div>
                                 </div>
-                                <div className=" container-master-info-single-person">
-                                    <p className="name-single-person">{showInfo.name}</p>
-                                    <p className="description-single-person">{showInfo.description}</p>
+                                <div className="container-info-single-movie">
+                                    <p className="name-single-movie" onClick={() => info()}>{showInfo.name}</p>
+                                    <p className="description-single-movie">{showInfo.description}</p>
                                 </div>
                             </div>
+                            {
+                                profile._id === undefined ?
+                                    <div />
+                                    :
+                                    <div className="movie-like-container">
+                                        {
+                                            profile.likedMovies.includes(showInfo._id) ?
+                                                <div>
+                                                    <img className="movie-like-logo" src={require("../Assets/like.svg")} alt="Series" />
+                                                    <p className="movie-like-count">1</p>
+                                                </div>
+
+                                                :
+                                                <div>
+                                                    <img className = "movie-like-logo" src={require("../Assets/like.svg")} alt="Series" onClick={() => likeMovie(profile._id,showInfo._id)} />
+                                                </div>
+                                        }
+                                    </div>
+                            }
+
                         </div>
                     )
                     :
