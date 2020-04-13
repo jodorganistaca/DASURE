@@ -5,6 +5,7 @@ import '../Styles/Profile.css'
 import Menu from "./Menu";
 import Checklist from "./user/Checklist";
 import { Layout, Carousel, } from "antd";
+import { Row, Col } from 'react-bootstrap';
 
 const { Footer, Content } = Layout;
 
@@ -82,10 +83,10 @@ const Profile = props => {
                 <div className="container-profile">
                     <Carousel className="profile-carousel-general" autoplay autoplaySpeed="100" dotPosition="top">
                         <div>
-                            <div className="profile-general">
-                                <div className="profile-specific">
+                            <Row className="profile-general">
+                                <Col md={6} className="profile-specific profile-likes">
                                     <ul>
-                                    <li style={{fontWeight:"bold" }} >Peliculas</li>
+                                    <li style={{fontWeight:"bold" }} >Películas</li>
                                     {profile.likedMovies !== undefined && profile.likedMovies.length > 0 && profile.likedMovies.map((result, index) => {
 
                                         return (
@@ -117,9 +118,11 @@ const Profile = props => {
                                             )
                                         })}
                                     </ul>
-                                </div>
-                                {/*<Checklist />*/}
-                            </div>
+                                </Col>
+                                <Col className="profile-specific" md={6}>
+                                <Checklist />
+                                </Col>
+                            </Row>
                         </div>
                     </Carousel>
                 </div>

@@ -1,5 +1,5 @@
 #todo-list{
-    width:500px;
+    width:750px;
     margin:0 auto 50px auto;
     padding:50px;
     background:white;
@@ -55,7 +55,7 @@
     .todo{
     display:inline-block;
     font-weight:200;
-    padding:10px 5px;
+    padding:2px 5px;
     height:37px;
     position:relative;
     }
@@ -142,7 +142,7 @@
     width:36px;
     line-height:36px;
     right:0;
-    top:0;
+    top:18px;
     text-align:center;
     color:#d8d8d8;
     opacity:0;
@@ -157,7 +157,7 @@
     
     #add-todo{
     padding:25px 0 0 0;
-    font-size:14px;
+    font-size:25px;
     font-weight:200;
     color:#d8d8d8;
     display:inline-block;

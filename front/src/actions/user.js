@@ -43,7 +43,7 @@ export const getChecklist = () => dispatch =>
         res => {
             dispatch({
                 type: GET_CHECKLIST,
-                payload: res.data.checklist
+                payload:  res.data  && res.data.checklist ? res.data.checklist: []
             });
         }
     )
