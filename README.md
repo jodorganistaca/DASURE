@@ -7,11 +7,7 @@ Web page to visualize movies, series, books and exercise routines. In addition, 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 
 ## Demo
-
-
-
-
-
+![](https://i.imgur.com/O2i23my.png)
 
 ### Prerequisites
 
