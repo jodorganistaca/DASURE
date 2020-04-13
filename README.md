@@ -48,13 +48,13 @@ yarn start
 cd front && yarn start
 ```
 
-* The application uses Microsoft OAuth, therefore is required, inside a file named .env in root directory of the project:
+* The application uses Google OAuth 2.0 and therefore is required, inside a file named .env in root directory of the project,:
 
 ```
   GOOGLE_CLIENT_ID = <GOOGLE_CLIENT_ID>
   GOOGLE_CLIENT_SECRET = <GOOGLE_CLIENT_SECRET>
-  MONGO_URI = <MONGO_URI>
-  JWT_SECRET = <JWT_SECRET>
+  MONGO_URI = <MONGO_URI of the MongoDB Atlas database.>
+  JWT_SECRET = <JWT_SECRET: Secret key to encrypt the JSON Web Token if a user authenticates without Google OAuth>
 ```
 
 ## Built With
