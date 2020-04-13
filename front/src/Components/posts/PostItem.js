@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { Link } from "react-router-dom";
 import Moment from "react-moment";
 import { connect } from "react-redux";
-import {updateLike, deletePost} from "../../actions/post"
+import {updateLike} from "../../actions/post"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faChevronUp, faChevronDown, faComment} from "@fortawesome/free-solid-svg-icons"
 import axios from "axios";
-const PostItem = ({updateLike, deletePost, auth, post: {_id, text, title, image, tags, name, likes, dislikes, comments, date, photo, user, category}, showActions}) => {
+const PostItem = ({updateLike, auth, post: {_id, text, title, image, tags, name, likes, dislikes, comments, date, photo, user, category}, showActions}) => {
   const stringToColour = str => {
     let hash = 0;
     for (let i = 0; i < str.length; i++) {
@@ -59,12 +59,11 @@ PostItem.defaultProps = {
 PostItem.propTypes = {
     post: PropTypes.object.isRequired,
     auth: PropTypes.object.isRequired,
-    updateLike: PropTypes.func.isRequired,
-    deletePost: PropTypes.func.isRequired
+    updateLike: PropTypes.func.isRequired
 }
 
 const mapStateToProps = state => ({
     auth: state.auth
 }) 
-export default connect(mapStateToProps, {updateLike, deletePost})(PostItem)
+export default connect(mapStateToProps, {updateLike})(PostItem)
 

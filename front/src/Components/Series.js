@@ -34,7 +34,8 @@ const Series = props => {
         fetch("/getProfile")
             .then(res => res.json())
             .then((result) => {
-                console.log("Profileeeeeees ", result);
+                if (!result.likedSeries)
+                result.likedSeries = [];
                 setProfile(result);
             });
     };

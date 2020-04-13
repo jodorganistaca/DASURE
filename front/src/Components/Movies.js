@@ -39,7 +39,8 @@ const Movies = props => {
         fetch("/getProfile")
             .then(res => res.json())
             .then((result) => {
-                console.log("Profileeeeeees ", result);
+                if (!result.likedMovies)
+                    result.likedMovies = [];
                 setProfile(result);
             });
     };
@@ -222,7 +223,7 @@ const Movies = props => {
                                     :
                                     <div className="movie-like-container">
                                         {
-                                            profile.likedMovies.filter(data => (data.id == showInfo._id)).length > 0 ?
+                                           profile.likedMovies !== undefined && profile.likedMovies.filter(data => (data.id == showInfo._id)).length > 0 ?
                                                 <div>
                                                     <img className="movie-like-logo" src={require("../Assets/like.svg")} alt="Series" />
                                                     <p className="movie-like-count">1</p>

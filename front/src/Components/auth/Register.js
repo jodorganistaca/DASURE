@@ -1,13 +1,13 @@
 import React, {useState} from 'react'
 import "../../Styles/auth/Login.css"
-import {Redirect} from "react-router-dom";
 import {connect} from "react-redux";
 import {setAlert} from "../../actions/alert";
 import Alert from "../../Components/layout/Alert"
-import {register, login} from "../../actions/auth";
+import {register} from "../../actions/auth";
 import PropTypes from 'prop-types'
-
+import { useHistory, Redirect } from 'react-router-dom';
 const Register = ({setAlert, register, isAuthenticated}) => {
+  let history = useHistory();
     const [formData, setFormData] = useState(
         {
             name: "",
@@ -16,9 +16,8 @@ const Register = ({setAlert, register, isAuthenticated}) => {
             password2: ""
         }
     );
-    //TODO: Replace to heroku url
     const loginWithGoogle = () => {
-      return  login(null,null,true);
+      return window.location.replace("/auth/google");
   }
 
     const onSubmit = async e => {
@@ -92,7 +91,7 @@ const Register = ({setAlert, register, isAuthenticated}) => {
           </div>
 				</form>
 
-				<div className="login100-more" >
+				<div className="login100-more" style={{backgroundImage:"url('https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/outdoor-fireplace-1585628569.jpg')"}} >
 				</div>
 			</div>
 		</div>

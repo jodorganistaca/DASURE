@@ -74,15 +74,6 @@ router.post("/update/:type/:_id", function (req, res) {
 
 });
 
-router.get("/login", function(req, res)
-{
-    res.render("login");
-});
-
-router.get("/signup", function(req, res)
-{
-    res.render("signup");
-});
 
 router.get("/getProfile", function(req, res){
   

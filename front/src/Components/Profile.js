@@ -30,7 +30,6 @@ const Profile = props => {
         fetch("/getProfile")
             .then(res => res.json())
             .then((result) => {
-                console.log("Profileeeeeees ", result);
                 setProfile(result);
             });
     };
@@ -87,7 +86,7 @@ const Profile = props => {
                                 <Col md={6} className="profile-specific profile-likes">
                                     <ul>
                                     <li style={{fontWeight:"bold" }} >Películas</li>
-                                    {profile.likedMovies !== undefined && profile.likedMovies.length > 0 && profile.likedMovies.map((result, index) => {
+                                    {profile.likedMovies !== undefined && profile.likedMovies.length > 0 && profile.likedMovies.filter((value, index, self) => self.indexOf(value) === index).map((result, index) => {
 
                                         return (
                                             <li>{result.name}</li>
@@ -96,7 +95,7 @@ const Profile = props => {
                                     </ul>
                                     <ul>
                                         <li style={{fontWeight:"bold" }}>Series</li>
-                                        {profile.likedSeries !== undefined && profile.likedSeries.length > 0 && profile.likedSeries.map((result, index) => {
+                                        {profile.likedSeries !== undefined && profile.likedSeries.length > 0 && profile.likedSeries.filter((value, index, self) => self.indexOf(value) === index).map((result, index) => {
                                             return (
                                                 <li>{result.name}</li>
                                             )
@@ -104,7 +103,7 @@ const Profile = props => {
                                     </ul>
                                     <ul>
                                         <li style={{fontWeight:"bold" }}>Libros</li>
-                                        {profile.likedBooks !== undefined && profile.likedBooks.length > 0 && profile.likedBooks.map((result, index) => {
+                                        {profile.likedBooks !== undefined && profile.likedBooks.length > 0 && profile.likedBooks.filter((value, index, self) => self.indexOf(value) === index).map((result, index) => {
                                             return (
                                                 <li>{result.name}</li>
                                             )
@@ -112,7 +111,7 @@ const Profile = props => {
                                     </ul>
                                     <ul>
                                         <li style={{fontWeight:"bold" }}>Rutinas</li>
-                                        {profile.likedActivities !== undefined && profile.likedActivities.length > 0 && profile.likedActivities.map((result, index) => {
+                                        {profile.likedActivities !== undefined && profile.likedActivities.length > 0 && profile.likedActivities.filter((value, index, self) => self.indexOf(value) === index).map((result, index) => {
                                             return (
                                                 <li>{result.name}</li>
                                             )

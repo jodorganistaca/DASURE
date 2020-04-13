@@ -1,11 +1,11 @@
 {
-  "name": "back",
-  "version": "0.0.0",
-  "private": true,
+  "name": "DASURE",
+  "version": "1.0.0",
+  "private": false,
   "scripts": {
-    "start": "node ./bin/www",
-    "dev": "nodemon ./bin/www"
+    "start": "node ./bin/www"
   },
+  "license": "MIT",
   "dependencies": {
     "bcrypt": "^4.0.1",
     "connect-ensure-login": "^0.1.1",

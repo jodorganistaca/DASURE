@@ -59,8 +59,8 @@ const Posts = ({getPosts, post: {posts, loading}}) => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="mr-auto">
+                        <Nav.Link onClick={e => {e.preventDefault(); setCategory("Todas las publicaciones")}}>Todas las publicaciones</Nav.Link>
                             {categories.map((v,k) => <Nav.Link key={k} onClick={e => {e.preventDefault(); setCategory(v)}}>{v}</Nav.Link>)}
-                            <Nav.Link onClick={e => {e.preventDefault(); setCategory("Todas las publicaciones")}}>Todas las publicaciones</Nav.Link>
                         </Nav>   
                     </Navbar.Collapse>
                     </Navbar>
@@ -72,7 +72,7 @@ const Posts = ({getPosts, post: {posts, loading}}) => {
                             </h1>
                         </div>
             </div>
-            <section className="blog-area section .body-posts" style={{marginTop: 215}}>
+            <section className="blog-area section .body-posts" style={{marginTop: 215, padding: "181px 0 40px"}}>
                 <Alert></Alert>
                 <PostForm></PostForm>
             <Container>

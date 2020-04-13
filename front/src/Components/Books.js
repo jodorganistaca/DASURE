@@ -34,7 +34,8 @@ const Books = props => {
         fetch("/getProfile")
             .then(res => res.json())
             .then((result) => {
-                console.log("Profileeeeeees ", result);
+                if (!result.likedBooks)
+                result.likedBooks = [];
                 setProfile(result);
             });
     };

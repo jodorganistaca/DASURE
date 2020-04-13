@@ -6,11 +6,11 @@ import {
     UPDATE_LIKES,
     DELETE_POST,
     ADD_POST,
-    SET_ALERT,
     GET_POST,
     ADD_COMMENT,
-    REMOVE_COMMENT
 } from "./types";
+import { Redirect } from "react-router-dom";
+
 
 //Get posts
 export const getPosts = () => dispatch => {
@@ -58,13 +58,12 @@ export const updateLike = (postId, type) => dispatch => {
 export const deletePost = (postId) => async dispatch => {
     try{
     const res = await axios.delete(`/posts/${postId}`);
-    console.log(res);
     dispatch({
             type: DELETE_POST,
             payload: postId
         });
     dispatch(setAlert("Se borró la publicación", "success"));
-    return window.location.replace("/forum");
+    return true;
     }
     catch(err) {
         console.log(err);

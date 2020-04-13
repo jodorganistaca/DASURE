@@ -23,7 +23,7 @@ export const Login = ({login, isAuthenticated}) => {
 
     //TODO: Replace to heroku url
     const loginWithGoogle = () => {
-      return  login(null,null,true);
+      return  window.location.replace("/auth/google");
   }
 
     if(isAuthenticated)
@@ -76,9 +76,10 @@ export const Login = ({login, isAuthenticated}) => {
             </div>
                <p className="p-auth btn-text">Iniciar sesión con Google</p>
           </div>
+		  <div class="text-center p-t-46 p-b-20" style={{padding:"20px"}}><span class="txt2">¿No tienes cuenta? <Link to="/signup">Regístrate acá</Link></span></div>
 				</form>
 
-				<div className="login100-more" >
+				<div className="login100-more" style={{backgroundImage:"url('http://www.thenerddaily.com/wp-content/uploads/2018/12/Jolabokaflod-Iceland-Christmas-Tradition.jpg?w=1000&ssl=1')"}} >
 				</div>
 			</div>
 		</div>

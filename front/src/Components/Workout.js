@@ -34,7 +34,8 @@ const Workout = props => {
         fetch("/getProfile")
             .then(res => res.json())
             .then((result) => {
-                console.log("Profileeeeeees ", result);
+                if (!result.likedActivities)
+                result.likedActivities = [];
                 setProfile(result);
             });
     };

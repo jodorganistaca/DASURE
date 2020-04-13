@@ -10,8 +10,8 @@ import {
     LOGOUT
 } from "./types"
 
-//import setAuthToken from "../utils/setAuthToken";
-//Load user
+import { Router, Route } from 'react-router-dom'
+
 export const loadUser = () => async dispatch => {
 try {
     const res  = await axios.get("/getProfile");
@@ -86,7 +86,7 @@ export const login = (email, password, googleLogin = false) => async dispatch =>
         }
         })
     }
-    else return window.location.replace("http://localhost:3001/auth/google");
+    else return true;
 };
 
 export const loginGoogle = () => async dispatch => {

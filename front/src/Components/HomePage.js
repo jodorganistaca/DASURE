@@ -7,7 +7,9 @@ import Col from "react-bootstrap/Col";
 import { Button } from 'react-bootstrap';
 import {connect} from "react-redux";
 import PropTypes from 'prop-types'
+import { useHistory } from "react-router-dom";
 const HomePage = ({auth}) => {
+    let history = useHistory();
     const [initialized, setInitialized] = useState(false);
     const [images, setImages] = useState([]);
     const [layers, setLayers] = useState([]);
@@ -52,19 +54,19 @@ const HomePage = ({auth}) => {
                 <Row className="justify-content-md-center space">
                     {(!auth || auth.loading || !auth.user || !auth.user._id) &&
                     <Col xs={2}>
-                    <Button variant="" className="home-page-button" size="large" onClick={() => window.location.replace('/login')}>Inicia sesión</Button>
+                    <Button variant="" className="home-page-button" size="large" onClick={() => history.push('/login')}>Inicia sesión</Button>
                     </Col>}
                     <Col xs={2}>
-                        <Button variant="" className="home-page-button" size="large" onClick={() => window.location.replace('/movies')}>Películas</Button>
+                        <Button variant="" className="home-page-button" size="large" onClick={() => history.push('/movies')}>Películas</Button>
                     </Col>
                     <Col xs={2}>
-                        <Button variant="" className="home-page-button" size="large" onClick={() => window.location.replace('/series')}>Series</Button>
+                        <Button variant="" className="home-page-button" size="large" onClick={() => history.push('/series')}>Series</Button>
                     </Col>
                     <Col xs={2}>
-                        <Button variant="" className="home-page-button" size="large" onClick={() => window.location.replace('/workout')}>Ejercicio</Button>
+                        <Button variant="" className="home-page-button" size="large" onClick={() => history.push('/workout')}>Ejercicio</Button>
                     </Col>
                     <Col xs={2}>
-                        <Button variant="" className="home-page-button" size="large" onClick={() => window.location.replace('/forum')} >Foro</Button>
+                        <Button variant="" className="home-page-button" size="large" onClick={() => history.push('/forum')} >Foro</Button>
                     </Col>
                 </Row>
                 <Row className="justify-content-md-center space">
@@ -138,7 +140,7 @@ const HomePage = ({auth}) => {
 
                     </Row>
                     <Row className="justify-content-md-center">
-                        <img className = "heading-container-logo" src={require("../Assets/dasure-01.png")} alt="Series" onClick={() => window.location.replace('/series')} />
+                        <img className = "heading-container-logo" src={require("../Assets/dasure-01.png")} alt="Series" onClick={() => history.push('/series')} />
                     </Row>
                 </div>
             </Container>

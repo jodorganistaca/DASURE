@@ -64,6 +64,8 @@
     line-height: 1.1500000000000001;
     letter-spacing: normal;
     color: rgba(0,0,0,1);
+    margin-top: 191px;
+    display: block;
 }
 
 .auto-size-span{
