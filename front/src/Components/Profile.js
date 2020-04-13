@@ -3,6 +3,7 @@ import 'antd/dist/antd.css';
 import { withRouter } from 'react-router-dom'
 import '../Styles/Profile.css'
 import Menu from "./Menu";
+import Checklist from "./user/Checklist";
 import { Layout, Carousel, } from "antd";
 
 const { Footer, Content } = Layout;
@@ -117,6 +118,7 @@ const Profile = props => {
                                         })}
                                     </ul>
                                 </div>
+                                {/*<Checklist />*/}
                             </div>
                         </div>
                     </Carousel>

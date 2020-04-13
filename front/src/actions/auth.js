@@ -86,7 +86,7 @@ export const login = (email, password, googleLogin = false) => async dispatch =>
         }
         })
     }
-    else return window.location.replace("/auth/google");
+    else return window.location.replace("http://localhost:3001/auth/google");
 };
 
 export const loginGoogle = () => async dispatch => {
