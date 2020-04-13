@@ -9,21 +9,23 @@ const { Footer, Content } = Layout;
 
 const Profile = props => {
     const [initialized, setInitialized] = useState(false);
-    const [profile, setProfile] = useState([]);
+    const [profile, setProfile] = useState({
+        name: "UserX",
+        photo: require('../Assets/icon.png'),
+        likedMovies: [],
+        likedSeries: [],
+        likedBooks: [],
+        likedActivities: [],
+    });
     const [showInfo, setShowInfo] = useState({
         show: false,
         name: "",
         description: "",
         img: "",
     });
-    const [data, setData] = useState(null);
-    const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [q, setQuery] = useState('batman');
-
 
     const loadProfile = () => {
-        fetch("/get/Profile")
+        fetch("/getProfile")
             .then(res => res.json())
             .then((result) => {
                 console.log("Profileeeeeees ", result);
@@ -54,49 +56,24 @@ const Profile = props => {
             loadProfile();
             setInitialized(true);
         }
-        setLoading(true);
-        setError(null);
-        setData(null);
-
-        fetch(`http://www.omdbapi.com/?s=${q}&apikey=${process.env.REACT_APP_OMDB_APIKEY}`)
-            .then(resp => resp)
-            .then(resp => resp.json())
-            .then(response => {
-                console.log(response);
-                console.log(process.env.REACT_APP_OMDB_APIKEY);
-                console.log(process.env.REACT_APP_APIKEY);
-                console.log(`http://www.omdbapi.com/?s=${q}&apikey=${[process.env.REACT_APP_OMDB_APIKEY]}`);
-                if (response.Response === 'False') {
-                    setError(response.Error);
-                }
-                else {
-                    setData(response.Search);
-                }
-
-                setLoading(false);
-            })
-            .catch(({message}) => {
-                setError(message);
-                setLoading(false);
-            })
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [q]);
+    }, []);
 
     return (
         <Layout className="profile-container">
 
             <div className="profile-header">
-                <div className="profile-header-navbar">
+                <div className="profile-header-navbar space">
                     <img className = "profile-header-navbar-logo" src={require("../Assets/dasure-01.png")} alt="Series" onClick={() => props.history.push('/')} />
                     <img className = "profile-header-hamburger" src={require("../Assets/menu-button.svg")} alt="Notificaciones" onClick={ShowSideMenu}/>
                     <div className="home-menu-collapse" id="menu">
                         <Menu/>
                     </div>
                 </div>
-                <img className = "profile-logo" src={require("../Assets/icon.png")} alt="profile" onClick={() => props.history.push('/home')} />
+                <img className = "profile-logo" src={profile.photo} alt="profile" onClick={() => props.history.push('/profile')} />
                 <div className="profile-header-title">
                     <h1 className="profile-header-title-text">
-                        User x
+                        {profile.name}
                     </h1>
                 </div>
             </div>
@@ -108,58 +85,43 @@ const Profile = props => {
             </div>
             <Content className="content-profile">
                 <div className="container-profile">
-                    <Carousel className="carousel-general" autoplay autoplaySpeed="100" dotPosition="top">
+                    <Carousel className="profile-carousel-general" autoplay autoplaySpeed="100" dotPosition="top">
                         <div>
-                            <div className="persona-general">
-                                <div className="persona-especifica">
-                                    {profile.map((m, id) => {
-                                        let bg = m.image;
+                            <div className="profile-general">
+                                <div className="profile-specific">
+                                    <ul>
+                                    <li>Peliculas</li>
+                                    {profile.likedMovies !== undefined && profile.likedMovies.length > 0 && profile.likedMovies.map((result, index) => {
+
                                         return (
-                                            <div className="wrapper">
-                                                <div className="cols">
-                                                    <div className="col" onTouchStart="this.classList.toggle('hover');">
-                                                        <div className="container" onClick={() => changeInfo(m.name, m.image, m.description)}>
-                                                            <div className="front"
-                                                                 style={{ backgroundImage: `url(${bg}` }}>
-                                                                <div className="inner">
-                                                                </div>
-                                                            </div>
-                                                            <div className="back">
-                                                                <div className="inner">
-                                                                    <p className="title-inner">{m.name}</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            <li>{result}</li>
                                         )
                                     })}
-                                </div>
-                                <div className="persona-especifica">
-                                    {data !== null && data.length > 0 && data.map((result, index) => {
-                                        let bg = result.Poster;
-                                        return (
-                                            <div className="wrapper">
-                                                <div className="cols">
-                                                    <div className="col" onTouchStart="this.classList.toggle('hover');">
-                                                        <div className="container" onClick={() => changeInfo(result.Title, result.Poster, result.Plot)}>
-                                                            <div className="front"
-                                                                 style={{ backgroundImage: `url(${bg}` }}>
-                                                                <div className="inner">
-                                                                </div>
-                                                            </div>
-                                                            <div className="back">
-                                                                <div className="inner">
-                                                                    <p className="title-inner">{result.Title}</p>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        )
-                                    })}
+                                    </ul>
+                                    <ul>
+                                        <li>Series</li>
+                                        {profile.likedSeries !== undefined && profile.likedSeries.length > 0 && profile.likedSeries.map((result, index) => {
+                                            return (
+                                                <li>{result}</li>
+                                            )
+                                        })}
+                                    </ul>
+                                    <ul>
+                                        <li>Libros</li>
+                                        {profile.likedBooks !== undefined && profile.likedBooks.length > 0 && profile.likedBooks.map((result, index) => {
+                                            return (
+                                                <li>{result}</li>
+                                            )
+                                        })}
+                                    </ul>
+                                    <ul>
+                                        <li>Rutinas</li>
+                                        {profile.likedActivities !== undefined && profile.likedActivities.length > 0 && profile.likedActivities.map((result, index) => {
+                                            return (
+                                                <li>{result}</li>
+                                            )
+                                        })}
+                                    </ul>
                                 </div>
                             </div>
                         </div>

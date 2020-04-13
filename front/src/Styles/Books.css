@@ -89,9 +89,7 @@ books-navbar-title{
 .container-books {
     margin-top: 10%;
 }
-.container-equipo{
-    width: 75%;
-    left: 25%;
+p.book-like-count {
     position: absolute;
 }
 .left-arrow-carousel {
@@ -131,7 +129,7 @@ books-navbar-title{
     background-color: #e0e0e0;
 }
 
-.carousel-general{
+.book-carousel-general{
     position: absolute;
     width: 100%;
 }
@@ -144,11 +142,11 @@ books-navbar-title{
     width: 120%;
     height: auto;
 }
-.persona-general{
+.book-general{
     width: 100%;
     transform: scale(0.8);
 }
-.persona-especifica{
+.book-specific{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1rem;
@@ -184,13 +182,14 @@ h1{
     margin: 2rem 0;
 }
 
-.wrapper{
+.book-wrapper{
     width: 90%;
     margin: 0 auto;
     max-width: 80rem;
+    margin-top: 50px;
 }
 
-.cols{
+.book-cols{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -201,12 +200,12 @@ h1{
     justify-content: center;
 }
 
-.col{
+.book-col{
     width: 100%;
     padding: 0 !important;
 }
 
-.container{
+.book-layout-container{
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     -webkit-perspective: 1000px;
@@ -215,8 +214,8 @@ h1{
     cursor: pointer; */
 
 }
-.front,
-.back{
+.book-front,
+.book-back{
     background-size: cover;
     background-position: center;
     -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
@@ -227,18 +226,18 @@ h1{
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     text-align: center;
-    min-height: 280px;
+    min-height: 400px;
     height: auto;
     border-radius: 10px;
     color: #fff;
     font-size: 1.5rem;
 }
 
-.back{
+.book-back{
     background: #1F2137;
 }
 
-.front:after{
+.book-front:after{
     position: absolute;
     top: 0;
     left: 0;
@@ -253,8 +252,8 @@ h1{
     backface-visibility: hidden;
     border-radius: 10px;
 }
-.container:hover .front,
-.container:hover .back{
+.book-layout-container:hover .book-front,
+.book-layout-container:hover .book-back{
     -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
     transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
     -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
@@ -262,7 +261,7 @@ h1{
     transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1), -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
 }
 
-.back{
+.book-back{
     position: absolute;
     top: 0;
     left: 0;
@@ -276,7 +275,7 @@ h1{
     margin: 0;
 }
 
-.inner{
+.book-inner{
     -webkit-transform: translateY(-50%) translateZ(60px) scale(0.94);
     transform: translateY(-50%) translateZ(60px) scale(0.94);
     top: 50%;
@@ -292,41 +291,41 @@ h1{
     z-index: 2;
 }
 
-.container .back{
+.book-layout-container .book-back{
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
 }
 
-.container .front{
+.book-layout-container .book-front{
     -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
 }
 
-.container:hover .back{
+.book-layout-container:hover .book-back{
     -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
 }
 
-.container:hover .front{
+.book-layout-container:hover .book-front{
     -webkit-transform: rotateY(-180deg);
     transform: rotateY(-180deg);
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
 }
 
-.front .inner p{
+.book-front .book-inner p{
     font-size: 2rem;
     margin-bottom: 2rem;
     position: relative;
 }
 
-.front .inner p:after{
+.book-front .book-inner p:after{
     content: '';
     width: 4rem;
     height: 2px;
@@ -339,16 +338,7 @@ h1{
     bottom: -.75rem;
 }
 
-
-.front2{
-    content: '';
-    width: 300px;
-    height: 500px;
-    background-size: cover;
-    margin: 3em;
-}
-
-.front .inner span{
+.book-front .book-inner span{
     color: rgba(255,255,255,0.7);
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;
@@ -359,68 +349,73 @@ h1{
     justify-content: center;
     top: 15rem;
 }
-.white-container{
-    /*background: #fff;*/
-    /*width: 70vw;*/
-    /*position: absolute;*/
-    /*margin-left: 15vw;*/
-    /*align-self: center;*/
-    /*padding: 20px;*/
-    /*border-radius: 40px;*/
-    /*box-shadow: 5px 2px 2px rgba(0,0,0,0.2);*/
-    /*text-align: right;*/
+.book-white-container{
+    background: #fff;
+    width: 40vw;
+    height: 55vh;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 40px;
+    box-shadow: 5px 2px 2px rgba(0,0,0,0.2);
+    text-align: right;
+    margin-top: 150px;
 }
-.container-photo-single-person{
+.container-photo-single-book{
     width: 20vw;
-    height: 40vh;
+    height: 49vh;
+    margin-top: -24px;
 }
-.img-single-person{
+.img-single-book{
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 1rem;
     pointer-events: none;
 }
-.container-master-photo-single-person{
-    display: flex;
-    justify-content: flex-start;
+.container-single-poster-book{
+    /*display: flex;*/
+    /*justify-content: flex-start;*/
 }
-.container-master-info-single-person{
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    justify-content: space-between;
-    margin-left: 30px;
+.container-info-single-book{
+    /*display: flex;*/
+    /*align-items: flex-start;*/
+    /*flex-direction: column;*/
+    /*justify-content: space-between;*/
+    /*margin-left: 30px;*/
+    margin-left: 21vw;
+    margin-top: -30vh;
+    text-align: left;
 }
-.button-close{
+.book-button-close{
     background: white;
     box-shadow: none;
     border: none;
     cursor: pointer;
 }
-.name-single-person{
-    margin: 0;
+.name-single-book{
+    /*margin: 0;*/
     font-size: 5vh;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Calling Code', sans-serif;
     color: #161B35;
     font-weight: 700;
     line-height: 1;
 }
-.role-single-person{
-    margin: 0;
-    font-size: 2.5vh;
-    font-family: 'Montserrat', sans-serif;
-    color: #161B35;
-    font-weight: 500;
-    font-style: italic;
-}
-.description-single-person{
-    margin: 0;
+
+.description-single-book{
+    /*margin: 0;*/
     font-size: 1.8vh;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Calling Code', sans-serif;
     color: #161B35;
     font-weight: 500;
     letter-spacing: 0.1rem;
     text-align: justify;
     margin-top: 1.2rem;
+}
+
+.books-footer{
+    /*background-color: #9a2624*/
 }

@@ -117,7 +117,7 @@ router.put("/:id/likedMovies", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 // @route  PUT /users/:id/likedMovies
@@ -149,7 +149,7 @@ router.delete("/:id/likedMovies", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 // @route  PUT /users/:id/likedMovies
@@ -177,7 +177,7 @@ router.put("/:id/likedSeries", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 // @route  PUT /users/:id/likedMovies
@@ -210,7 +210,7 @@ router.delete("/:id/likedSeries", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 // @route  PUT /users/:id/likedActivities
@@ -239,7 +239,7 @@ router.put("/:id/likedActivities", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 // @route  DELETE /users/:id/likedActivities
@@ -272,7 +272,7 @@ router.delete("/:id/likedActivities", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 // @route  PUT /users/:id/likedBooks
@@ -291,8 +291,7 @@ router.put("/:id/likedBooks", function(req, res) {
     db.findOnePromise("application", "users", req.params.id)
         .then(usr => {
             let likedBooks = usr[0].likedBooks && usr[0].likedBooks.length>0 ? usr[0].likedBooks : [];
-            likedBooks.push(req.body.book);
-            
+            likedBooks.push(req.body.book); 
             db.findAndUpdateOnePromise("application", "users", req.params.id,{likedBooks},{$push:{likedBooks: req.body.book}})
                 .then(docs => {
                     console.log(docs);
@@ -302,7 +301,7 @@ router.put("/:id/likedBooks", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 // @route  Delete /users/:id/likedBooks
@@ -335,7 +334,7 @@ router.delete("/:id/likedBooks", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 
@@ -356,7 +355,7 @@ router.delete("/:id/followedPosts/:id_posts", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 // @route  Delete /users/:id/likedBooks
@@ -376,7 +375,7 @@ router.put("/:id/followedPosts/:id_posts", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 // @route  PUT /users/:id/photo/:url_photo
@@ -391,7 +390,7 @@ router.put("/:id/photo/:url_photo", function(req, res) {
             else
                 res.status(401).json({error: "Error"});
         });
-   
+
 });
 
 // @route  DELETE /users/:id

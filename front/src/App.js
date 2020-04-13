@@ -1,7 +1,6 @@
 import React ,{useEffect} from 'react';
 import { createBrowserHistory as createHistory } from "history";
 import './App.css';
-//import Login from './Components/Login.js';
 import Profile from "./Components/Profile";
 import Books from "./Components/Books";
 import Movies from "./Components/Movies";
@@ -9,7 +8,6 @@ import Series from "./Components/Series";
 import Workout from "./Components/Workout";
 import Form from "./Components/FormCreator";
 import HomePage from "./Components/HomePage";
-import TopBar from "./Components/TopBar";
 import {loadUser} from "./actions/auth";
 //
 import Posts from "./Components/posts/Posts"

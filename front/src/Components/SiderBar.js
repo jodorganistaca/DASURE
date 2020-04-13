@@ -17,7 +17,7 @@ const SideBar = props => {
             </div>
 
             <div className="sidebar-options">
-                <p onClick={() => props.history.push('movies')}> Peliculas </p>
+                <p onClick={() => props.history.push('movies')}> Películas </p>
                 <p onClick={() => props.history.push('series')}> Series </p>
                 <p onClick={() => props.history.push('books')}> libros </p>
                 <p onClick={() => props.history.push('workout')}> Rutinas </p>
