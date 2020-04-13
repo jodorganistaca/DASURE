@@ -94,13 +94,21 @@ router.put("/:id/checklist", function(req, res) {
 // @route  PUT /users/:id/likedMovies
 // @desc   Update tasks
 // @access Public
-router.put("/:id/likedMovies/:id_movie", function(req, res) {
+router.put("/:id/likedMovies", function(req, res) {
+    if(!req.body.movie)
+    {
+        return res.status(400).json({msg: "Bad request"});
+    }
+    const {id, name} = req.body.movie;
+    if(!id || !name)
+    {
+        return res.status(400).json({msg: "Bad request"});
+    }
     db.findOnePromise("application", "users", req.params.id)
         .then(usr => {
             let likedMovies = usr[0].likedMovies && usr[0].likedMovies.length>0 ? usr[0].likedMovies : [];
-            console.log(likedMovies);
-            likedMovies.push(req.params.id_movie);
-            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedMovies},{$push:{likedMovies: req.params.id_movie}})
+            likedMovies.push(req.body.movie);
+            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedMovies},{$push:{likedMovies: req.body.movie}})
                 .then(docs => {
                     console.log(docs);
                     if (docs.ok == true)
@@ -115,14 +123,26 @@ router.put("/:id/likedMovies/:id_movie", function(req, res) {
 // @route  PUT /users/:id/likedMovies
 // @desc   Update tasks
 // @access Public
-router.delete("/:id/likedMovies/:id_movie", function(req, res) {
+router.delete("/:id/likedMovies", function(req, res) {
+    if(!req.body.movie)
+    {
+        return res.status(400).json({msg: "Bad request"});
+    }
+    const {id, name} = req.body.movie;
+    if(!id || !name)
+    {
+        return res.status(400).json({msg: "Bad request"});
+    }
     db.findOnePromise("application", "users", req.params.id)
         .then(usr => {
             let likedMovies = usr[0].likedMovies;
-            likedMovies = likedMovies.filter(e=> e !== req.params.id_movie);
-            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedMovies},{$pull:{likedMovies: req.params.id_movie}})
+            if(!likedMovies)
+            {
+                return res.status(400).json({msg: "User doesn't have liked movies"});
+            }
+            likedMovies = likedMovies.filter(e=> e.id !== id);
+            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedMovies},{$pull:{likedMovies: req.body.movie}})
                 .then(docs => {
-                    console.log(docs);
                     if (docs.ok == true)
                         res.status(200).json({likedMovies, result: "ok"});
                     else
@@ -135,14 +155,22 @@ router.delete("/:id/likedMovies/:id_movie", function(req, res) {
 // @route  PUT /users/:id/likedMovies
 // @desc   Update tasks
 // @access Public
-router.put("/:id/likedSeries/:id_series", function(req, res) {
+router.put("/:id/likedSeries", function(req, res) {
+    if(!req.body.serie)
+    {
+        return res.status(400).json({msg: "Bad request"});
+    }
+    const {id, name} = req.body.serie;
+    if(!id || !name)
+    {
+        return res.status(400).json({msg: "Bad request"});
+    }
     db.findOnePromise("application", "users", req.params.id)
         .then(usr => {
             let likedSeries = usr[0].likedSeries && usr[0].likedSeries.length>0 ? usr[0].likedSeries : [];
-            likedSeries.push(req.params.id_series);
-            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedSeries},{$push:{likedSeries: req.params.id_series}})
+            likedSeries.push(req.body.serie);
+            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedSeries},{$push:{likedSeries: req.body.serie}})
                 .then(docs => {
-                    console.log(docs);
                     if (docs.ok == true)
                         res.status(200).json({likedSeries, result: "ok"});
                     else
@@ -155,12 +183,25 @@ router.put("/:id/likedSeries/:id_series", function(req, res) {
 // @route  PUT /users/:id/likedMovies
 // @desc   Update tasks
 // @access Public
-router.delete("/:id/likedSeries/:id_series", function(req, res) {
+router.delete("/:id/likedSeries", function(req, res) {
+    if(!req.body.serie)
+    {
+        return res.status(400).json({msg: "Bad request"});
+    }
+    const {id, name} = req.body.serie;
+    if(!id || !name)
+    {
+        return res.status(400).json({msg: "Bad request"});
+    }
     db.findOnePromise("application", "users", req.params.id)
         .then(usr => {
             let likedSeries = usr[0].likedSeries;
-            likedSeries = likedSeries.filter(e=> e !== req.params.id_series);
-            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedSeries},{$pull:{likedSeries: req.params.id_series}})
+            if(!likedSeries)
+            {
+                return res.status(400).json({msg: "User doesn't like any series"});
+            }
+            likedSeries = likedSeries.filter(e=> e.id !== id);
+            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedSeries},{$pull:{likedSeries: req.body.serie}})
                 .then(docs => {
                     console.log(docs);
                     if (docs.ok == true)
@@ -175,12 +216,21 @@ router.delete("/:id/likedSeries/:id_series", function(req, res) {
 // @route  PUT /users/:id/likedActivities
 // @desc   Update tasks
 // @access Public
-router.put("/:id/likedActivities/:id_activity", function(req, res) {
+router.put("/:id/likedActivities", function(req, res) {
+    if(!req.body.activity)
+    {
+        return res.status(400).json({msg: "Bad request"});
+    }
+    const {id, name} = req.body.activity;
+    if(!id || !name)
+    {
+        return res.status(400).json({msg: "Bad request"});
+    }
     db.findOnePromise("application", "users", req.params.id)
         .then(usr => {
             let likedActivities = usr[0].likedActivities && usr[0].likedActivities.length>0 ? usr[0].likedActivities : [];
-            likedActivities.push(req.params.id_activity);
-            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedActivities},{$push:{likedActivities: req.params.id_activity}})
+            likedActivities.push(req.body.activity);
+            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedActivities},{$push:{likedActivities: req.body.activity}})
                 .then(docs => {
                     console.log(docs);
                     if (docs.ok == true)
@@ -195,12 +245,25 @@ router.put("/:id/likedActivities/:id_activity", function(req, res) {
 // @route  DELETE /users/:id/likedActivities
 // @desc   Update tasks
 // @access Public
-router.delete("/:id/likedActivities/:id_activity", function(req, res) {
+router.delete("/:id/likedActivities", function(req, res) {
+    if(!req.body.activity)
+    {
+        return res.status(400).json({msg: "Bad request"});
+    }
+    const {id, name} = req.body.activity;
+    if(!id || !name)
+    {
+        return res.status(400).json({msg: "Bad request"});
+    }
     db.findOnePromise("application", "users", req.params.id)
         .then(usr => {
             let likedActivities = usr[0].likedActivities;
-            likedActivities = likedActivities.filter(e => e !== req.params.id_activity);
-            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedActivities},{$pull:{likedActivities: req.params.id_activity}})
+            if(!likedActivities)
+            {
+                return res.status(400).json({msg: "User doesn't like any activities"});
+            }
+            likedActivities = likedActivities.filter(e => e.id !== id);
+            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedActivities},{$pull:{likedActivities: req.body.activity}})
                 .then(docs => {
                     console.log(docs);
                     if (docs.ok == true)
@@ -215,13 +278,22 @@ router.delete("/:id/likedActivities/:id_activity", function(req, res) {
 // @route  PUT /users/:id/likedBooks
 // @desc   Update tasks
 // @access Public
-router.put("/:id/likedBooks/:id_book", function(req, res) {
+router.put("/:id/likedBooks", function(req, res) {
+    if(!req.body.book)
+    {
+        return res.status(400).json({msg: "Bad request"});
+    }
+    const {id, name} = req.body.book;
+    if(!id || !name)
+    {
+        return res.status(400).json({msg: "Bad request"});
+    }
     db.findOnePromise("application", "users", req.params.id)
         .then(usr => {
             let likedBooks = usr[0].likedBooks && usr[0].likedBooks.length>0 ? usr[0].likedBooks : [];
-            likedBooks.push(req.params.id_book);
+            likedBooks.push(req.body.book);
             
-            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedBooks},{$push:{likedBooks: req.params.id_book}})
+            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedBooks},{$push:{likedBooks: req.body.book}})
                 .then(docs => {
                     console.log(docs);
                     if (docs.ok == true)
@@ -236,12 +308,25 @@ router.put("/:id/likedBooks/:id_book", function(req, res) {
 // @route  Delete /users/:id/likedBooks
 // @desc   Update tasks
 // @access Public
-router.delete("/:id/likedBooks/:id_book", function(req, res) {
+router.delete("/:id/likedBooks", function(req, res) {
+    if(!req.body.book)
+    {
+        return res.status(400).json({msg: "Bad request"});
+    }
+    const {id, name} = req.body.book;
+    if(!id || !name)
+    {
+        return res.status(400).json({msg: "Bad request"});
+    }
     db.findOnePromise("application", "users", req.params.id)
         .then(usr => {
             let likedBooks = usr[0].likedBooks;
-            likedBooks = likedBooks.filter(e => e !== req.params.id_activity);
-            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedBooks},{$pull:{likedBooks: req.params.id_book}})
+            if(!likedBooks)
+            {
+                return res.status(400).json({msg: "User doesn't like any books"});
+            }
+            likedBooks = likedBooks.filter(e => e.id !== id);
+            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedBooks},{$pull:{likedBooks: req.body.book}})
                 .then(docs => {
                     console.log(docs);
                     if (docs.ok == true)
