@@ -7,7 +7,7 @@ const passportInit = () => {
             {
                 clientID: process.env.GOOGLE_CLIENT_ID,
                 clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-                callbackURL: "http://localhost:3001/auth/callback"
+                callbackURL: "https://dasure.herokuapp.com/auth/callback"
             },
             function (accessToken, refreshToken, profile, cb) {
                 let imageUrl = "https://www.twago.es/img/2018/default/no-user.png";
