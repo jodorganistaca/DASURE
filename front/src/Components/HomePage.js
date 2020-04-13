@@ -128,7 +128,7 @@ const HomePage = ({auth}) => {
                     <Col xs={6}>
                         <div className="section-content space">
                             <div className="content-container space">
-                                <p className="heading-text space" style={{textAlign: "justify"}}>
+                                <p className="heading-text space" style={{textAlign: "justify", position: "relative", top: "-241px"}}>
                                     Misión: La plataforma DASURE fue creada con el propósito de brindar una aplicación web que permita sugerir actividades para hacer en casa dada la coyuntura del virus COVID-19.
                                 </p>
                             </div>
