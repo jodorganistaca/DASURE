@@ -15,7 +15,7 @@ const Menu = ({auth}) => {
                 <img onClick={() => window.location.replace('/profile')} className="menu-img-logo" src={auth && auth.user ? auth.user.photo : require('../Assets/icon.png')} alt="" />
             </div>
             <div className="menu-main-menu">
-                {auth.loading || !auth.user._id &&
+                {(!auth || auth.loading || !auth.user || !auth.user._id) &&
                 <p style={{cursor: "pointer"}} onClick={() => window.location.replace("/login")}> Inicia sesión </p>
                 }
                 <p style={{cursor: "pointer"}} onClick={() => window.location.replace('/movies')}> Peliculas </p>
@@ -23,7 +23,7 @@ const Menu = ({auth}) => {
                 <p style={{cursor: "pointer"}} onClick={() => window.location.replace('/books')}> Libros </p>
                 <p style={{cursor: "pointer"}} onClick={() => window.location.replace('/workout')}> Ejercicio </p>
                 <p style={{cursor: "pointer"}} onClick={() => window.location.replace('/forum')}> Foro </p>
-                {!auth.loading && auth.user._id &&
+                {auth && !auth.loading && auth.user && auth.user._id &&
                 <p style={{cursor: "pointer"}} onClick={logout}> Cerrar Sesión </p> }
             </div>
         </div>
