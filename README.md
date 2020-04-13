@@ -6,6 +6,13 @@ Web page to visualize movies, series, books and exercise routines. In addition, 
 
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. 
 
+## Demo
+
+
+
+
+
+
 ### Prerequisites
 
 All the listed prerrequisites must be installed in order to use the application.
