@@ -86,14 +86,14 @@ export const login = (email, password, googleLogin = false) => async dispatch =>
         }
         })
     }
-    else return window.location.replace("http://localhost:3001/auth/google");
+    else return window.location.replace("/auth/google");
 };
 
 export const loginGoogle = () => async dispatch => {
   
 
     try {
-        const res = await axios.get("http://localhost:3001/getProfile");
+        const res = await axios.get("/getProfile");
 
         dispatch({
             type: LOGIN_SUCCESS,

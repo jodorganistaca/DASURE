@@ -18,6 +18,7 @@ import Register from "./Components/auth/Register"
 import store from "./store"
 import './App.css';
 import { Provider } from 'react-redux';
+import Checklist from './Components/user/Checklist';
 const history = createHistory();
 const App = () => {
   useEffect(() => {
@@ -28,6 +29,7 @@ const App = () => {
         <Router history={history}>
         <Switch>
         <Route path="/" exact component={HomePage} />
+        <Route path="/checklist" exact component={Checklist} />
         <Route path="/login" exact component={Login} />
         <Route path="/profile" exact component={Profile} />
         <Route path="/books" exact component={Books} />

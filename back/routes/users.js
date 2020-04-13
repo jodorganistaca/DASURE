@@ -71,9 +71,9 @@ router.put("/:id", function(req, res) {
         .then(docs => {
             console.log(docs);
             if (docs.ok == true)
-                res.status(200).json({name: name, email: email, result: "ok"});
+                return res.status(200).json({name: name, email: email, result: "ok"});
             else
-                res.status(401).json({error: "Error"});
+                return res.status(401).json({error: "Error"});
         });});
 
 // @route  PUT /users/:id/checklist
@@ -81,13 +81,12 @@ router.put("/:id", function(req, res) {
 // @access Public
 router.put("/:id/checklist", function(req, res) {
     const {checklist} = req.body;
-    db.findAndUpdateOnePromise("application", "users", req.params.id, {checklist: checklist})
+    db.findAndUpdateOnePromise("application", "users", req.params.id, {checklist})
         .then(docs => {
-            console.log(docs);
             if (docs.ok == true)
-                res.status(200).json({checklist, result: "ok"});
+                return res.status(200).json({checklist});
             else
-                res.status(401).json({error: "Error"});
+                return res.status(401).json({error: "Error"});
         });
 });
 
