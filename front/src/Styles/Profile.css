@@ -46,7 +46,10 @@
 }
 .profile-logo{
     height: 85px;
-    /*margin-top: 3%;*/
+    width: 85px;
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .profile-header-title{
@@ -113,7 +116,7 @@
     background-color: #e0e0e0;
 }
 
-.carousel-general{
+.profile-carousel-general{
     position: absolute;
     width: 100%;
 }
@@ -126,14 +129,15 @@
     width: 120%;
     height: auto;
 }
-.persona-general{
+.profile-general{
     width: 100%;
     transform: scale(0.8);
 }
-.persona-especifica{
+.profile-specific{
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-gap: 1rem;
+    margin-top: 300px;
 }
 .mockup-general{
     width: 100%;
@@ -166,13 +170,14 @@ h1{
     margin: 2rem 0;
 }
 
-.wrapper{
+.profile-wrapper{
     width: 90%;
     margin: 0 auto;
     max-width: 80rem;
+    margin-top: 50px;
 }
 
-.cols{
+.profile-cols{
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -183,12 +188,12 @@ h1{
     justify-content: center;
 }
 
-.col{
+.profile-col{
     width: 100%;
     padding: 0 !important;
 }
 
-.container{
+.profile-layout-container{
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     -webkit-perspective: 1000px;
@@ -196,8 +201,8 @@ h1{
     cursor: pointer;
 
 }
-.front,
-.back{
+.profile-front,
+.profile-back{
     background-size: cover;
     background-position: center;
     -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
@@ -215,11 +220,11 @@ h1{
     font-size: 1.5rem;
 }
 
-.back{
+.profile-back{
     background: #1F2137;
 }
 
-.front:after{
+.profile-front:after{
     position: absolute;
     top: 0;
     left: 0;
@@ -234,8 +239,8 @@ h1{
     backface-visibility: hidden;
     border-radius: 10px;
 }
-.container:hover .front,
-.container:hover .back{
+.profile-layout-container:hover .profile-front,
+.profile-layout-container:hover .profile-back{
     -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
     transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
     -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
@@ -243,7 +248,7 @@ h1{
     transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1), -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
 }
 
-.back{
+.profile-back{
     position: absolute;
     top: 0;
     left: 0;
@@ -259,7 +264,7 @@ h1{
     margin: 0;
 }
 
-.inner{
+.profile-inner{
     -webkit-transform: translateY(-50%) translateZ(60px) scale(0.94);
     transform: translateY(-50%) translateZ(60px) scale(0.94);
     top: 50%;
@@ -275,41 +280,41 @@ h1{
     z-index: 2;
 }
 
-.container .back{
+.profile-layout-container .profile-back{
     -webkit-transform: rotateY(180deg);
     transform: rotateY(180deg);
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
 }
 
-.container .front{
+.profile-layout-container .profile-front{
     -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
 }
 
-.container:hover .back{
+.profile-layout-container:hover .profile-back{
     -webkit-transform: rotateY(0deg);
     transform: rotateY(0deg);
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
 }
 
-.container:hover .front{
+.profile-layout-container:hover .profile-front{
     -webkit-transform: rotateY(-180deg);
     transform: rotateY(-180deg);
     -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
 }
 
-.front .inner p{
+.profile-front .profile-inner p{
     font-size: 2rem;
     margin-bottom: 2rem;
     position: relative;
 }
 
-.front .inner p:after{
+.profile-front .profile-inner p:after{
     content: '';
     width: 4rem;
     height: 2px;
@@ -322,16 +327,7 @@ h1{
     bottom: -.75rem;
 }
 
-
-.front2{
-    content: '';
-    width: 300px;
-    height: 500px;
-    background-size: cover;
-    margin: 3em;
-}
-
-.front .inner span{
+.profile-front .profile-inner span{
     color: rgba(255,255,255,0.7);
     font-family: 'Montserrat', sans-serif;
     font-weight: 300;

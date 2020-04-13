@@ -8,9 +8,6 @@
 }
 
 .home-page-title-background{
-    /*background: rgb(90,111,157);*/
-    /*background: radial-gradient(circle, rgba(90,111,157,0.8099614845938375) 0%, rgba(185,185,185,1) 100%);*/
-
     background-image: url("https://cdn.pixabay.com/photo/2016/11/21/12/10/tv-1844964_960_720.jpg");
 
     /* Full height */
@@ -40,6 +37,7 @@
     color: #002652;
     border: #002652 1px solid;
     display: inline-block;
+    min-width: 180px;
     /*padding: 20px 30px;*/
     /*border-radius: 5px;*/
     box-shadow: 0  17px 10px -10px rgba(0, 0, 0, 0.4);
@@ -110,10 +108,10 @@
     height: 500px;
 }
 
-/* FIXME:
- div {
+
+.space {
     margin-bottom: 50px;
-} */
+}
 
 .home-page-final-section{
     height: 500px;

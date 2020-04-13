@@ -13,8 +13,8 @@ const Menu = props => {
                 <img onClick={() => props.history.push('/profile')} className="menu-img-logo" src={require('../Assets/icon.png')} alt="" />
             </div>
             <div className="menu-main-menu">
-                <p onClick={() => props.history.push('/')}> Inicia sesión </p>
-                <p onClick={() => props.history.push('/movies')}> Peliculas </p>
+                <p onClick={() => props.history.push('/login')}> Inicia sesión </p>
+                <p onClick={() => props.history.push('/movies')}> Películas </p>
                 <p onClick={() => props.history.push('/series')}> Series </p>
                 <p onClick={() => props.history.push('/books')}> Libros </p>
                 <p onClick={() => props.history.push('/workout')}> Ejercicio </p>

@@ -13,7 +13,7 @@ const HomePage = props => {
     const loadImages = () => {
         const apiUrl = "https://pixabay.com/api";
         const ids = {
-            Peliculas: '1975215',
+            Películas: '1975215',
             Series: '3774381',
             Libros: '3240766',
             Rutinas: '2959226',
@@ -42,33 +42,33 @@ const HomePage = props => {
     return (
 
         <div className="home-page">
-            <div className="home-page-title-background">
-                    <div className="heading-container">
+            <div className="home-page-title-background space">
+                    <div className="heading-container space">
                         <img className = "heading-container-logo" src={require("../Assets/dasure-01.png")} alt="Series" onClick={() => props.history.push('series')} />
                     </div>
             </div>
             <Container fluid>
-                <Row className="justify-content-md-center">
+                <Row className="justify-content-md-center space">
                     <Col>
                     </Col>
                     <Col xs={2}>
                         <Button className="home-page-button" size="large" onClick={() => props.history.push('movies')}>Entretenimiento</Button>
                     </Col>
                     <Col xs={2}>
-                        <Button className="home-page-button" size="large" onClick={() => props.history.push('perfil')}>Mi Checklist</Button>
+                        <Button className="home-page-button" size="large" onClick={() => props.history.push('perfil')}>Mi lista</Button>
                     </Col>
                     <Col xs={2}>
-                        <Button className="home-page-button" size="large" onClick={() => props.history.push('workout')}>Rutinas</Button>
+                        <Button className="home-page-button" size="large" onClick={() => props.history.push('workout')}>Ejercicio</Button>
                     </Col>
                     <Col xs={2}>
-                        <Button className="home-page-button" size="large">Foros</Button>
+                        <Button className="home-page-button" size="large">Foro</Button>
                     </Col>
                     <Col>
                     </Col>
                 </Row>
-                <Row className="justify-content-md-center">
+                <Row className="justify-content-md-center space">
                     <Col offset={2} xs={8}>
-                        <div className="home-page-heading-text">
+                        <div className="home-page-heading-text space">
                             <p>
                                 DASURE plataforma web para recomendar series, películas, libros y rutinas de ejercicio.
                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -84,7 +84,7 @@ const HomePage = props => {
             {images.map((img, i) => {
                 return (
                     <>
-                        <Parallax
+                        <Parallax className="space"
                             bgImage={img.largeImageURL}
                             bgImageAlt={img.tags}
                             strength={600}
@@ -106,7 +106,7 @@ const HomePage = props => {
                             )}
                         >
                             <div style={{ height: 500 }}>
-                                <div className="heading-container">
+                                <div className="heading-container space">
                                     <h3>
                                         <span className="heading-text" onClick={() => console.log(layers)}>
                                             {layers[i]}
@@ -121,35 +121,35 @@ const HomePage = props => {
             <Container fluid>
                 <Row>
                     <Col xs={6}>
-                        <div className="content-container">
-                            <p className="heading-text">
+                        <div className="content-container space">
+                            <p className="heading-text space">
                                 Mision: DASURE es una plataforma para para recomendar series, películas, libros y rutinas de ejercicio.
                             </p>
                         </div>
                     </Col>
                     <Col xs={6}>
-                        <div className="section-background-image-mission">
+                        <div className="section-background-image-mission space">
                         </div>
                     </Col>
                 </Row>
                 <Row>
                     <Col xs={6}>
-                        <div className="section-background-image-vision">
+                        <div className="section-background-image-vision space">
                         </div>
                     </Col>
                     <Col xs={6}>
-                        <div className="section-content">
-                            <div className="content-container">
-                                <p className="heading-text">
+                        <div className="section-content space">
+                            <div className="content-container space">
+                                <p className="heading-text space">
                                     Mision: COVID-19Web Page es una plataforma para para recomendar series, películas, libros y rutinas de ejercicio.
                                 </p>
                             </div>
                         </div>
                     </Col>
                 </Row>
-                <Row className="justify-content-md-center">
+                <Row className="justify-content-md-center space">
                     <Col offset={2} xs={8}>
-                        <div className="home-page-heading-text">
+                        <div className="home-page-heading-text space">
                             <h2>
                                 SÍGUENOS EN
                             </h2>
@@ -157,17 +157,17 @@ const HomePage = props => {
 
                     </Col>
                 </Row>
-                <Row className="justify-content-md-center">
+                <Row className="justify-content-md-center space">
                     <Col>
                     </Col>
                     <Col xs={2}>
-                        <Button className="home-page-button" size="large">Instagram</Button>
+                        <Button className="home-page-button" size="large space">Instagram</Button>
                     </Col>
                     <Col xs={2}>
-                        <Button className="home-page-button" size="large">Facebook</Button>
+                        <Button className="home-page-button" size="large space">Facebook</Button>
                     </Col>
                     <Col xs={2}>
-                        <Button className="home-page-button" size="large">Pinterest</Button>
+                        <Button className="home-page-button" size="large space">Pinterest</Button>
                     </Col>
                     <Col>
                     </Col>

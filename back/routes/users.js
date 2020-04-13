@@ -3,7 +3,6 @@ const router = express.Router();
 const db = require("../db/MongoUtils");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const ObjectId = require("mongodb").ObjectID;
 /* GET users listing. */
 router.get("/", function(req, res) {
     db.getDocumentsPromise("application", "users")
@@ -98,7 +97,8 @@ router.put("/:id/checklist", function(req, res) {
 router.put("/:id/likedMovies/:id_movie", function(req, res) {
     db.findOnePromise("application", "users", req.params.id)
         .then(usr => {
-            let likedMovies = usr[0].likedMovies;
+            let likedMovies = usr[0].likedMovies && usr[0].likedMovies.length>0 ? usr[0].likedMovies : [];
+            console.log(likedMovies);
             likedMovies.push(req.params.id_movie);
             db.findAndUpdateOnePromise("application", "users", req.params.id,{likedMovies},{$push:{likedMovies: req.params.id_movie}})
                 .then(docs => {
@@ -109,7 +109,7 @@ router.put("/:id/likedMovies/:id_movie", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 // @route  PUT /users/:id/likedMovies
@@ -129,7 +129,7 @@ router.delete("/:id/likedMovies/:id_movie", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 // @route  PUT /users/:id/likedMovies
@@ -138,7 +138,7 @@ router.delete("/:id/likedMovies/:id_movie", function(req, res) {
 router.put("/:id/likedSeries/:id_series", function(req, res) {
     db.findOnePromise("application", "users", req.params.id)
         .then(usr => {
-            let likedSeries = usr[0].likedSeries;
+            let likedSeries = usr[0].likedSeries && usr[0].likedSeries.length>0 ? usr[0].likedSeries : [];
             likedSeries.push(req.params.id_series);
             db.findAndUpdateOnePromise("application", "users", req.params.id,{likedSeries},{$push:{likedSeries: req.params.id_series}})
                 .then(docs => {
@@ -149,7 +149,7 @@ router.put("/:id/likedSeries/:id_series", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 // @route  PUT /users/:id/likedMovies
@@ -169,7 +169,7 @@ router.delete("/:id/likedSeries/:id_series", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 // @route  PUT /users/:id/likedActivities
@@ -178,7 +178,7 @@ router.delete("/:id/likedSeries/:id_series", function(req, res) {
 router.put("/:id/likedActivities/:id_activity", function(req, res) {
     db.findOnePromise("application", "users", req.params.id)
         .then(usr => {
-            let likedActivities = usr[0].likedActivities;
+            let likedActivities = usr[0].likedActivities && usr[0].likedActivities.length>0 ? usr[0].likedActivities : [];
             likedActivities.push(req.params.id_activity);
             db.findAndUpdateOnePromise("application", "users", req.params.id,{likedActivities},{$push:{likedActivities: req.params.id_activity}})
                 .then(docs => {
@@ -189,7 +189,7 @@ router.put("/:id/likedActivities/:id_activity", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 // @route  DELETE /users/:id/likedActivities
@@ -209,7 +209,7 @@ router.delete("/:id/likedActivities/:id_activity", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 // @route  PUT /users/:id/likedBooks
@@ -218,10 +218,10 @@ router.delete("/:id/likedActivities/:id_activity", function(req, res) {
 router.put("/:id/likedBooks/:id_book", function(req, res) {
     db.findOnePromise("application", "users", req.params.id)
         .then(usr => {
-            let likedBooks = usr[0].likedBooks;
+            let likedBooks = usr[0].likedBooks && usr[0].likedBooks.length>0 ? usr[0].likedBooks : [];
             likedBooks.push(req.params.id_book);
-            
-            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedBooks},{$push:{likedActivities: req.params.id_book}})
+
+            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedBooks},{$push:{likedBooks: req.params.id_book}})
                 .then(docs => {
                     console.log(docs);
                     if (docs.ok == true)
@@ -230,7 +230,7 @@ router.put("/:id/likedBooks/:id_book", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 // @route  Delete /users/:id/likedBooks
@@ -241,7 +241,7 @@ router.delete("/:id/likedBooks/:id_book", function(req, res) {
         .then(usr => {
             let likedBooks = usr[0].likedBooks;
             likedBooks = likedBooks.filter(e => e !== req.params.id_activity);
-            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedBooks},{$pull:{likedActivities: req.params.id_book}})
+            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedBooks},{$pull:{likedBooks: req.params.id_book}})
                 .then(docs => {
                     console.log(docs);
                     if (docs.ok == true)
@@ -250,7 +250,7 @@ router.delete("/:id/likedBooks/:id_book", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 
@@ -271,7 +271,7 @@ router.delete("/:id/followedPosts/:id_posts", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 // @route  Delete /users/:id/likedBooks
@@ -291,7 +291,7 @@ router.put("/:id/followedPosts/:id_posts", function(req, res) {
                         res.status(401).json({error: "Error"});
                 });
         });
-   
+
 });
 
 // @route  PUT /users/:id/photo/:url_photo
@@ -306,7 +306,7 @@ router.put("/:id/photo/:url_photo", function(req, res) {
             else
                 res.status(401).json({error: "Error"});
         });
-   
+
 });
 
 // @route  DELETE /users/:id

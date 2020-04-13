@@ -17,6 +17,9 @@ const Series = props => {
         description: "",
         img: "",
     });
+    const [profile, setProfile] = useState({
+        likedSeries: []
+    });
 
     const loadSeries = () => {
         fetch("/get/Series")
@@ -27,8 +30,29 @@ const Series = props => {
             });
     };
 
-    const changeInfo = (name, img, description) => {
-        setShowInfo({show: true, name: name,description:description,img:img});
+    const loadProfile = () => {
+        fetch("/getProfile")
+            .then(res => res.json())
+            .then((result) => {
+                console.log("Profileeeeeees ", result);
+                setProfile(result);
+            });
+    };
+
+
+    const changeInfo = (id, name, img, description) => {
+        setShowInfo({_id: id, show: true, name: name,description:description,img:img});
+    };
+
+    const likeSeries = async (id, _id) => {
+        console.log("puuuuuuuuuut serieeeeeee ", id, " serie id ", _id);
+        const response = await fetch(`/users/${id}/likedSeries/${_id}`,{
+            method: "PUT",
+        });
+        //convert response to Json format
+        const myJson = await response.json();
+        console.log(myJson);
+        setShowInfo({show: false});
     };
 
     var flag = false;
@@ -48,6 +72,7 @@ const Series = props => {
     useEffect(() => {
         if (!initialized) {
             loadSeries();
+            loadProfile();
             setInitialized(true);
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -57,46 +82,40 @@ const Series = props => {
         <Layout className="series-container">
 
             <div className="series-header">
-                <div className="series-header-navbar">
+                <div className="space series-header-navbar">
                     <img className = "series-header-navbar-logo" src={require("../Assets/dasure-02.png")} alt="Series" onClick={() => props.history.push('/')} />
                     <img className = "series-header-hamburger" src={require("../Assets/menu.svg")} alt="Notificaciones" onClick={ShowSideMenu}/>
                     <div className="series-menu-collapse" id="menu">
                         <Menu/>
                     </div>
                 </div>
-                <img className = "series-logo" src={require("../Assets/Series-white.svg")} alt="Series" onClick={() => props.history.push('/home')} />
+                <img className = "series-logo" src={require("../Assets/Series-white.svg")} alt="Series" onClick={() => props.history.push('/')} />
                 <div className="series-header-title">
                     <h1 className="series-header-title-text">
                         Series
                     </h1>
                 </div>
             </div>
-            <div onClick={() => {
-                console.log("series ", series);
-                console.log("showInfo ", showInfo);
-            }}>
-                click me
-            </div>
             <Content className="content">
                 <div className="container-series">
                     <Carousel className="carousel-general" autoplay autoplaySpeed="100" dotPosition="top">
                         <div>
-                            <div className="persona-general">
-                                <div className="persona-especifica">
+                            <div className="series-general">
+                                <div className="serie-specific">
                                     {series.map((m, id) => {
                                         let bg = m.image;
                                         return (
-                                            <div className="wrapper">
-                                                <div className="cols">
-                                                    <div className="col" onTouchStart="this.classList.toggle('hover');">
-                                                        <div className="container" onClick={() => changeInfo(m.name, m.image, m.description)}>
-                                                            <div className="front"
+                                            <div className="series-wrapper">
+                                                <div className="series-cols">
+                                                    <div className="series-col" onTouchStart="this.classList.toggle('hover');">
+                                                        <div className="series-layout-container" onClick={() => changeInfo(m._id,m.name, m.image, m.description)}>
+                                                            <div className="series-front"
                                                                  style={{ backgroundImage: `url(${bg}` }}>
-                                                                <div className="inner">
+                                                                <div className="series-inner">
                                                                 </div>
                                                             </div>
-                                                            <div className="back">
-                                                                <div className="inner">
+                                                            <div className="series-back">
+                                                                <div className="series-inner">
                                                                     <p className="title-inner">{m.name}</p>
                                                                 </div>
                                                             </div>
@@ -112,25 +131,44 @@ const Series = props => {
                     </Carousel>
                 </div>
                 {showInfo.show ?
-                    (<div className={"white-container"}>
-                            <div><button className={"button-close"} onClick={()=>setShowInfo({show: false})}> X</button></div>
-                            <div className="container-master-single-person" id="person">
-                                <div className="container-master-photo-single-person">
-                                    <div className="container-photo-single-person">
-                                        <img src={showInfo.img} alt={showInfo.name} className="img-single-person" />
+                    (<div className={"series-white-container"}>
+                            <div><button className={"series-button-close"} onClick={()=>setShowInfo({show: false})}> X</button></div>
+                            <div className="container-single-series" id="person">
+                                <div className="container-single-poster-series">
+                                    <div className="container-photo-single-series">
+                                        <img src={showInfo.img} alt={showInfo.name} className="img-single-series" />
                                     </div>
                                 </div>
-                                <div className="container-master-info-single-person">
-                                    <p className="name-single-person">{showInfo.name}</p>
-                                    <p className="description-single-person">{showInfo.description}</p>
+                                <div className="container-info-single-series">
+                                    <p className="name-single-series">{showInfo.name}</p>
+                                    <p className="description-single-series">{showInfo.description}</p>
                                 </div>
                             </div>
-                        </div>
+                            {
+                                profile._id === undefined ?
+                                    <div />
+                                    :
+                                    <div className="series-like-container">
+                                        {
+                                            profile.likedSeries !== undefined && profile.likedSeries.includes(showInfo._id) ?
+                                                <div>
+                                                    <img className="series-like-logo" src={require("../Assets/like.svg")} alt="Series" />
+                                                    <p className="series-like-count">1</p>
+                                                </div>
+
+                                                :
+                                                <div>
+                                                    <img className = "series-like-logo" src={require("../Assets/like.svg")} alt="Series" onClick={() => likeSeries(profile._id,showInfo._id)} />
+                                                </div>
+                                        }
+                                    </div>
+                            }
+                    </div>
                     )
                     :
                     <div />}
             </Content>
-            <Footer className="footer">
+            <Footer className="series-footer">
             </Footer>
         </Layout>
     )
