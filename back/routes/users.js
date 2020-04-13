@@ -97,7 +97,8 @@ router.put("/:id/checklist", function(req, res) {
 router.put("/:id/likedMovies/:id_movie", function(req, res) {
     db.findOnePromise("application", "users", req.params.id)
         .then(usr => {
-            let likedMovies = usr[0].likedMovies;
+            let likedMovies = usr[0].likedMovies && usr[0].likedMovies.length>0 ? usr[0].likedMovies : [];
+            console.log(likedMovies);
             likedMovies.push(req.params.id_movie);
             db.findAndUpdateOnePromise("application", "users", req.params.id,{likedMovies},{$push:{likedMovies: req.params.id_movie}})
                 .then(docs => {
@@ -137,7 +138,7 @@ router.delete("/:id/likedMovies/:id_movie", function(req, res) {
 router.put("/:id/likedSeries/:id_series", function(req, res) {
     db.findOnePromise("application", "users", req.params.id)
         .then(usr => {
-            let likedSeries = usr[0].likedSeries;
+            let likedSeries = usr[0].likedSeries && usr[0].likedSeries.length>0 ? usr[0].likedSeries : [];
             likedSeries.push(req.params.id_series);
             db.findAndUpdateOnePromise("application", "users", req.params.id,{likedSeries},{$push:{likedSeries: req.params.id_series}})
                 .then(docs => {
@@ -177,7 +178,7 @@ router.delete("/:id/likedSeries/:id_series", function(req, res) {
 router.put("/:id/likedActivities/:id_activity", function(req, res) {
     db.findOnePromise("application", "users", req.params.id)
         .then(usr => {
-            let likedActivities = usr[0].likedActivities;
+            let likedActivities = usr[0].likedActivities && usr[0].likedActivities.length>0 ? usr[0].likedActivities : [];
             likedActivities.push(req.params.id_activity);
             db.findAndUpdateOnePromise("application", "users", req.params.id,{likedActivities},{$push:{likedActivities: req.params.id_activity}})
                 .then(docs => {
@@ -217,10 +218,10 @@ router.delete("/:id/likedActivities/:id_activity", function(req, res) {
 router.put("/:id/likedBooks/:id_book", function(req, res) {
     db.findOnePromise("application", "users", req.params.id)
         .then(usr => {
-            let likedBooks = usr[0].likedBooks;
+            let likedBooks = usr[0].likedBooks && usr[0].likedBooks.length>0 ? usr[0].likedBooks : [];
             likedBooks.push(req.params.id_book);
             
-            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedBooks},{$push:{likedActivities: req.params.id_book}})
+            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedBooks},{$push:{likedBooks: req.params.id_book}})
                 .then(docs => {
                     console.log(docs);
                     if (docs.ok == true)
@@ -240,7 +241,7 @@ router.delete("/:id/likedBooks/:id_book", function(req, res) {
         .then(usr => {
             let likedBooks = usr[0].likedBooks;
             likedBooks = likedBooks.filter(e => e !== req.params.id_activity);
-            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedBooks},{$pull:{likedActivities: req.params.id_book}})
+            db.findAndUpdateOnePromise("application", "users", req.params.id,{likedBooks},{$pull:{likedBooks: req.params.id_book}})
                 .then(docs => {
                     console.log(docs);
                     if (docs.ok == true)
