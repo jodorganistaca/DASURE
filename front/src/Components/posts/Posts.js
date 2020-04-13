@@ -1,29 +1,53 @@
-import React, { useEffect, Fragment } from 'react'
+import React, { useEffect, Fragment, useState } from 'react'
 import "../../Styles/posts/Posts.css"
 import PropTypes from 'prop-types'
 import {connect} from "react-redux";
 import PostItem from "./PostItem";
-
-//Spinner
-
 import {getPosts} from "../../actions/post";
 import PostForm from './PostForm';
 import  Row  from 'react-bootstrap/Row';
-import SyncLoader from "react-spinners/SyncLoader";
 import Container from 'react-bootstrap/Container';
+import { Navbar, Nav } from 'react-bootstrap';
+import Loading from '../layout/Loading';
+import { Link } from 'react-router-dom';
+import Alert from "../layout/Alert";
 
 const Posts = ({getPosts, post: {posts, loading}}) => {
     useEffect(() => {getPosts();}, [getPosts]);
-    return loading ? (<SyncLoader/>) : 
-            (<section className="blog-area section .body-posts">
+    const [category, setCategory] = useState("");
+    const getCategories = posts => {
+        let array = [];
+        for (let i = 0; i < posts.length; i++) {
+            array.push(posts[i].category);
+        }
+        return array.filter((value, index, self) => self.indexOf(value) === index);
+    }
+    const categories = getCategories(posts);
+    console.log(categories);
+    return loading ? (<Loading/>) : 
+            ( <Fragment>
+                <Navbar bg="light" expand="lg">
+                    <Navbar.Brand><Link to="/">DASURE</Link></Navbar.Brand>
+                    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                    <Navbar.Collapse id="basic-navbar-nav">
+                        <Nav className="mr-auto">
+                            {categories.map((v,k) => <Nav.Link key={k} onClick={e => {e.preventDefault(); setCategory(v)}}>{v}</Nav.Link>)}
+                            <Nav.Link onClick={e => {e.preventDefault(); setCategory("Todas las publicaciones")}}>Todas las publicaciones</Nav.Link>
+                        </Nav>   
+                    </Navbar.Collapse>
+                    </Navbar>                     
+            <section className="blog-area section .body-posts">
+                <Alert></Alert>
                 <PostForm></PostForm>
             <Container>
                 <Row style={{cursor:"auto"}}>
-                {posts.sort((a,b) => - (a.likes.length - a.dislikes.length - (b.likes.length - b.dislikes.length))).map(post => (
-                <PostItem key={post._id} post={post}></PostItem>))}
+                {!category || category==="Todas las publicaciones" ? posts.sort((a,b) => - (a.likes.length - a.dislikes.length - (b.likes.length - b.dislikes.length))).map(post => (
+                <PostItem key={post._id} post={post}></PostItem>)) :  (posts.filter(post => post.category === category).sort((a,b) => - (a.likes.length - a.dislikes.length - (b.likes.length - b.dislikes.length))).map(post => (
+                <PostItem key={post._id} post={post}></PostItem>)))}
             </Row>
             </Container>
-            </section>)
+            </section>
+            </Fragment>)
     
 }
 

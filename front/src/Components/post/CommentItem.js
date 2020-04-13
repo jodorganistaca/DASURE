@@ -5,9 +5,9 @@ import {connect} from "react-redux"
 import Moment from "react-moment"
 
 const CommentItem = ({postId, comment: {text, name, photo, user, date}}) => {
-    console.log(text);
     return (
       <div className="media mb-4">
+        <hr/>
       <img className="d-flex mr-3 rounded-circle" style={{maxWidth:"38px"}}src={photo} alt=""/>
       <div className="media-body">
         <h5 className="mt-0">{name}</h5>
@@ -15,7 +15,9 @@ const CommentItem = ({postId, comment: {text, name, photo, user, date}}) => {
       </div>
       <p className="p-auth">
       Publicado en  <Moment format=" DD/MM/YYYY">{date}</Moment>
+      
       </p>
+      <hr/>
     </div>
     );
 }

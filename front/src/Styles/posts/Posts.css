@@ -42,7 +42,7 @@
 6. NORMAL BLOG
 --------------------------------- */
 
-.post-style-1 .blog-image{ max-height: 200px; overflow: hidden; }
+.post-style-1 .blog-image{ max-height: 163px; overflow: hidden; }
 
 .blog-area .single-post .title {
     padding: 10px 30px 20px;
@@ -88,4 +88,18 @@
 .post-button {
     font-size: 15px;
     font-family: roboto,sans-serif;
+}
+
+.contact100-form-title {
+    display: block;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: relative;
+    z-index: 26;
+    max-height: 147px;
+    height: 130px;
+    margin-bottom: 20px;
+    border-radius: 11px;
 }
