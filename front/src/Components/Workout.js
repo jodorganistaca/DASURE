@@ -43,10 +43,21 @@ const Workout = props => {
         setShowInfo({_id: id, show: true, name: name,description:description,img:img});
     };
 
-    const likeWorkout = async (id, _id) => {
+    const likeWorkout = async (id, _id, name) => {
         console.log("puuuuuuuuuut workouuuuut ", id, " movie id ", _id);
-        const response = await fetch(`/users/${id}/likedActivities/${_id}`,{
+        const data = {
+            "activity":{
+                "id": _id,
+                "name": name
+            }
+        };
+        console.log(data);
+        const response = await fetch(`/users/${id}/likedActivities`,{
             method: "PUT",
+            body: JSON.stringify(data),
+            headers:{
+                'Content-Type': 'application/json'
+            }
         });
         //convert response to Json format
         const myJson = await response.json();
@@ -59,9 +70,9 @@ const Workout = props => {
 
         var element = document.getElementById('menu');
         if(flag){
-            element.style.transform = 'translate(15vw)';
+            element.style.transform = 'translate(18vw)';
         }else{
-            element.style.transform = 'translate(-15vw)';
+            element.style.transform = 'translate(-18vw)';
         }
         element.style.zIndex = '25';
         element.style.transition = 'transform 500ms';
@@ -83,7 +94,7 @@ const Workout = props => {
                 <div className="space workout-header-navbar">
                     <img className = "workout-header-navbar-logo" src={require("../Assets/dasure-01.png")} alt="Workout" onClick={() => props.history.push('/')} />
                     <img className = "workout-header-hamburger" src={require("../Assets/menu-button.svg")} alt="Notificaciones" onClick={ShowSideMenu}/>
-                    <div className="home-menu-collapse" id="menu">
+                    <div className="workout-menu-collapse" id="menu">
                         <Menu/>
                     </div>
                 </div>
@@ -148,7 +159,7 @@ const Workout = props => {
                                     :
                                     <div className="workout-like-container">
                                         {
-                                            profile.likedActivities !== undefined && profile.likedActivities.includes(showInfo._id) ?
+                                            profile.likedActivities.filter(data => (data.id == showInfo._id)).length > 0 ?
                                                 <div>
                                                     <img className="workout-like-logo" src={require("../Assets/like.svg")} alt="Workout" />
                                                     <p className="workout-like-count">1</p>
@@ -156,7 +167,7 @@ const Workout = props => {
 
                                                 :
                                                 <div>
-                                                    <img className = "workout-like-logo" src={require("../Assets/like.svg")} alt="Workout" onClick={() => likeWorkout(profile._id,showInfo._id)} />
+                                                    <img className = "workout-like-logo" src={require("../Assets/like.svg")} alt="Workout" onClick={() => likeWorkout(profile._id,showInfo._id,showInfo.name)} />
                                                 </div>
                                         }
                                     </div>

@@ -25,8 +25,8 @@ books-navbar-title{
     url("../Fonts/CallingCode-Regular.ttf") format('truetype');
 }
 .books-menu-collapse{
-    width: 15vw;
-    height: 80vh;
+    width: 18vw;
+    height: 85vh;
     padding-top: 4%;
     overflow: hidden;
     background-color: white;
@@ -210,8 +210,7 @@ h1{
     transform-style: preserve-3d;
     -webkit-perspective: 1000px;
     perspective: 1000px;
-    /*FIXME: 
-    cursor: pointer; */
+    cursor: pointer;
 
 }
 .book-front,

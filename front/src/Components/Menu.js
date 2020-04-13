@@ -16,15 +16,15 @@ const Menu = ({auth}) => {
             </div>
             <div className="menu-main-menu">
                 {(!auth || auth.loading || !auth.user || !auth.user._id) &&
-                <p style={{cursor: "pointer"}} onClick={() => window.location.replace("/login")}> Inicia sesión </p>
+                <p onClick={() => window.location.replace("/login")}> Inicia sesión </p>
                 }
-                <p style={{cursor: "pointer"}} onClick={() => window.location.replace('/movies')}> Peliculas </p>
-                <p style={{cursor: "pointer"}} onClick={() => window.location.replace('/series')}> Series </p>
-                <p style={{cursor: "pointer"}} onClick={() => window.location.replace('/books')}> Libros </p>
-                <p style={{cursor: "pointer"}} onClick={() => window.location.replace('/workout')}> Ejercicio </p>
-                <p style={{cursor: "pointer"}} onClick={() => window.location.replace('/forum')}> Foro </p>
+                <p onClick={() => window.location.replace('/movies')}> Peliculas </p>
+                <p onClick={() => window.location.replace('/series')}> Series </p>
+                <p onClick={() => window.location.replace('/books')}> Libros </p>
+                <p onClick={() => window.location.replace('/workout')}> Ejercicio </p>
+                <p onClick={() => window.location.replace('/forum')}> Foro </p>
                 {auth && !auth.loading && auth.user && auth.user._id &&
-                <p style={{cursor: "pointer"}} onClick={logout}> Cerrar Sesión </p> }
+                <p onClick={logout}> Cerrar Sesión </p> }
             </div>
         </div>
 

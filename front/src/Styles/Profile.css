@@ -11,7 +11,7 @@
     height: 80vh;
     padding-top: 4%;
     overflow: hidden;
-    background-color: #dc3545;
+    background-color: #002652;
     position: fixed;
     z-index: 50;
     left: 100%;
@@ -135,9 +135,21 @@
 }
 .profile-specific{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-gap: 1rem;
+    /*grid-template-columns: repeat(4, 1fr);*/
+    /*grid-gap: 1rem;*/
     margin-top: 300px;
+    font-family: "Calling Code";
+    font-size: 30px;
+    color: #002652;
+}
+
+.profile-specific ul {
+
+    /*display: table-cell;*/
+    /*height: 100px;*/
+    /*list-style-type: none;*/
+    /*margin: 10px;*/
+    /*vertical-align: middle;*/
 }
 .mockup-general{
     width: 100%;
