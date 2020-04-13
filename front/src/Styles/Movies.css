@@ -1,0 +1,426 @@
+@font-face {
+    font-family: 'Calling Code';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Calling Code'),local('CallingCode'),
+    url("../Fonts/CallingCode-Regular.otf"),
+    url("../Fonts/CallingCode-Regular.ttf") format('truetype');
+}
+.home-menu-collapse{
+    width: 15vw;
+    height: 80vh;
+    padding-top: 4%;
+    overflow: hidden;
+    background-color: #dc3545;
+    position: fixed;
+    z-index: 50;
+    left: 100%;
+    color: white;
+}
+.movie-header{
+    height: 180px;
+    width: 100%;
+    background-color: #9a2624;
+    background-image: url("https://cdn.pixabay.com/photo/2017/01/12/17/30/warm-and-cozy-1975215_960_720.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: 55%;
+    position: fixed;
+    z-index: 10;
+
+    /*opacity: 80%;*/
+}
+.movie-header-navbar-logo{
+    width: 195px;
+    position: absolute;
+    right: 45px;
+    top: -10px;
+    z-index: 100;
+}
+.movie-header-hamburger{
+    width: 45px;
+    position: absolute;
+    right: 10px;
+    top: 15px;
+    z-index: 100;
+}
+.movie-logo{
+    height: 85px;
+    /*margin-top: 3%;*/
+}
+
+.movie-header-title{
+    display: table;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1%;
+}
+.movie-header-title-text{
+    background: white;
+    font-family: 'Calling Code';
+    color: #002652;
+    border: #002652 1px solid;
+    height: 70px;
+    display: table-cell;
+    vertical-align: middle;
+    padding-right: 2.5%;
+    padding-left: 2.5%;
+    width: 430px;
+}
+
+.container-movies {
+    /*margin-top: 10%;*/
+}
+.movie-like-container {
+    position: absolute;
+    top: 8%;
+    right: 35%;
+}
+.movie-like-logo{
+    width: 50px;
+    height: 50px;
+}
+p.movie-like-count {
+    position: absolute;
+}
+.left-arrow-carousel {
+    position: absolute;
+    margin-left: 4rem;
+    z-index: 1;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    font-size: 1.3rem;
+    background-color: #E7E7E7;
+    line-height: 0;
+    color: #1F2137;
+    padding: 0.8rem;
+    border-radius: 5rem;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.left-arrow-carousel:hover {
+    background-color: #e0e0e0;
+}
+.right-arrow-carousel{
+    position: absolute;
+    z-index: 1;
+    right: 1.5%;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    font-size: 1.3rem;
+    background-color: #E7E7E7;
+    line-height: 0;
+    color: #1F2137;
+    padding: 0.8rem;
+    border-radius: 5rem;
+    transition: 0.2s;
+    cursor: pointer;
+}
+.right-arrow-carousel:hover {
+    background-color: #e0e0e0;
+}
+
+.carousel-general{
+    position: absolute;
+    width: 100%;
+}
+.carousel-icons{
+    z-index: 99;
+    display: block;
+    position: relative;
+}
+.carousel-icons-prev{
+    width: 120%;
+    height: auto;
+}
+.movie-general{
+    width: 100%;
+    transform: scale(0.8);
+    margin-top: 5vw;
+}
+.movie-specific{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+}
+.mockup-general{
+    width: 100%;
+    transform: scale(0.8);
+}
+.mockup-especifica{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-gap: 1rem;
+    width: 75%;
+    left: 25%;
+    position: absolute;
+}
+
+
+/*FLIPPER*/
+*{
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+h1{
+    font-size: 2.5rem;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: normal;
+    color: #444;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.movie-wrapper{
+    width: 90%;
+    margin: 0 auto;
+    max-width: 80rem;
+    margin-top: 50px;
+}
+
+.movie-cols{
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+}
+
+.movie-col{
+    width: 100%;
+    padding: 0 !important;
+}
+
+.movie-poster-container{
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+
+    /* FIXME:
+     cursor: pointer; */
+
+}
+.movie-front,
+.movie-back{
+    background-size: cover;
+    background-position: center;
+    -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1), -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    text-align: center;
+    min-height: 400px;
+    height: auto;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 1.5rem;
+}
+
+.movie-back{
+    background: #1F2137;
+}
+
+.movie-front:after{
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    content: '';
+    display: block;
+    opacity: .6;
+    /*background-color: #000;*/
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 10px;
+}
+.movie-poster-container:hover .movie-front,
+.movie-poster-container:hover .movie-back{
+    -webkit-transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    -o-transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+    transition: transform .7s cubic-bezier(0.4, 0.2, 0.2, 1), -webkit-transform .7s cubic-bezier(0.4, 0.2, 0.2, 1);
+}
+
+.movie-back{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+.title-inner{
+    margin: 0;
+    font-weight: 200;
+    font-family: "Calling Code";
+    font-size: 50px;
+}
+.role-inner{
+    margin: 0;
+}
+
+.movie-inner{
+    -webkit-transform: translateY(-50%) translateZ(60px) scale(0.94);
+    transform: translateY(-50%) translateZ(60px) scale(0.94);
+    top: 50%;
+    position: absolute;
+    left: 0;
+    width: 100%;
+    padding: 2rem;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: 1px solid transparent;
+    -webkit-perspective: inherit;
+    perspective: inherit;
+    z-index: 2;
+}
+
+.movie-poster-container .movie-back{
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.movie-poster-container .movie-front{
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.movie-poster-container:hover .movie-back{
+    -webkit-transform: rotateY(0deg);
+    transform: rotateY(0deg);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.movie-poster-container:hover .movie-front{
+    -webkit-transform: rotateY(-180deg);
+    transform: rotateY(-180deg);
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+}
+
+.movie-front .movie-inner p{
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    position: relative;
+}
+
+.movie-front .movie-inner p:after{
+    content: '';
+    width: 4rem;
+    height: 2px;
+    position: absolute;
+    background: #C6D4DF;
+    display: block;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    bottom: -.75rem;
+}
+
+
+.movie-front2{
+    content: '';
+    width: 300px;
+    height: 500px;
+    background-size: cover;
+    margin: 3em;
+}
+
+.movie-front .movie-inner span{
+    color: rgba(255,255,255,0.7);
+    font-family: 'Calling Code';
+    font-weight: 300;
+}
+.container-single-movie{
+    /*display: flex;*/
+    /*align-items: center;*/
+    /*justify-content: center;*/
+    /*top: 15rem;*/
+}
+.movie-white-container{
+    background: #fff;
+    width: 40vw;
+    height: 55vh;
+    position: fixed;
+    top: 40%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    border-radius: 40px;
+    box-shadow: 5px 2px 2px rgba(0,0,0,0.2);
+    text-align: right;
+    margin-top: 150px;
+}
+.container-photo-single-movie{
+    width: 20vw;
+    height: 49vh;
+    margin-top: -24px;
+}
+.img-single-movie{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 1rem;
+    pointer-events: none;
+}
+.container-single-poster-movie{
+    /*display: flex;*/
+    /*justify-content: flex-start;*/
+}
+.container-info-single-movie{
+    /*display: flex;*/
+    /*align-items: flex-start;*/
+    /*flex-direction: column;*/
+    /*justify-content: space-between;*/
+    /*margin-left: 30px;*/
+    margin-left: 21vw;
+    margin-top: -30vh;
+    text-align: left;
+}
+.movie-button-close{
+    background: white;
+    box-shadow: none;
+    border: none;
+    cursor: pointer;
+}
+.name-single-movie{
+    /*margin: 0;*/
+    font-size: 5vh;
+    font-family: 'Calling Code', sans-serif;
+    color: #161B35;
+    font-weight: 700;
+    line-height: 1;
+}
+
+.description-single-movie{
+    /*margin: 0;*/
+    font-size: 1.8vh;
+    font-family: 'Calling Code', sans-serif;
+    color: #161B35;
+    font-weight: 500;
+    letter-spacing: 0.1rem;
+    text-align: justify;
+    margin-top: 1.2rem;
+}
+
+.movies-footer{
+    background-color: #9a2624
+}
