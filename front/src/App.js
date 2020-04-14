@@ -1,3 +1,6 @@
+// Code review: antoine noreau
+// General comment on front: nicely wrapped work, seems to me that it's some quite efficient code! 
+// Small usability comment: It's a bit hard to understand, at first sight, how the landing page works. The links could be at the top of the page and on each logo/title (big icons) when scrolling. 
 import React ,{useEffect} from 'react';
 import { createBrowserHistory as createHistory } from "history";
 import './App.css';
