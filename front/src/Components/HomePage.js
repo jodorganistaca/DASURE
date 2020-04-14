@@ -81,7 +81,7 @@ const HomePage = ({auth}) => {
                 </Row>
                 <span id="scrolldown-span"><p id="scrolldown-p"></p></span>
             </Container>
-
+            // Code review antoine noreau: I guess it would've been in this section that I would've liked a link to each topic own browsing page (movies, etc).
             {images.map((img, i) => {
                 return (
                     <>
