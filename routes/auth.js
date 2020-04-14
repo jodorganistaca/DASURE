@@ -11,6 +11,7 @@ router.get("/google", passport.authenticate("google", { scope: ["email", "profil
 router.post("/", function(req, res) {
     const { email, password } = req.body;
     res.clearCookie("x-access-token");
+    //Valentina Chacon:  Seria bueno quitar esos logs
     console.log(email);
     db.findOneObjectPromise("application", "users", {email: email})
         .then(user => {
