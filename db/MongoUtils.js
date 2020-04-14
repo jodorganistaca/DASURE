@@ -3,7 +3,7 @@
  * @module MongoUtils
  * @author Juan Sebastián Bravo <js.bravo@uniandes.edu.co>
  */
-
+// Code review antoine noreau: Nice work on MongoDB management!
 /**
  * @constant MongoClient
  * @type {NodeModule}
